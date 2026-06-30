@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://targetspace.org/sitemap.xml
