@@ -1,0 +1,21 @@
+{
+  "name": "targetspace-bench-site",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "TargetSpace-Bench benchmark portal: static frontend + Cloudflare Pages Functions + D1 (SQLite).",
+  "scripts": {
+    "dev": "wrangler pages dev . --persist-to .wrangler/state",
+    "deploy": "wrangler pages deploy .",
+    "db:create": "wrangler d1 create targetspace",
+    "db:schema:local": "wrangler d1 execute targetspace --local --file=./schema.sql",
+    "db:seed:local": "wrangler d1 execute targetspace --local --file=./seed.sql",
+    "db:reset:local": "npm run db:schema:local && npm run db:seed:local",
+    "db:schema:remote": "wrangler d1 execute targetspace --remote --file=./schema.sql",
+    "db:seed:remote": "wrangler d1 execute targetspace --remote --file=./seed.sql",
+    "check": "node scripts/check.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.106.0"
+  }
+}

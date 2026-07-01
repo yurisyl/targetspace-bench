@@ -1,0 +1,17 @@
+# Local development secrets for `wrangler pages dev`.
+# Copy this file to `.dev.vars` (gitignored) and fill in real values.
+# In PRODUCTION, set these in the Cloudflare Pages dashboard
+# (Settings -> Environment variables) or with `wrangler pages secret put <NAME>`.
+# NEVER commit real secrets. These are read only by server-side Functions and are
+# never exposed to the browser bundle.
+
+# Admin login username.
+ADMIN_USERNAME="admin"
+
+# Admin login password (plaintext is fine for local dev; use a strong value and an
+# encrypted secret in production).
+ADMIN_PASSWORD="changeme-local-dev"
+
+# Secret used to HMAC-sign session cookies. Generate a long random value:
+#   openssl rand -hex 32
+SESSION_SECRET="0000000000000000000000000000000000000000000000000000000000000000"

@@ -1,0 +1,18 @@
+# Files excluded from the Cloudflare Pages static-asset upload.
+# (The functions/ directory is compiled to Workers separately and is never served
+# as a static asset. This list keeps backend source and secrets off the public site.)
+.dev.vars
+.dev.vars.example
+.env
+.env.example
+*.sql
+package.json
+package-lock.json
+wrangler.toml
+README.md
+scripts
+node_modules
+.wrangler
+.git
+.gitignore
+.assetsignore

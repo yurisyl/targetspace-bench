@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin — TargetSpace-Bench</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main>
+<section class="section"><div class="container admin-wrap">
+  <div class="page-head"><span class="crumbs">Admin</span><h1>Admin dashboard</h1></div>
+  <div id="admin-gate"><p class="muted">Checking session…</p></div>
+  <div id="admin-app" class="hidden">
+    <div class="admin-bar">
+      <strong>Console</strong>
+      <span class="mockflag">pilot mode &middot; illustrative data</span>
+      <span class="who" id="admin-who"></span>
+      <button class="btn btn--ghost btn--sm" id="logout-btn" type="button">Sign out</button>
+    </div>
+    <div class="tabs" id="admin-tabs"></div>
+    <div id="admin-panes"></div>
+  </div>
+</div></section>
+</main>
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

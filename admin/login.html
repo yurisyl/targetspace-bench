@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin sign-in — TargetSpace-Bench</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main>
+<section class="section"><div class="container admin-wrap">
+  <div class="login-card">
+    <a class="brand" href="/" style="margin-bottom:18px"><span class="dot"></span>TargetSpace<small>BENCH</small></a>
+    <h1>Admin sign-in</h1>
+    <p class="muted small">Restricted area. Credentials are configured via server environment secrets, never stored in the page.</p>
+    <div class="notice" id="login-notice"></div>
+    <form id="login-form" class="form" novalidate>
+      <div class="field"><label for="username">Username</label><input id="username" type="text" autocomplete="username" required></div>
+      <div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div>
+      <button class="btn btn--primary" type="submit" id="login-btn" style="width:100%">Sign in</button>
+    </form>
+    <p class="tiny faint" style="margin-top:16px">Sessions are HttpOnly, Secure, SameSite=Strict, HMAC-signed, and expire after 8 hours.</p>
+  </div>
+</div></section>
+</main>
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

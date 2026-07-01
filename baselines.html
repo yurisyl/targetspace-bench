@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baselines &amp; controls — TargetSpace-Bench</title>
+<meta name="description" content="The TargetSpace-Bench baseline and control battery: zero/short/longitudinal history, shuffled-history and wrong-target controls, ablated-modality controls, retrieval-only, human baseline, and oracle upper bound. Why ablations matter.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+<main>
+<section class="section">
+  <div class="container">
+    <div class="page-head">
+      <span class="crumbs">Benchmark / Baselines</span>
+      <h1>Baselines &amp; controls</h1>
+      <p class="lead">TargetSpace is an evaluation protocol, not just a dataset. A result is meaningful only as a <strong style="color:var(--text)">battery of conditions</strong> &mdash; not a single number.</p>
+    </div>
+
+    <div class="note note--info" style="margin:14px 0 26px">
+      <span class="ic">◎</span>
+      <p style="font-size:1.02rem"><strong>The central signal</strong> is not merely whether a model predicts the future, but whether prediction <strong style="color:var(--text)">improves when the model is given the correct target's history in the correct temporal order</strong>.</p>
+    </div>
+
+    <h2>The battery</h2>
+    <div class="table-wrap" style="margin-top:14px">
+      <table class="dtable">
+        <thead><tr><th>Baseline / control</th><th>What it is</th><th>What it isolates</th><th>Expected signal</th></tr></thead>
+        <tbody>
+          <tr><td class="sys">Zero-history (R1)</td><td>Population prior; current prompt/observation only.</td><td>the crowd base rate</td><td>entry condition: beat it to play</td></tr>
+          <tr><td class="sys">Short-history</td><td>A limited recent window.</td><td>where added history first pays</td><td>locates the onset of longitudinal value</td></tr>
+          <tr><td class="sys">Longitudinal-history</td><td>Extended target history.</td><td>the core regime</td><td>the condition the benchmark rewards</td></tr>
+          <tr><td class="sys">Own-routine (R2)</td><td>The target's recency-weighted routine.</td><td>routine vs. genuine adaptation</td><td>skill over R2, in bits, is the headline</td></tr>
+          <tr><td class="sys">Shuffled-history control</td><td>Correct target, history in scrambled order.</td><td>temporal <em>order</em></td><td>skill should drop if order matters</td></tr>
+          <tr><td class="sys">Wrong-target control</td><td>History from a different target (permutation gate).</td><td>target <em>identity</em></td><td>skill should <strong style="color:var(--text)">collapse</strong></td></tr>
+          <tr><td class="sys">Ablated-modality</td><td>Remove audio / video / location / text / metadata.</td><td>each modality's marginal value</td><td>the evidence-tier ablation</td></tr>
+          <tr><td class="sys">Retrieval-only</td><td>Surfaces what happened; no target model.</td><td>recall vs. understanding</td><td>little skill over R2 under the permutation gate</td></tr>
+          <tr><td class="sys">Human baseline</td><td>The target or an expert predicting itself.</td><td>the achievable range</td><td>anchor, not ranked</td></tr>
+          <tr><td class="sys">Oracle / context upper bound</td><td>Curated relevant context.</td><td>ceiling performance</td><td>approximate upper bound</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="margin-top:40px">Why ablations matter</h2>
+    <div class="vs" style="margin-top:14px">
+      <div class="panel panel--cold">
+        <h3>If the controls don't move</h3>
+        <ul>
+          <li>If target history doesn't help &mdash; not measuring its capability.</li>
+          <li>If temporal order doesn't matter &mdash; not using dynamics.</li>
+          <li>If the wrong target scores the same &mdash; not target-specific.</li>
+          <li>If modality removal is free &mdash; the evidence wasn't used.</li>
+        </ul>
+        <p class="muted small" style="margin-top:10px">Then the result should be read as <strong style="color:var(--text)">null</strong>.</p>
+      </div>
+      <div class="panel panel--hot">
+        <h3>What a positive result must show</h3>
+        <ul>
+          <li>Skill <em>improves</em> under longitudinal, target-specific conditions.</li>
+          <li>Skill <em>degrades</em> under shuffled-history and wrong-target controls.</li>
+          <li>Calibration holds; confidence tracks uncertainty.</li>
+          <li>The system is using target-specific dynamics, not generic priors.</li>
+        </ul>
+        <p class="muted small" style="margin-top:10px">This is the inference R2 and the permutation gate are designed to license.</p>
+      </div>
+    </div>
+
+    <div class="cta-band" style="margin-top:40px">
+      <h2>See the battery on the leaderboard</h2>
+      <p class="lead" style="margin:0 auto 16px;max-width:60ch">Each mock baseline row reports adaptation gain, calibration, and specificity context.</p>
+      <div class="btns" style="justify-content:center"><a class="btn btn--primary" href="/leaderboard">Leaderboard</a><a class="btn btn--ghost" href="/docs#baselines">Docs: baselines</a></div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>

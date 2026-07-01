@@ -1,0 +1,25 @@
+# Cloudflare Pages + Functions + D1 configuration for targetspace.org
+#
+# Frontend: static files in repo root (served by Pages).
+# Backend:  Pages Functions in ./functions (auto-bundled by Wrangler).
+# Database: Cloudflare D1 (SQLite), bound as `DB`.
+#
+# Local dev:   npm run dev         (wrangler pages dev, uses a LOCAL D1 replica)
+# Deploy:      npm run deploy      (wrangler pages deploy .)
+#
+# Secrets (ADMIN_USERNAME / ADMIN_PASSWORD / SESSION_SECRET) are NOT stored here.
+# Local: put them in .dev.vars (gitignored). Production: set them in the Cloudflare
+# Pages dashboard (Settings -> Environment variables / Secrets) or via
+# `wrangler pages secret put <NAME>`.
+
+name = "targetspace-bench"
+compatibility_date = "2024-11-06"
+pages_build_output_dir = "."
+
+# D1 binding. For LOCAL dev the database_id is ignored (a local SQLite replica is
+# used, keyed by database_name). For REMOTE deploy, create the database once with
+# `npm run db:create` and paste the returned id below (or bind it in the dashboard).
+[[d1_databases]]
+binding = "DB"
+database_name = "targetspace"
+database_id = "00000000-0000-0000-0000-000000000000"

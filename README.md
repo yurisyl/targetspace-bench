@@ -1,144 +1,115 @@
-# TargetSpace-Bench — website
+# TargetSpace-Bench — benchmark portal
 
-The official site for **TargetSpace** / **TargetSpace-Bench**, a prospective benchmark
-framework for target-specific forecasting under partial observation.
+The site for **TargetSpace**, a benchmark for **target-conditioned longitudinal world
+modeling from passive multimodal observation**. TargetSpace is a shared evaluation
+apparatus for target-specific forecasting under partial observation, instantiated first in
+personal intelligence (the flagship **TS-Personal** track).
 
-**Live:** https://targetspace.org · **Paper:** [v8.1 PDF](assets/targetspace-bench-paper-v8.1.pdf) · **Status:** pre-pilot proposal (no empirical results claimed)
+**Live:** https://targetspace.org · **Paper:** [v8.1 PDF](assets/targetspace-bench-paper-v8.1.pdf) · **Portal version:** v0.1-pilot (illustrative data only)
 
-> Understanding is a capability. Forecasting is a measurement.
 > The target is not a profile. The target is a lived trajectory.
 
-This is a **dependency-free static site** — plain HTML, CSS, and a few lines of vanilla
-JavaScript. There is **no build step**, no framework, no Node, no Docker. It is designed to
-be hosted on **Cloudflare Pages** and to remain globally reachable with no dependency on a
-local machine, a tunnel, or a home server.
+## Architecture
 
----
+A static frontend served by **Cloudflare Pages**, with a wired backend on the same free
+deploy path:
 
-## Repository layout
+- **Frontend** — dependency-free multi-page HTML/CSS, vanilla JS. Shared nav/footer are
+  injected by `js/layout.js`; data pages hydrate from the API. No build step.
+- **Backend** — **Cloudflare Pages Functions** in `functions/` (the API).
+- **Database** — **Cloudflare D1** (SQLite), bound as `DB`.
+- **Auth** — admin sessions via an HMAC-signed, HttpOnly, Secure, SameSite cookie. Admin
+  credentials come from environment secrets; nothing secret ships to the browser.
 
 ```
-.
-├── index.html                 # the single-page site (all sections)
-├── styles.css                 # design system + all styles
-├── main.js                    # mobile nav, copy-cite, active-section highlight
-├── 404.html                   # branded not-found page
-├── _headers                   # Cloudflare Pages headers (security + caching)
-├── robots.txt
-├── sitemap.xml
-├── targetspace_synthetic_demo.py   # the deterministic synthetic harness (stdlib only)
-└── assets/
-    ├── targetspace-bench-paper-v8.1.pdf   # the paper
-    ├── favicon.svg
-    ├── og.png                 # 1200×630 social/OpenGraph image
-    └── og.html                # source used to render og.png (not served)
+index.html benchmark.html tracks.html leaderboard.html submit.html
+docs.html baselines.html paper.html faq.html  admin/{login,index}.html
+css/portal.css  js/{api,layout,home,tracks,leaderboard,submit,faq,docs,admin}.js
+functions/_lib/{http,auth,crud}.js
+functions/api/{tracks,splits,leaderboard,submissions,faq,docs,announcements,versions}.js
+functions/api/admin/{_middleware,login,logout,session,...}  (CRUD per entity)
+schema.sql  seed.sql  wrangler.toml  .env.example
 ```
 
----
+### Data model (D1)
+
+`admins` · `benchmark_versions` · `tracks` (domain tracks, Table 8) · `splits` (eval
+regimes) · `leaderboard_entries` · `submissions` · `faq_items` · `doc_sections` ·
+`announcements`.
+
+### Track hierarchy
+
+- **TargetSpace** = the framework.
+- **TS-Personal** = flagship track (current / synthetic pre-pilot).
+- **TS-Health, TS-Energy** = planned · **TS-Robotics, TS-Enterprise** = research.
+- **Evaluation splits** (TS-Short / Long / Shift / Counterfactual / Multimodal / Private)
+  are task regimes within the flagship track.
+
+All tracks share one scoring spine: sealed walk-forward forecasts, R1 (population prior),
+R2 (own-routine baseline), calibration gate, permutation specificity, evidence ablation,
+deterministic outcome validation.
 
 ## Local development
 
-No tooling required. Either:
+Requires Node and [Wrangler](https://developers.cloudflare.com/workers/wrangler/).
 
 ```bash
-# Option A — just open the file
-open index.html
+# 1. install Wrangler (and dev deps)
+npm install
 
-# Option B — serve locally (recommended; makes absolute /paths work)
-python3 -m http.server 8000
-# then visit http://localhost:8000
+# 2. configure local secrets
+cp .dev.vars.example .dev.vars     # then edit ADMIN_PASSWORD / SESSION_SECRET
+
+# 3. create + seed a LOCAL D1 database
+npm run db:reset:local             # = db:schema:local && db:seed:local
+
+# 4. run the site + API locally (http://localhost:8788)
+npm run dev
+
+# 5. sanity check (syntax of all JS + SQL validity)
+npm run check
 ```
 
-Edit `index.html` / `styles.css` and refresh. That's the whole loop.
+### Admin login
 
-### Regenerating the social image (optional)
-`assets/og.png` is rendered from `assets/og.html` with headless Chrome:
+- Visit `/admin` (redirects to `/admin/login` if not signed in).
+- Sign in with `ADMIN_USERNAME` / `ADMIN_PASSWORD` from your `.dev.vars` (or production
+  secrets). The dashboard supports: triaging submissions (approve / reject / verified /
+  private-eval), and full CRUD for leaderboard entries, tracks, splits, FAQ, docs,
+  announcements, and benchmark versions.
+
+## Deployment (Cloudflare Pages)
 
 ```bash
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
-  --headless --disable-gpu --hide-scrollbars --window-size=1200,630 \
-  --screenshot="assets/og.png" "file://$(pwd)/assets/og.html"
+# one-time: create the production D1 database, then paste its id into wrangler.toml
+npm run db:create
+
+# apply schema + seed to the REMOTE database
+npm run db:schema:remote
+npm run db:seed:remote
+
+# set production secrets (encrypted; never committed)
+npx wrangler pages secret put ADMIN_USERNAME
+npx wrangler pages secret put ADMIN_PASSWORD
+npx wrangler pages secret put SESSION_SECRET    # openssl rand -hex 32
+
+# deploy (static assets + Functions in one shot)
+npm run deploy
 ```
 
----
+In the Cloudflare dashboard, bind the D1 database to the Pages project
+(**Settings → Functions → D1 bindings**, name `DB`) if it is not already bound via
+`wrangler.toml`. `.assetsignore` keeps backend source and secrets out of the static upload.
 
-## The synthetic harness
+## Environment variables
 
-`targetspace_synthetic_demo.py` is a minimal, deterministic, **synthetic-only** demonstration
-of the scoring spine (R1/R2 baselines, proper scoring, calibration, evidence-tier ablation,
-permutation specificity). Pure Python standard library; runs in under a second:
+See [.env.example](.env.example). Required: `ADMIN_USERNAME`, `ADMIN_PASSWORD`,
+`SESSION_SECRET` (>= 16 chars; sign sessions). Optional: `ALLOWED_ORIGINS`.
 
-```bash
-python targetspace_synthetic_demo.py
-```
+## Notes
 
-It demonstrates the benchmark mechanics. **It uses no human data and reports no empirical
-results.** The pre-pilot paper likewise reports none.
-
----
-
-## Deploy on Cloudflare Pages (recommended path: GitHub integration)
-
-The site is static with **no build command**, so Cloudflare just serves the files.
-
-1. **Push this repo to GitHub** (see below).
-2. Cloudflare dashboard → **Workers & Pages** → **Create application** → **Pages** →
-   **Connect to Git**.
-3. Select the **`targetspace-bench`** repository.
-4. Build settings:
-   - **Framework preset:** `None`
-   - **Build command:** *(leave empty)*
-   - **Build output directory:** `/`  *(repo root)*
-   - **Root directory:** `/`
-5. **Save and Deploy.** You get a `*.pages.dev` preview URL within ~30s.
-
-> Do **not** use Cloudflare Tunnel for this site. (Error 1033 on the old origin came from a
-> tunnel/origin that was unreachable. A Pages static deploy has no origin to go down.)
-
-### Alternative: direct upload via Wrangler (no GitHub)
-```bash
-npx wrangler pages deploy . --project-name targetspace-bench
-```
-(Requires `wrangler login` / a Cloudflare API token. The GitHub path above is preferred
-because it auto-deploys on every push and needs no local credentials.)
-
----
-
-## Custom domain: targetspace.org
-
-In the Pages project → **Custom domains** → **Set up a custom domain**:
-
-1. Add **`targetspace.org`** (and optionally `www.targetspace.org`).
-2. If the domain is already on Cloudflare, DNS is configured automatically (a `CNAME`/alias
-   to the Pages project). If prompted, accept the suggested records.
-3. Wait for the certificate to issue (usually a few minutes). SSL/TLS mode: **Full** or
-   **Full (strict)**.
-
-### DNS checklist
-- [ ] `targetspace.org` apex → Cloudflare Pages (auto, or `CNAME`-flattened to
-      `targetspace-bench.pages.dev`), **Proxied (orange cloud)**.
-- [ ] `www.targetspace.org` → `CNAME` to `targetspace.org` (or to the Pages project), proxied.
-- [ ] **No** `A`/`CNAME` record pointing at a tunnel, a home IP, or a `localhost` origin.
-- [ ] SSL/TLS active; HTTPS loads without warnings.
-- [ ] Old origin/tunnel records for the retired site removed.
-
----
-
-## Deployment acceptance checklist
-- [ ] `https://targetspace.org` loads globally.
-- [ ] Works with the author's Mac **offline** (static; nothing local in the path).
-- [ ] No Cloudflare Tunnel, no `localhost`, no home-server dependency.
-- [ ] `assets/targetspace-bench-paper-v8.1.pdf` downloads correctly.
-- [ ] Metadata correct: `<title>`, description, OpenGraph, Twitter card, canonical, favicon.
-- [ ] Social preview renders (`assets/og.png`).
-- [ ] **No** user-facing references to the retired prototype anywhere (copy, metadata,
-      filenames, links).
-
----
-
-## License / contact
+- **All leaderboard data is illustrative mock baselines.** No official submissions or
+  empirical results are claimed. Rows are labeled `mock` and gated behind a pilot banner.
+- The synthetic harness (`targetspace_synthetic_demo.py`) uses no human data.
 
 © 2026 Yuri Andrade Sylvester · TargetSpace · `yurisyl@gmail.com`
-
-This is a research project; the site and the synthetic harness are provided as-is for review
-and reproducibility. Issues and contributions welcome via GitHub.

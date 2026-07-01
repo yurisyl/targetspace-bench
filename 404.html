@@ -7,18 +7,25 @@
 <meta name="robots" content="noindex">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
 </head>
 <body>
-<main class="section" style="min-height:80vh;display:grid;place-items:center;text-align:center">
+<div id="site-header"></div>
+<main class="section" style="min-height:64vh;display:grid;place-items:center;text-align:center">
   <div class="container">
     <span class="eyebrow">404</span>
     <h1 style="font-size:clamp(2.4rem,7vw,4rem)">Off the <span class="grad-text">trajectory</span></h1>
     <p class="lead" style="margin:0 auto 26px">This page does not exist. Let us forecast where you meant to go.</p>
     <div class="btns" style="justify-content:center">
       <a class="btn btn--primary" href="/">Back to home</a>
-      <a class="btn btn--ghost" href="/#paper">Read the paper</a>
+      <a class="btn btn--ghost" href="/leaderboard">Leaderboard</a>
+      <a class="btn btn--ghost" href="/tracks">Tracks</a>
+      <a class="btn btn--ghost" href="/paper">Paper</a>
     </div>
   </div>
 </main>
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
 </body>
 </html>
