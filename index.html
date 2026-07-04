@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TargetSpace-Bench — Benchmarking target-conditioned longitudinal world models</title>
-<meta name="description" content="TargetSpace-Bench evaluates whether models can transform passive longitudinal observation into a target-specific predictive model. A shared evaluation apparatus for target-specific forecasting under partial observation, instantiated first in personal intelligence.">
+<title>TargetSpace — Benchmarking Personal Intelligence by Target-Specific Forecasting Under Partial Observation</title>
+<meta name="description" content="TargetSpace is a benchmark framework for testing whether AI systems can make calibrated, target-specific forecasts about future state transitions from longitudinal observations — beyond population priors, beyond the target's own routine, and with skill that collapses under target permutation. Pre-pilot protocol proposal; no empirical results yet.">
 <link rel="canonical" href="https://targetspace.org/">
 <meta name="theme-color" content="#070b16">
 <meta name="author" content="Yuri Andrade Sylvester">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TargetSpace">
 <meta property="og:url" content="https://targetspace.org/">
-<meta property="og:title" content="TargetSpace-Bench — target-conditioned longitudinal world modeling">
-<meta property="og:description" content="Not just what happens next in a scene — what happens next for this target. A benchmark for target-specific adaptation over time, complementary to physical-reasoning, video, robotics, and forecasting benchmarks.">
+<meta property="og:title" content="TargetSpace — target-specific forecasting under partial observation">
+<meta property="og:description" content="A prospective benchmark framework with own-routine baselines, permutation specificity, calibration, and evidence ablation. Pre-pilot protocol proposal.">
 <meta property="og:image" content="https://targetspace.org/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="TargetSpace-Bench">
+<meta name="twitter:title" content="TargetSpace">
 <meta name="twitter:image" content="https://targetspace.org/assets/og.png">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/styles.css">
@@ -31,24 +31,23 @@
 <header class="hero section">
   <div class="container hero__grid">
     <div>
-      <span class="eyebrow">A prospective AI benchmark framework</span>
-      <h1>Benchmarking <span class="grad-text">target-conditioned</span> longitudinal world models</h1>
-      <p class="hero__sub">From passive, multimodal observation of a specific target over time: can a model infer its evolving goals, update its beliefs as evidence arrives, and forecast where the target turns next?</p>
+      <span class="eyebrow">A prospective benchmark framework</span>
+      <h1>Benchmarking <span class="grad-text">target-specific</span> forecasting under partial observation</h1>
+      <p class="hero__sub">TargetSpace tests whether AI systems can forecast future state transitions for a <em>specific</em> target from longitudinal evidence &mdash; beyond population priors, beyond the target's own routine, and with calibrated uncertainty.</p>
       <div class="sig">
-        <span>Not just what happens next in a scene &mdash; what happens next for <em>this</em> target.</span>
-        <span>The target is not a profile. The target is a lived trajectory.</span>
+        <span>Modern AI systems claim to remember, personalize, and act on behalf of particular users.</span>
+        <span>TargetSpace turns that claim into a prospective sealed forecasting benchmark.</span>
       </div>
       <div class="btns">
-        <a class="btn btn--primary" href="/leaderboard">View Leaderboard</a>
-        <a class="btn btn--ghost" href="/tracks">Explore Tracks</a>
-        <a class="btn btn--ghost" href="/submit">Submit a Run</a>
-        <a class="btn btn--ghost" href="/paper">Read Paper</a>
+        <a class="btn btn--primary" href="/paper">Read the paper</a>
+        <a class="btn btn--ghost" href="/assets/targetspace-paper-2026.pdf" download>Download PDF</a>
+        <a class="btn btn--ghost" href="https://github.com/yurisyl/targetspace-bench" rel="noopener">View GitHub</a>
+        <a class="btn btn--ghost" href="#protocol">See protocol</a>
       </div>
       <div class="badges">
-        <span class="badge"><b>Version</b> &nbsp;v0.1-pilot</span>
-        <span class="badge"><b>Tracks</b> &nbsp;5 (1 current)</span>
-        <span class="badge"><b>Splits</b> &nbsp;6</span>
-        <span class="mockflag">illustrative pilot data &mdash; no official results yet</span>
+        <span class="badge"><b>Status</b> &nbsp;pre-pilot protocol proposal</span>
+        <span class="badge"><b>Results</b> &nbsp;none claimed</span>
+        <span class="mockflag">no empirical leaderboard results yet</span>
       </div>
     </div>
     <div class="hero__fig" aria-hidden="true">
@@ -79,82 +78,190 @@
 
 <div class="flowline"></div>
 
-<!-- ============ FRAMING ============ -->
-<section class="section section--tight">
+<!-- ============ EVALUATION GAP ============ -->
+<section class="section" id="gap">
   <div class="container">
-    <p class="lead" style="max-width:80ch;font-size:1.22rem">
-      <strong style="color:var(--text)">TargetSpace is a shared evaluation apparatus for target-specific forecasting under partial observation, instantiated first in personal intelligence.</strong>
-      It is complementary to physical-reasoning, video-generation, embodied-control, and forecasting benchmarks &mdash; it measures whether a model can become a predictive model of a <em>particular</em> target, not just a model of generic scenes or events.
-    </p>
-  </div>
-</section>
-
-<!-- ============ WHY NOW ============ -->
-<section class="section section--tight" id="why-now">
-  <div class="container">
-    <span class="eyebrow">Why now?</span>
-    <h2>Ambient AI is moving from recording to <span class="grad-text">predicting</span></h2>
-    <p class="lead">Ambient AI recorders, wearable memory devices, smart glasses, and personal context systems are moving AI from episodic question-answering toward longitudinal experience modeling. TargetSpace-Bench evaluates what future-relevant states become inferable from passive audio, visual, and activity traces &mdash; against population base rates (R1) and the target's own routine (R2), under calibration and permutation-specificity gates. Wearables are the most visible instance, not the boundary: the same benchmark problem arises wherever an AI system accumulates longitudinal traces about a target &mdash; assistants, enterprise copilots, tutors, care systems, robots, recommenders.</p>
-    <div class="grid grid-2" style="margin-top:22px">
-      <div class="card"><div class="card__ic">◇</div><h3>Not just knowledge &mdash; experience</h3><p>Documents reveal what was written. Ambient traces reveal what was lived, repeated, deferred, promised, pursued, seen, and acted upon. Knowledge is episodic and declarative; experience is longitudinal, situated, relational, embodied, multimodal &mdash; and predictive.</p></div>
-      <div class="card"><div class="card__ic">◈</div><h3>From audio to audiovisual capture</h3><p>Audio reveals speech, commitments, relationships, and topics. First-person video adds embodied context: objects, screens, faces, locations, documents, routines, and physical actions. In the evidence ladder these are simply tiers &mdash; whether richer capture pays is <strong style="color:var(--text)">measured by the ablation, never assumed</strong>.</p></div>
+    <span class="eyebrow">The evaluation gap</span>
+    <h2>Current evaluations miss the <span class="grad-text">target-specific</span> question</h2>
+    <p class="lead">Existing evaluations measure retrieval, preference replay, style imitation, or generic prediction. None of them can distinguish those from genuine target-specific prospective skill.</p>
+    <div class="grid grid-2" style="margin-top:24px">
+      <div class="card"><div class="card__ic">&#9634;</div><h3>Generic prediction</h3><p>Predicts what <em>usually</em> happens. Looks calibrated and often correct while knowing nothing about any individual target.</p></div>
+      <div class="card"><div class="card__ic">&#8635;</div><h3>Routine replay</h3><p>Predicts what <em>this target usually does</em>. Looks personalized while having captured only habit.</p></div>
+      <div class="card"><div class="card__ic">&#9906;</div><h3>Retrieval</h3><p>Finds facts already stored in memory. Surfaces <em>what happened</em>, not what happens next.</p></div>
+      <div class="card" style="border-color:rgba(45,212,191,.4)"><div class="card__ic">&#9673;</div><h3>Target-specific forecasting</h3><p>Forecasts how <em>this</em> target will transition next, before the outcome exists &mdash; the capability TargetSpace isolates and measures.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ============ WHY / MISS / MEASURES ============ -->
-<section class="section" id="why">
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section" id="protocol">
   <div class="container">
-    <span class="eyebrow">Why TargetSpace exists</span>
-    <h2>A capability today's benchmarks under-measure</h2>
-    <p class="lead">Deployed agents must reason about particular people, teams, systems, and projects over time &mdash; inferring latent goals, detecting behavioral shifts, updating beliefs, and forecasting target-specific futures. Most evaluations never test that.</p>
-
-    <div class="vs" style="margin-top:26px">
-      <div class="panel panel--cold">
-        <h3>What current benchmarks measure</h3>
-        <ul>
-          <li>Physical plausibility, object permanence, intuitive physics</li>
-          <li>Video realism and short-horizon scene continuation</li>
-          <li>Embodied control and manipulation success</li>
-          <li>Probabilistic forecasting of generic public events</li>
-          <li>Single-turn answer correctness and retrieval</li>
-        </ul>
-      </div>
-      <div class="panel panel--hot">
-        <h3>What TargetSpace adds</h3>
-        <ul>
-          <li>Target-specific adaptation over a tracked instance</li>
-          <li>Longitudinal memory and belief updating from passive evidence</li>
-          <li>Goal / behavior transition detection</li>
-          <li>Multimodal evidence integration, measured by ablation</li>
-          <li>Counterfactual target forecasting, calibrated and sealed</li>
-        </ul>
-      </div>
+    <span class="eyebrow">How TargetSpace works</span>
+    <h2>Sealed forecasts, resolved outcomes, audited skill</h2>
+    <div class="stack" style="margin-top:22px">
+      <div class="layer"><span class="layer__n">1</span><div class="layer__b"><strong>Observe the target up to time t</strong><span>Longitudinal evidence only; strict walk-forward, no future information.</span></div></div>
+      <div class="layer"><span class="layer__n">2</span><div class="layer__b"><strong>Seal the forecast before the outcome exists</strong><span>Timestamped and hashed (SHA-256); contamination-resistant by construction.</span></div></div>
+      <div class="layer"><span class="layer__n">3</span><div class="layer__b"><strong>Resolve the outcome at time r</strong><span>Deterministic, pre-registered resolution rules over observable evidence.</span></div></div>
+      <div class="layer"><span class="layer__n">4</span><div class="layer__b"><strong>Score with proper scoring rules</strong><span>Log score (bits) and Brier over the full probability distribution.</span></div></div>
+      <div class="layer"><span class="layer__n">5</span><div class="layer__b"><strong>Compare against R1 and R2</strong><span>Population prior and the target's own routine &mdash; skill is measured over both.</span></div></div>
+      <div class="layer"><span class="layer__n">6</span><div class="layer__b"><strong>Check calibration and permutation specificity</strong><span>Confidence must track uncertainty; skill must collapse on the wrong target.</span></div></div>
+      <div class="layer"><span class="layer__n">7</span><div class="layer__b"><strong>Report evidence-tier lift</strong><span>What each additional evidence stream buys is measured, never assumed.</span></div></div>
     </div>
-
-    <div class="grid grid-3" style="margin-top:24px">
-      <div class="card"><div class="card__ic">◎</div><h3>What it measures</h3><p>Whether prediction of a target's future state improves when a model is given the <strong style="color:var(--text)">correct target's history in the correct temporal order</strong> &mdash; over the population prior (R1) and the target's own routine (R2).</p></div>
-      <div class="card"><div class="card__ic">⛒</div><h3>What it does not</h3><p>It is not a video-realism, robotics, or intuitive-physics benchmark, and a high score implies nothing about those. It claims nothing about consciousness or a person's inner life.</p></div>
-      <div class="card"><div class="card__ic">⚖</div><h3>How it's judged</h3><p>Strictly proper scoring (log score in bits, Brier), gated by calibration and a permutation specificity test that must collapse skill on the wrong target.</p></div>
+    <div class="note note--info" style="margin-top:20px">
+      <span class="ic">&#9673;</span>
+      <p><strong>The decision rule:</strong> a model earns target-specific credit only if it beats the population prior, beats the target's own routine, stays calibrated, and loses skill when its forecasts are matched to the wrong target.</p>
     </div>
+  </div>
+</section>
+
+<!-- ============ TARGET-SPECIFICITY STACK ============ -->
+<section class="section" id="stack">
+  <div class="container">
+    <span class="eyebrow">The target-specificity stack</span>
+    <h2>Each layer removes a way to fake understanding</h2>
+    <div class="stack" style="margin-top:22px">
+      <div class="layer"><span class="layer__n">1</span><div class="layer__b"><strong>Prospective sealing</strong><span>Removes hindsight rationalization and contamination.</span></div><span class="layer__r">adopted</span></div>
+      <div class="layer"><span class="layer__n">2</span><div class="layer__b"><strong>Proper scoring</strong><span>Scores the full probability distribution, not cherry-picked accuracy.</span></div><span class="layer__r">adopted</span></div>
+      <div class="layer"><span class="layer__n">3</span><div class="layer__b"><strong>R1 &mdash; population-prior baseline</strong><span>Filters out generic base-rate prediction.</span></div><span class="layer__r">adopted</span></div>
+      <div class="layer is-anchor"><span class="layer__n">4</span><div class="layer__b"><strong>R2 &mdash; own-routine baseline</strong><span>Filters out routine replay: skill over R2 is skill the routine does not contain.</span></div><span class="layer__r">anchor</span></div>
+      <div class="layer"><span class="layer__n">5</span><div class="layer__b"><strong>Calibration gate</strong><span>Filters out overconfident lucky prediction.</span></div><span class="layer__r">adopted</span></div>
+      <div class="layer is-anchor"><span class="layer__n">6</span><div class="layer__b"><strong>Permutation specificity gate</strong><span>Skill must collapse when forecasts are matched to the wrong target.</span></div><span class="layer__r">anchor</span></div>
+      <div class="layer"><span class="layer__n">7</span><div class="layer__b"><strong>Evidence-tier ablation</strong><span>Measures which evidence streams add target-specific information.</span></div><span class="layer__r">adopted</span></div>
+    </div>
+    <p class="muted small" style="margin-top:14px">Prospective sealing, proper scoring, calibration, and evidence ablation are adopted from prior work and cited. The contribution is the <strong style="color:var(--text)">conjunction</strong>, anchored on the own-routine baseline and the permutation specificity gate.</p>
   </div>
 </section>
 
 <div class="flowline"></div>
 
-<!-- ============ TRACK EXPLORER ============ -->
+<!-- ============ WHY NOW ============ -->
+<section class="section" id="why-now">
+  <div class="container">
+    <span class="eyebrow">Why now</span>
+    <h2>From memory to <span class="grad-text">target-state inference</span></h2>
+    <p class="lead">AI systems are moving from episodic retrieval toward longitudinal context modeling. Ambient recorders, wearable memory systems, first-person audiovisual devices, agents, enterprise copilots, tutors, care systems, robots, and recommenders all point to the same benchmark problem: <strong style="color:var(--text)">what future-relevant states become inferable when an AI system accumulates observations about a target over time?</strong></p>
+    <div class="grid grid-2" style="margin-top:22px">
+      <div class="card"><h3>Devices motivate; they do not define</h3><p>Commercial systems such as AI recorders, wearable memory devices, and first-person smart glasses make the capability class newly concrete. Ambient AI devices motivate the benchmark; they do not define its boundary.</p></div>
+      <div class="card"><h3>The question has moved</h3><p>The question is no longer only <em>what data was collected</em>. It is <em>what target states can be inferred from longitudinal observation</em> &mdash; and no evaluation standard for that conversion currently exists. TargetSpace specifies one.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NOT KNOWLEDGE — EXPERIENCE ============ -->
+<section class="section section--tight" id="experience">
+  <div class="container">
+    <span class="eyebrow">Not just knowledge &mdash; experience</span>
+    <p class="lead" style="max-width:78ch">Documents reveal what was written. Logs reveal what was clicked. Ambient and longitudinal traces reveal what was repeated, deferred, promised, pursued, avoided, seen, and acted upon. TargetSpace evaluates whether those traces improve <strong style="color:var(--text)">prospective forecasts</strong> beyond base rates and routine &mdash; scored only against sealed, externally observable outcomes.</p>
+  </div>
+</section>
+
+<!-- ============ PERSONAL TRACK + TRACKS ============ -->
 <section class="section" id="tracks">
   <div class="container">
     <div class="spread">
       <div>
-        <span class="eyebrow">Track Explorer</span>
-        <h2>One framework, multiple tracks</h2>
-        <p class="lead mb0">TargetSpace is a multi-track apparatus. Every track shares the same scoring spine; they differ in target, evidence, horizon, and readiness. <strong style="color:var(--text)">TS-Personal</strong> is the flagship and most developed track.</p>
+        <span class="eyebrow">The flagship track</span>
+        <h2>Personal world modeling, instantiated first</h2>
+        <p class="lead mb0">The first instantiated track evaluates a <strong style="color:var(--text)">consenting individual's</strong> future state transitions: commitment follow-through, priority maintained vs. displaced, task continuation vs. switch, response behaviour, meeting and event realization, attention shifts. The personal track comes first because personal AI is commercially important and scientifically under-evaluated &mdash; the paper claims no cross-domain validation.</p>
       </div>
       <a class="btn btn--ghost" href="/tracks">All tracks &amp; splits</a>
     </div>
     <div class="trackgrid" id="track-explorer" style="margin-top:24px">
       <div class="card"><p class="muted">Loading tracks…</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEYOND WEARABLES ============ -->
+<section class="section" id="beyond">
+  <div class="container">
+    <span class="eyebrow">Beyond wearables</span>
+    <h2>Wherever longitudinal traces meet resolved outcomes</h2>
+    <p class="lead">TargetSpace applies wherever longitudinal observations and resolved outcomes make R1, R2, and permutation tests meaningful.</p>
+    <div class="grid grid-3" style="margin-top:22px">
+      <div class="card"><h3>Assistants &amp; agents</h3><p>Email, calendar, chat, documents, browsing, and task history.</p></div>
+      <div class="card"><h3>Enterprise copilots</h3><p>Organizational memory over trackers, commits, and communications.</p></div>
+      <div class="card"><h3>Health &amp; care systems</h3><p>Longitudinal behavioural and physiological traces.</p></div>
+      <div class="card"><h3>Tutors &amp; learning systems</h3><p>Student interaction history over weeks and terms.</p></div>
+      <div class="card"><h3>Robotics &amp; embodied agents</h3><p>Environments, actions, and configurations observed over time.</p></div>
+      <div class="card"><h3>Recommenders &amp; attention systems</h3><p>Attention and behaviour histories; project, market, and process forecasting.</p></div>
+    </div>
+    <p class="muted small" style="margin-top:14px">These are <strong style="color:var(--text)">proposed extension domains, not validated empirical results</strong>. Each track is admitted only when it supports a strong own-routine baseline and a meaningful permutation test.</p>
+  </div>
+</section>
+
+<div class="flowline"></div>
+
+<!-- ============ CLAIMS & BOUNDARIES ============ -->
+<section class="section" id="claims">
+  <div class="container">
+    <span class="eyebrow">Claims and boundaries</span>
+    <h2>What the paper claims &mdash; and does not</h2>
+    <div class="vs" style="margin-top:22px">
+      <div class="panel panel--hot">
+        <h3>Claimed</h3>
+        <ul>
+          <li>The TargetSpace benchmark framework, specified in full</li>
+          <li>The personal track, specified as the flagship instantiation</li>
+          <li>A synthetic demonstration harness (sanity check only)</li>
+          <li>The evaluation stack, protocol, and reporting contract</li>
+        </ul>
+      </div>
+      <div class="panel panel--cold">
+        <h3>Not claimed</h3>
+        <ul>
+          <li>Human pilot results (no pilot has run)</li>
+          <li>Cross-domain empirical validation</li>
+          <li>Proof that passive observation improves forecasting</li>
+          <li>That attention causes target formation</li>
+          <li>Permission to act on forecasts</li>
+          <li>A public raw first-person dataset in the initial release</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PILOT PLAN ============ -->
+<section class="section section--tight" id="pilot">
+  <div class="container">
+    <span class="eyebrow">Pilot plan</span>
+    <h2>The first pilot is harness validation</h2>
+    <p class="lead">A small feasibility study of whether the protocol can run: forecast generation, sealing, deterministic resolution, variance and dependence estimation, evidence-tier feasibility, and preliminary signal over R1/R2.</p>
+    <div class="note note--warn" style="margin-top:16px">
+      <span class="ic">&#9888;</span>
+      <p>It does <strong>not</strong> test whether personal intelligence exists, does <strong>not</strong> validate cross-domain generality, and does <strong>not</strong> establish population-level effects. Abandonment criteria are pre-registered: no system beats R1 &rarr; noise; none beats R2 &rarr; target-specific forecasting not demonstrated; skill survives permutation &rarr; not target-specific.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ETHICS ============ -->
+<section class="section" id="ethics">
+  <div class="container">
+    <span class="eyebrow">Ethics &amp; governance</span>
+    <h2>The inference object is the <span class="grad-text">privacy boundary</span></h2>
+    <p class="lead">Deleting or never storing raw audio and video is not enough if transcripts, OCR, embeddings, speaker maps, entity graphs, commitments, routines, summaries, and inferred goals persist. TargetSpace treats the <strong style="color:var(--text)">derived experiential model</strong> &mdash; not only the raw signal &mdash; as the object requiring governance.</p>
+    <div class="grid grid-2" style="margin-top:22px">
+      <div class="panel panel--cold">
+        <h3>Risks the framework names</h3>
+        <ul>
+          <li>Bystander consent &mdash; people near the system become data subjects</li>
+          <li>Purpose drift &mdash; meeting notes become behavioural prediction</li>
+          <li>Deletion ambiguity &mdash; erasing media may not erase derived layers</li>
+          <li>Searchability &mdash; forgotten remarks become queryable</li>
+          <li>Power asymmetry &mdash; memory interrogated by whoever holds power</li>
+          <li>Inference leakage &mdash; goals and vulnerabilities exposed by accumulation</li>
+        </ul>
+      </div>
+      <div class="panel panel--hot">
+        <h3>Balanced by design</h3>
+        <ul>
+          <li>Beneficial uses are real: accessibility, memory support, productivity, care coordination, accountability, safety</li>
+          <li>Local processing and open-source implementations are valuable mitigations &mdash; but incomplete against bystander consent, purpose drift, and derived-inference risk</li>
+          <li>Consent-first, federated, aggregate-only evaluation; observe-not-intervene during scoring windows</li>
+          <li>Benchmark validity is kept strictly separate from deployment legitimacy</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -166,50 +273,29 @@
       <div><span class="eyebrow">Leaderboard</span><h2>Skill over the routine, not the crowd</h2></div>
       <a class="btn btn--ghost" href="/leaderboard">Full leaderboard</a>
     </div>
-    <p class="lead">The headline signal is <strong style="color:var(--text)">target adaptation gain</strong> &mdash; skill in bits over the own-routine baseline R2 &mdash; with calibration and target specificity as gates. All rows below are illustrative mock baselines.</p>
+    <p class="lead">The headline signal is skill in bits over the own-routine baseline R2, with calibration and permutation specificity as gates. <strong style="color:var(--text)">All rows below are illustrative mock baselines</strong> &mdash; no empirical results exist yet.</p>
     <div id="lb-preview" style="margin-top:18px"><p class="muted">Loading leaderboard…</p></div>
   </div>
 </section>
 
-<div class="flowline"></div>
-
-<!-- ============ PROTOCOL PREVIEW ============ -->
-<section class="section" id="protocol">
-  <div class="container">
-    <span class="eyebrow">Evaluation protocol</span>
-    <h2>One scoring spine, every track</h2>
-    <p class="lead">Borrowing the seriousness of the benchmarks researchers trust: a challenge-grade leaderboard, SWE-bench-style submissions and splits, HELM-style transparent evaluation, and MLCommons-style versioning and verification.</p>
-    <div class="stack" style="margin-top:22px">
-      <div class="layer"><span class="layer__n">1</span><div class="layer__b"><strong>Sealed, walk-forward forecasts</strong><span>Timestamped + SHA-256 hashed before outcomes exist; only evidence &le; t is visible.</span></div><span class="layer__r">no leakage</span></div>
-      <div class="layer"><span class="layer__n">2</span><div class="layer__b"><strong>R1 &mdash; population prior</strong><span>The entry condition: can you beat the crowd base rate?</span></div><span class="layer__r">baseline</span></div>
-      <div class="layer is-anchor"><span class="layer__n">3</span><div class="layer__b"><strong>R2 &mdash; own-routine baseline</strong><span>The target's recency-weighted routine. Skill over R2 is the headline.</span></div><span class="layer__r">anchor</span></div>
-      <div class="layer"><span class="layer__n">4</span><div class="layer__b"><strong>Calibration gate</strong><span>Confidence must track uncertainty (proper scoring + ECE bands).</span></div><span class="layer__r">gate</span></div>
-      <div class="layer is-anchor"><span class="layer__n">5</span><div class="layer__b"><strong>Permutation specificity gate</strong><span>Skill must collapse on the wrong target, or it was not target-specific.</span></div><span class="layer__r">anchor</span></div>
-      <div class="layer"><span class="layer__n">6</span><div class="layer__b"><strong>Evidence-tier ablation</strong><span>Report skill over R2 as a function of which evidence the model may see.</span></div><span class="layer__r">measured</span></div>
-    </div>
-    <div class="btns" style="margin-top:22px"><a class="btn btn--ghost" href="/baselines">Baselines &amp; controls</a><a class="btn btn--ghost" href="/docs">Read the protocol</a></div>
-  </div>
-</section>
-
-<!-- ============ SUBMISSION CTA ============ -->
-<section class="section section--tight">
-  <div class="container">
-    <div class="cta-band">
-      <h2>Run it before the dataset is public</h2>
-      <p class="lead" style="margin:0 auto 18px;max-width:64ch">Run the synthetic harness today, submit results on it, or request a private evaluation of your system. Official submissions open with the first benchmark version.</p>
-      <div class="btns" style="justify-content:center"><a class="btn btn--primary" href="/submit">Submit a run</a><a class="btn btn--ghost" href="/docs">Quickstart</a></div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ PAPER + FAQ ============ -->
-<section class="section">
+<section class="section" id="paper">
   <div class="container grid grid-2" style="align-items:start">
     <div>
       <span class="eyebrow">Paper</span>
-      <h2>The methodology, in full</h2>
-      <p class="lead">The preprint defines the framework, the scoring spine, the multi-track apparatus, and the positioning against other world-model and forecasting benchmarks.</p>
-      <div class="btns"><a class="btn btn--primary" href="/paper">Read &amp; cite</a><a class="btn btn--ghost" href="/assets/targetspace-bench-paper-v8.1.pdf" download>Download PDF</a></div>
+      <h2>The protocol, in full</h2>
+      <p class="lead"><em>TargetSpace: Benchmarking Personal Intelligence by Target-Specific Forecasting Under Partial Observation</em> &mdash; a prospective framework with own-routine baselines, permutation specificity, calibration, and evidence ablation. Pre-pilot protocol proposal.</p>
+      <div class="btns"><a class="btn btn--primary" href="/paper">Read &amp; cite</a><a class="btn btn--ghost" href="/assets/targetspace-paper-2026.pdf" download>Download PDF</a></div>
+      <div class="code" style="margin-top:18px">
+        <pre>@misc{targetspace2026,
+  title={TargetSpace: Benchmarking Personal Intelligence
+         by Target-Specific Forecasting Under Partial
+         Observation},
+  author={Yuri Andrade Sylvester},
+  year={2026},
+  note={Pre-pilot protocol proposal}
+}</pre>
+      </div>
     </div>
     <div>
       <span class="eyebrow">FAQ</span>

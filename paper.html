@@ -18,26 +18,26 @@
     <div class="page-head">
       <span class="crumbs">Project / Paper</span>
       <h1>The methodology paper</h1>
-      <p class="lead">TargetSpace: Benchmarking Personal Intelligence by Target-Specific Forecasting Under Partial Observation.</p>
+      <p class="lead"><em>TargetSpace: Benchmarking Personal Intelligence by Target-Specific Forecasting Under Partial Observation</em> &mdash; a prospective framework with own-routine baselines, permutation specificity, calibration, and evidence ablation.</p>
     </div>
 
     <ul class="metalist" style="margin-bottom:8px">
       <li><span class="k">Authors</span><span>Yuri Andrade Sylvester</span></li>
       <li><span class="k">Type</span><span>Preprint <span class="pill">pre-pilot</span> <span class="pill">no empirical results</span></span></li>
-      <li><span class="k">Manuscript</span><span><span class="vtag">v8.1</span> &middot; synthetic demonstration only</span></li>
+      <li><span class="k">Manuscript</span><span><span class="vtag">2026 pre-pilot</span> &middot; 48 pp &middot; synthetic demonstration only</span></li>
       <li><span class="k">Portal</span><span>benchmark version <span class="vtag">v0.1-pilot</span></span></li>
       <li><span class="k">arXiv</span><span class="muted">forthcoming</span></li>
       <li><span class="k">Code</span><span><a href="https://github.com/yurisyl/targetspace-bench" rel="noopener">github.com/yurisyl/targetspace-bench</a></span></li>
     </ul>
 
     <div class="btns" style="margin:8px 0 30px">
-      <a class="btn btn--primary" href="/assets/targetspace-bench-paper-v8.1.pdf" download>Download PDF</a>
-      <a class="btn btn--ghost" href="/assets/targetspace-bench-paper-v8.1.pdf" target="_blank" rel="noopener">Open in browser</a>
+      <a class="btn btn--primary" href="/assets/targetspace-paper-2026.pdf" download>Download PDF</a>
+      <a class="btn btn--ghost" href="/assets/targetspace-paper-2026.pdf" target="_blank" rel="noopener">Open in browser</a>
       <a class="btn btn--ghost" href="#cite">Cite</a>
     </div>
 
     <h2>Abstract</h2>
-    <p class="abstract">Many systems claim to understand specific targets, yet almost none can show their forecasts are target-specific rather than reflections of base rates and routine. TargetSpace makes that distinction measurable: prospective, sealed, proper-scored forecasting of target-state transitions under partial observation, certified by an own-routine baseline (R2), a calibration gate, and a permutation specificity test, with an evidence-tier ablation and an architecture-neutral grid. Its novelty is the conjunction assembled around one question &mdash; <em>is the forecast about the target, or about the average?</em> &mdash; not any single ingredient. Personal world modeling is the flagship instantiation; the framework is a shared, multi-track apparatus. The work is a pre-pilot proposal: it reports no empirical results and ships only a synthetic demonstration harness.</p>
+    <p class="abstract">AI systems increasingly claim to know, remember, personalize to, and act on behalf of particular users, yet current evaluations cannot distinguish genuine person-specific predictive skill from retrieval, preference replay, imitation, or predicting what usually happens. TargetSpace turns that claim into a prospective sealed benchmark: a model receives observations of a target up to a sealed time and must emit calibrated probabilistic forecasts of the target's future target-state transitions before those outcomes exist. A stack of controls makes target-specificity the measured quantity &mdash; a population-prior baseline (R1), a person-specific own-routine baseline (R2), a calibration gate, a permutation specificity test under which forecasts scored against the wrong target must lose their skill, and an evidence-tier ablation &mdash; compared architecture-neutrally on identical sealed instances. The benchmark is motivated by an arriving capability class: AI systems that accumulate longitudinal observations about a target and convert them into future-relevant inference, made newly concrete by ambient recorders and first-person audiovisual devices, which motivate the benchmark but do not define its boundary. This is a pre-pilot protocol proposal: no empirical results are reported, and only the personal track is instantiated (synthetically).</p>
 
     <h2 style="margin-top:34px">Positioning and using TargetSpace</h2>
     <p class="muted">A summary of the paper's positioning section.</p>
@@ -51,19 +51,19 @@
     <h2 id="cite" style="margin-top:34px">Cite</h2>
     <div class="code">
       <button class="copy" id="copyBib" type="button">Copy</button>
-      <pre id="bib">@misc{sylvester2026targetspace,
+      <pre id="bib">@misc{targetspace2026,
   title  = {TargetSpace: Benchmarking Personal Intelligence by
             Target-Specific Forecasting Under Partial Observation},
   author = {Sylvester, Yuri Andrade},
   year   = {2026},
-  note   = {Preprint; pre-pilot proposal, no empirical results},
+  note   = {Pre-pilot protocol proposal},
   url    = {https://targetspace.org/}
 }</pre>
     </div>
 
     <h2 style="margin-top:34px">Version history</h2>
     <ul class="metalist">
-      <li><span class="k">Manuscript v8.1</span><span>Current preprint. Adds the "Positioning and Using TargetSpace" section and the multi-track apparatus.</span></li>
+      <li><span class="k">Manuscript 2026</span><span>Current preprint (48 pp): benchmark-first restructure, ambient-AI motivation, task/protocol tables, appendices A&ndash;L with full specifications.</span></li>
       <li><span class="k">Portal v0.1-pilot</span><span>This site and the synthetic harness; illustrative leaderboard, no official submissions.</span></li>
       <li><span class="k">Planned v0.2</span><span>First consented federated TS-Personal pilot and a frozen private split.</span></li>
     </ul>
