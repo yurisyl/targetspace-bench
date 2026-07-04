@@ -5,7 +5,7 @@ modeling from passive multimodal observation**. TargetSpace is a shared evaluati
 apparatus for target-specific forecasting under partial observation, instantiated first in
 personal intelligence (the flagship **TS-Personal** track).
 
-**Live:** https://targetspace.org · **Paper:** [2026 pre-pilot PDF](assets/targetspace-paper-2026.pdf) · **Portal version:** v0.1-pilot (illustrative data only)
+**Live:** https://targetspace.org · **Paper:** [2026 pre-pilot PDF](assets/targetspace-paper-v1.0.pdf) · **Portal version:** v0.1-pilot (illustrative data only)
 
 > The target is not a profile. The target is a lived trajectory.
 
