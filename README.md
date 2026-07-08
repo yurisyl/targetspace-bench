@@ -1,13 +1,24 @@
 # TargetSpace-Bench — benchmark portal
 
-The site for **TargetSpace**, a benchmark for **target-conditioned longitudinal world
-modeling from passive multimodal observation**. TargetSpace is a shared evaluation
-apparatus for target-specific forecasting under partial observation, instantiated first in
-personal intelligence (the flagship **TS-Personal** track).
+The site + public repo for **TargetSpace v1.0**, a **pre-pilot benchmark protocol for
+target-specific forecasting under partial observation**. It evaluates whether a system can make
+sealed, calibrated forecasts of a specific target's future observable state transitions —
+beating R1 population priors and R2 own-routine baselines, and losing skill under target
+permutation — instantiated first (synthetically) in the flagship **TS-Personal** track.
 
-**Live:** https://targetspace.org · **Paper:** [2026 pre-pilot PDF](assets/targetspace-paper-v1.0.pdf) · **Portal version:** v0.1-pilot (illustrative data only)
+**Live:** https://targetspace.org · **Paper:** [Version 1.0 preprint (PDF)](assets/targetspace-paper-v1.0.pdf) · **Benchmark protocol:** v1.0 · **Schemas:** [`schemas/`](schemas/)
 
-> The target is not a profile. The target is a lived trajectory.
+> **No empirical results yet.** Version 1.0 is a pre-pilot protocol proposal: protocol and synthetic
+> harness available, pilot validation pending. All leaderboard rows are synthetic illustrative mock
+> baselines. A high score would certify calibrated prospective predictive skill only — not
+> understanding, inner life, causation, or permission to act on a person. arXiv is a preprint
+> repository, not a journal.
+
+Contents: the Version 1.0 paper PDF (`assets/`), the synthetic harness (`targetspace_synthetic_demo.py`),
+the v1.0 submission **schemas** (`schemas/`), worked **examples** (`examples/`), and the website.
+Cite via `paper.html` or `assets/targetspace-paper-v1.0.pdf`.
+
+> The target is not a profile; it is an observed trajectory in motion.
 
 ## Architecture
 

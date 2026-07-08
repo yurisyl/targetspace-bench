@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Leaderboard — TargetSpace-Bench</title>
-<meta name="description" content="The TargetSpace-Bench leaderboard. Headline metric: target adaptation gain (skill in bits over the own-routine baseline R2), gated by calibration and target specificity. Pilot data is illustrative.">
+<title>Status &amp; illustrative leaderboard — TargetSpace v1.0</title>
+<meta name="description" content="TargetSpace v1.0 status. No empirical leaderboard results exist yet — every row is a synthetic illustrative mock baseline. Headline metric: skill in bits over the own-routine baseline R2, gated by calibration and permutation specificity.">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/css/portal.css">
@@ -16,14 +16,14 @@
 <section class="section">
   <div class="container">
     <div class="page-head">
-      <span class="crumbs">Benchmark / Leaderboard</span>
-      <h1>Leaderboard</h1>
-      <p class="lead">The headline signal is <strong style="color:var(--text)">target adaptation gain</strong> &mdash; skill in bits over the own-routine baseline R2 &mdash; with calibration and target specificity (the permutation gate) as pass/fail context. The illustrative "overall" column is a pilot roll-up, not a canonical composite.</p>
+      <span class="crumbs">Status</span>
+      <h1>Status &amp; illustrative leaderboard</h1>
+      <p class="lead">The headline signal is <strong style="color:var(--text)">skill in bits over the own-routine baseline R2</strong>, with calibration and permutation specificity as gates. The "overall" column is an illustrative roll-up for display only, not a canonical composite.</p>
     </div>
 
-    <div class="note note--warn" style="margin:14px 0 22px">
-      <span class="ic">⚠️</span>
-      <p><strong>Illustrative pilot data.</strong> Every row below is a mock baseline on benchmark version v0.1-pilot. No official submissions or empirical results exist yet. Higher is better for every metric except <em>calibration error</em> and <em>long-horizon degradation</em> (lower is better).</p>
+    <div class="note note--warn" style="margin:14px 0 22px;border-width:2px">
+      <span class="ic">&#9888;</span>
+      <p><strong>No empirical leaderboard results exist for v1.0.</strong> Every row below is a <strong>synthetic illustrative mock baseline</strong> on benchmark protocol v1.0 &mdash; not a real submission, not an official result, and not evidence about any system or product. Higher is better for every metric except <em>calibration error</em> and <em>long-horizon degradation</em> (lower is better). A large forecast count from few targets is not a large independent sample.</p>
     </div>
 
     <div class="filters" id="lb-filters">

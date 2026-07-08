@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The benchmark — TargetSpace-Bench</title>
-<meta name="description" content="What TargetSpace-Bench is: target-conditioned longitudinal world modeling from passive multimodal observation. Definition, scope, what a target and target state are, and how it complements physical-reasoning, video, robotics, and forecasting benchmarks.">
+<title>The benchmark — TargetSpace v1.0</title>
+<meta name="description" content="What TargetSpace-Bench is: target-specific forecasting under partial observation from passive multimodal observation. Definition, scope, what a target and target state are, and how it complements physical-reasoning, video, robotics, and forecasting benchmarks.">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/css/portal.css">
@@ -18,11 +18,11 @@
     <div class="page-head">
       <span class="crumbs">Benchmark / Overview</span>
       <h1>What TargetSpace-Bench measures</h1>
-      <p class="lead">TargetSpace-Bench evaluates <strong style="color:var(--text)">target-conditioned longitudinal world modeling</strong>: the ability to build, update, and use a predictive model of a <em>specific</em> target from passive, multimodal, non-IID observation &mdash; measured through calibrated, sealed forecasting.</p>
+      <p class="lead">TargetSpace-Bench evaluates <strong style="color:var(--text)">target-specific forecasting under partial observation</strong>: whether a system can maintain and use a target-specific predictive representation for a <em>specific</em> target from passive, multimodal, non-IID observation &mdash; measured through calibrated, sealed forecasting.</p>
     </div>
 
     <div class="kpis" style="margin:22px 0 8px">
-      <div class="kpi"><b>1</b><span>capability: become a predictive model of a particular target</span></div>
+      <div class="kpi"><b>1</b><span>capability: maintain a target-specific predictive representation</span></div>
       <div class="kpi"><b>R2</b><span>headline baseline: the target's own routine</span></div>
       <div class="kpi"><b>5+6</b><span>domain tracks &amp; evaluation splits</span></div>
       <div class="kpi"><b>bits</b><span>skill, by strictly proper scoring</span></div>
@@ -33,7 +33,7 @@
       <div class="card"><h3>A target</h3><p>A persistent, evolving entity tracked over time: a person, agent, system, organization, environment, or process. The flagship track targets a consenting individual; other tracks target patients, energy assets, embodied agents, and projects.</p></div>
       <div class="card"><h3>A target state</h3><p>The latent configuration a target acts to reach or maintain &mdash; a commitment, priority, constraint, or regime &mdash; evaluated only through its externally observable consequences. The object to forecast is the <strong style="color:var(--text)">transition</strong> between target states.</p></div>
       <div class="card"><h3>Passive longitudinal observation</h3><p>Evidence accrued over time without acting on the target: metadata, text, audio, passive multimodal streams, location, physiology. The benchmark measures whether richer, correctly-ordered observation improves target-specific forecasts.</p></div>
-      <div class="card"><h3>The capability under test</h3><p><em>Can a model become a predictive model of a particular target, rather than merely a model of generic scenes or generic events?</em> A high score means calibrated, prospective, target-specific skill &mdash; nothing about a target's inner life.</p></div>
+      <div class="card"><h3>The capability under test</h3><p><em>Can a model maintain and use a target-specific predictive representation, rather than merely a model of generic scenes or generic events?</em> A high score means calibrated, prospective, target-specific skill &mdash; nothing about a target's inner life.</p></div>
     </div>
 
     <h2 style="margin-top:40px">Different from generic dynamics</h2>
@@ -50,7 +50,7 @@
           <tr><td>Embodied robotics</td><td>action utility, policy evaluation, manipulation / control success</td><td>proprioception, sensors, actions</td><td>actions; achieved configuration</td><td>passive longitudinal inference; calibration; an own-routine baseline</td><td>scores passive consequence forecasts, not control</td></tr>
           <tr><td>Symbolic / event forecasting</td><td>probabilistic prediction of public events</td><td>question + context</td><td>calibrated probability</td><td>a tracked individual target; own-routine R2; permutation specificity</td><td>adds the target as the unit, with R2 + permutation controls</td></tr>
           <tr><td>Agent memory / personalization</td><td>recall, preference modeling, retrieval QA</td><td>history / profile + query</td><td>held-out response / preference</td><td>prospective sealing; calibration; transition forecasting</td><td>scores why an episode matters and forecasts the next transition, sealed</td></tr>
-          <tr class="row-ts"><td><strong>TargetSpace-Bench</strong> (this work)</td><td>target-conditioned longitudinal world modeling</td><td>passive multimodal observation up to sealed <em>T</em></td><td>calibrated forecast over target-state transitions</td><td><em>by design:</em> physical realism, control, generation fidelity</td><td>is the complementary layer the other families omit</td></tr>
+          <tr class="row-ts"><td><strong>TargetSpace-Bench</strong> (this work)</td><td>target-specific forecasting under partial observation</td><td>passive multimodal observation up to sealed <em>T</em></td><td>calibrated forecast over target-state transitions</td><td><em>by design:</em> physical realism, control, generation fidelity</td><td>is the complementary layer the other families omit</td></tr>
         </tbody>
       </table></div>
     </div>

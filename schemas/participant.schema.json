@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yurisyl/targetspace-bench/schemas/participant.schema.json",
+  "title": "TargetSpace Synthetic Participant",
+  "description": "A synthetic participant profile. Contains no real personal information.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "participant_id",
+    "synthetic_profile_label",
+    "timezone",
+    "routine_profile",
+    "allowed_tasks"
+  ],
+  "properties": {
+    "participant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "synthetic_profile_label": {
+      "type": "string",
+      "description": "Human-readable archetype label for the synthetic profile (e.g. 'researcher-A')."
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "routine_profile": {
+      "type": "object",
+      "description": "Per-task-type routine parameters used by the synthetic generator and the R2 baseline.",
+      "additionalProperties": true
+    },
+    "allowed_tasks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "T1_next_contact",
+          "T2_event_realization",
+          "T3_response_behavior",
+          "T4_attention_allocation",
+          "T5_routine_deviation",
+          "T6_commitment_follow_through"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "metadata": {
+      "type": "object"
+    }
+  }
+}

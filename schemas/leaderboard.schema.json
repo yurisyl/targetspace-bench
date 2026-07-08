@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yurisyl/targetspace-bench/schemas/leaderboard.schema.json",
+  "title": "TargetSpace Leaderboard",
+  "description": "A TargetSpace leaderboard: metadata plus an array of system rows.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["meta", "rows"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["protocol_version", "status", "generated"],
+      "properties": {
+        "benchmark_name": { "type": "string", "description": "e.g. 'TargetSpace'." },
+        "benchmark_version": { "type": "string" },
+        "protocol_version": { "type": "string" },
+        "track": { "type": "string", "description": "Application track id, e.g. 'ts-personal'." },
+        "status": {
+          "type": "string",
+          "description": "Data provenance of the rows. 'synthetic_demo' for results computed on synthetic data.",
+          "enum": ["synthetic_demo", "pre_pilot", "pilot", "production"]
+        },
+        "verification_level": {
+          "type": "string",
+          "description": "How results were verified, weakest to strongest.",
+          "enum": ["synthetic_demo", "self_reported", "artifact_verified", "organizer_reproduced"]
+        },
+        "generated": { "type": "string" },
+        "generated_at": { "type": "string", "description": "Deterministic generation timestamp/date (not wall-clock)." },
+        "source_commit": { "type": ["string", "null"], "description": "Git commit of the code that produced this artifact, if known." },
+        "warning": { "type": "string" },
+        "reference_systems": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "sota_definition": { "type": "string" }
+      }
+    },
+    "rows": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/row" }
+    }
+  },
+  "$defs": {
+    "row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rank",
+        "system_id",
+        "system_name",
+        "evidence_tier",
+        "task_set",
+        "horizon",
+        "n_participants",
+        "n_forecasts",
+        "personal_skill_vs_r1_bits",
+        "personal_skill_vs_r2_bits",
+        "log_score",
+        "brier_score",
+        "calibration_status",
+        "ece",
+        "permutation_status",
+        "permutation_skill_bits",
+        "status",
+        "verification_level",
+        "date"
+      ],
+      "properties": {
+        "rank": { "type": ["integer", "null"] },
+        "system_id": { "type": "string" },
+        "system_name": { "type": "string" },
+        "evidence_tier": {
+          "type": "string",
+          "enum": ["L0", "L1", "L2", "L3", "L4", "L5"]
+        },
+        "task_set": { "type": "string" },
+        "horizon": { "type": "string" },
+        "n_participants": { "type": "integer", "minimum": 0 },
+        "n_forecasts": { "type": "integer", "minimum": 0 },
+        "personal_skill_vs_r1_bits": { "type": ["number", "null"] },
+        "personal_skill_vs_r2_bits": { "type": ["number", "null"] },
+        "log_score": { "type": ["number", "null"] },
+        "brier_score": { "type": ["number", "null"] },
+        "calibration_status": {
+          "type": "string",
+          "enum": ["pass", "warn", "fail", "n/a"]
+        },
+        "ece": { "type": ["number", "null"] },
+        "permutation_status": {
+          "type": "string",
+          "enum": ["pass", "fail", "n/a"]
+        },
+        "permutation_skill_bits": { "type": ["number", "null"] },
+        "status": { "type": "string" },
+        "verification_level": {
+          "type": "string",
+          "enum": ["synthetic_demo", "self_reported", "artifact_verified", "organizer_reproduced"]
+        },
+        "date": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

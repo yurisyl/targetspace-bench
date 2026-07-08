@@ -1,0 +1,7 @@
+rank,system_id,system_name,evidence_tier,task_set,horizon,n_participants,n_forecasts,personal_skill_vs_r1_bits,personal_skill_vs_r2_bits,log_score,brier_score,calibration_status,ece,permutation_status,permutation_skill_bits,status,verification_level,date,notes
+1.0,combined_evidence_model,Combined Evidence Model,L3,T1–T5,24h/7d,5,600,0.7765,0.2243,-0.7171,0.385,pass,0.0686,pass,-0.3007,synthetic_demo,synthetic_demo,2026-06-06,SOTA (synthetic): top skill vs R2 passing calibration + permutation gates
+2.0,chat_history_model,Chat History Model,L1,T1–T5,24h/7d,5,600,0.7086,0.1564,-0.7642,0.418,warn,0.1205,pass,-0.1212,synthetic_demo,synthetic_demo,2026-06-06,
+3.0,passive_observation_model,Passive Observation Model,L3,T1–T5,24h/7d,5,600,0.7018,0.1495,-0.7689,0.4223,warn,0.1246,pass,-0.1183,synthetic_demo,synthetic_demo,2026-06-06,
+4.0,digital_exhaust_model,Digital Exhaust Model,L0,T1–T5,24h/7d,5,600,0.6625,0.1103,-0.7961,0.4403,warn,0.1288,pass,-0.0649,synthetic_demo,synthetic_demo,2026-06-06,
+,R2_personal_routine,R2 · Personal Routine Baseline,L0,T1–T5,24h/7d,5,600,0.5522,0.0,-0.8726,0.4882,warn,0.1174,n/a,,synthetic_demo,synthetic_demo,2026-06-06,reference baseline
+,R1_population_prior,R1 · Population Prior,L0,T1–T5,24h/7d,5,600,0.0,-0.5522,-1.2554,0.6951,pass,0.0425,n/a,,synthetic_demo,synthetic_demo,2026-06-06,reference baseline

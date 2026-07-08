@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Quickstart — TargetSpace v1.0</title>
+<meta name="description" content="A step-by-step recipe for AI product teams to run the TargetSpace v1.0 protocol on a memory or context feature: seal forecasts, resolve outcomes, audit target-specific skill.">
+<link rel="canonical" href="https://targetspace.org/product-quickstart">
+<meta name="theme-color" content="#070b16">
+<meta property="og:type" content="website"><meta property="og:site_name" content="TargetSpace">
+<meta property="og:title" content="Product Quickstart — run TargetSpace v1.0 on a product memory feature"><meta property="og:description" content="The seven-step MVP path, a quickstart task pack, product instantiations, and the standard reporting row. Pre-pilot protocol proposal; no product has run it.">
+<meta property="og:image" content="https://targetspace.org/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+<main>
+<section class="section"><div class="container" style="max-width:960px">
+
+  <div class="page-head">
+    <span class="crumbs">Product Quickstart</span>
+    <h1>Run TargetSpace against a product memory or context feature</h1>
+    <p class="lead">A step-by-step recipe for AI product teams &mdash; note-taking and memory apps, wearable audio recorders, multimodal glasses, and enterprise assistants &mdash; to turn a memory or personalization claim into <strong style="color:var(--text)">sealed, resolved, scored forecasts</strong>. It measures target-specific predictive skill and separates it from generic prediction or routine replay.</p>
+  </div>
+
+  <div class="badges" style="margin-bottom:8px">
+    <span class="badge"><b>Release</b> &nbsp;<span class="vtag">Version 1.0</span></span>
+    <span class="badge"><b>Status</b> &nbsp;pre-pilot protocol proposal</span>
+    <span class="badge"><b>Results</b> &nbsp;none claimed</span>
+    <span class="mockflag">no product has run this protocol yet</span>
+  </div>
+
+  <!-- ============ INTRO ============ -->
+  <div style="margin-top:30px">
+    <span class="eyebrow">How to run TargetSpace against a product memory/context feature</span>
+    <h2>A protocol usage guide, not an empirical claim</h2>
+    <p class="lead">If a product asserts that its memory or context feature helps a specific user, TargetSpace asks it to make that claim falsifiable: forecast, before the outcome exists, how <em>this</em> user will transition next, then score the forecast against the population prior R1, the user's own routine R2, a calibration check, and a target-permutation control. The recipe below reuses the released v1.0 schemas and adds no new record types.</p>
+    <div class="note note--info" style="margin-top:16px">
+      <span class="ic">&#9673;</span>
+      <p>Everything on this page is a protocol usage guide. <strong>No product has run TargetSpace, and no empirical results exist.</strong> A run over real users must satisfy the binding consent, privacy, and governance requirements &mdash; consenting adults only, on-device filtering, no raw-media export, aggregate-only reporting. A high score certifies calibrated prospective predictive skill about a consenting target only &mdash; never understanding, inner life, causation, or permission to act on a person.</p>
+    </div>
+  </div>
+
+  <!-- ============ SEVEN-STEP MVP ============ -->
+  <div style="margin-top:44px">
+    <span class="eyebrow">The minimum-viable benchmark path</span>
+    <h2>Seven steps, each mapped to one released schema</h2>
+    <p class="lead">The smallest defensible run is seven steps. Each maps to a single schema file in the v1.0 harness.</p>
+    <div class="stack" style="margin-top:22px">
+      <div class="layer"><span class="layer__n">1</span><div class="layer__b"><strong>Choose consenting target instances</strong><span>Select consenting users and a sealed evaluation window; register each as a target (<span class="mono">participant.schema.json</span>) with a routine profile and allowed tasks.</span></div></div>
+      <div class="layer"><span class="layer__n">2</span><div class="layer__b"><strong>Choose a task family</strong><span>Pick one or more rows from the quickstart pack below. Each fixes a task type, a discrete answer space A, and a deterministic resolution rule.</span></div></div>
+      <div class="layer"><span class="layer__n">3</span><div class="layer__b"><strong>Freeze evidence tiers</strong><span>Declare which evidence tiers each condition may access (<span class="mono">evidence_manifest.schema.json</span>): modalities, evidence start/end time, hashed manifest. One manifest per tier condition drives the evidence-tier ablation.</span></div></div>
+      <div class="layer is-anchor"><span class="layer__n">4</span><div class="layer__b"><strong>Generate sealed forecasts before outcomes exist</strong><span>Before any outcome is observed, emit one forecast per instance (<span class="mono">forecast.schema.json</span>): a probability over every element of A, an evidence cutoff time t, and a hash sealing the payload. Stored write-once.</span></div></div>
+      <div class="layer"><span class="layer__n">5</span><div class="layer__b"><strong>Resolve outcomes deterministically</strong><span>At resolution time r, apply the task's resolution rule to later observable evidence and write the outcome (<span class="mono">outcome.schema.json</span>). Outcomes are withheld from the system under test until after sealing.</span></div></div>
+      <div class="layer"><span class="layer__n">6</span><div class="layer__b"><strong>Score against R1 and R2</strong><span>Compute log score in bits (primary) and Brier per instance; report Skill over the population prior R1 and over the own-routine baseline R2, plus calibration. A claimed improvement must beat R2, not merely R1 or replay.</span></div></div>
+      <div class="layer is-anchor"><span class="layer__n">7</span><div class="layer__b"><strong>Run the permutation control and report the standard row</strong><span>Re-score each system against matched wrong-target outcomes; target-specific skill must collapse. Emit one leaderboard row (<span class="mono">leaderboard.schema.json</span>) with the standard columns.</span></div></div>
+    </div>
+    <div class="note note--info" style="margin-top:20px">
+      <span class="ic">&#9673;</span>
+      <p><strong>The four-bar decision rule:</strong> a forecast earns target-specific credit only if it (1) beats the R1 population prior, (2) beats the R2 own-routine baseline, (3) stays calibrated, and (4) loses skill under a matched target permutation.</p>
+    </div>
+  </div>
+
+  <!-- ============ QUICKSTART TASK PACK ============ -->
+  <div style="margin-top:44px">
+    <span class="eyebrow">Quickstart task pack</span>
+    <h2>Six product-relevant task families</h2>
+    <p class="lead">Each family is a task type with a fixed answer space A and a deterministic, pre-registered resolution rule over later observable evidence. All are scored against R1/R2 with log score in bits, calibration, and the permutation gate.</p>
+    <div class="table-wrap" style="margin-top:16px">
+      <table class="dtable">
+        <thead><tr><th>Task family</th><th>Answer space</th><th>Resolution rule (deterministic)</th></tr></thead>
+        <tbody>
+          <tr><td class="sys">Recurring-commitment completion</td><td class="mono">{complete, defer, cancel, replace}</td><td>Calendar/task status or a pre-registered behavioural marker at the next scheduled occurrence fixes the label.</td></tr>
+          <tr><td class="sys">Meeting / event realization</td><td class="mono">{attended, no-show, rescheduled, cancelled}</td><td>Attendance signal (join event, location match, or logged presence) within the event window.</td></tr>
+          <tr><td class="sys">Response-latency bucket</td><td class="mono">{&lt;1h, 1&ndash;24h, 1&ndash;3d, &gt;3d, no-response}</td><td>Time from a flagged inbound obligation to the first outbound reply, bucketed; no reply before the horizon resolves to no-response.</td></tr>
+          <tr><td class="sys">Task continuation vs. switch</td><td class="mono">{continue, switch, pause}</td><td>The active task at t versus the active task after the next transition boundary; continuation iff the same task persists past the window.</td></tr>
+          <tr><td class="sys">Priority maintained vs. displaced</td><td class="mono">{maintained, displaced}</td><td>Whether the top-priority commitment at t still receives sustained allocation after the window, or is supplanted by a newly dominant one.</td></tr>
+          <tr><td class="sys">Engagement vs. avoidance</td><td class="mono">{engaged, avoided}</td><td>Engaged iff a substantive action on the named obligation (reply sent, document edited, task advanced) occurs before the horizon; otherwise avoided.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted small" style="margin-top:14px">No subjective report resolves an outcome. Self-report may be admitted as evidence, but is never the outcome label when it is also a model input. A target state is scored only if it has a pre-registered observable resolution rule; otherwise it is evidence, not a scored state.</p>
+  </div>
+
+  <!-- ============ PRODUCT INSTANTIATIONS ============ -->
+  <div style="margin-top:44px">
+    <span class="eyebrow">Four product instantiations</span>
+    <h2>The same protocol, mapped to real products</h2>
+    <p class="lead">Each product maps to an evidence-tier band and a natural pair of task families. Higher tiers carry higher sensitivity, and the evidence-tier ablation measures whether they actually buy skill over a lower tier.</p>
+    <div class="grid grid-2" style="margin-top:22px">
+      <div class="card">
+        <h3>Note-taking / memory app <span class="vtag">L0&ndash;L1</span></h3>
+        <p>Evidence = notes, tasks, calendar, and communication metadata already in the app. Natural tasks: <strong style="color:var(--text)">recurring-commitment completion</strong> and <strong style="color:var(--text)">response-latency bucket</strong>. Resolution is read from the app's own state at the horizon. No new sensing; the manifest declares tiers L0&ndash;L1 only.</p>
+      </div>
+      <div class="card">
+        <h3>Wearable audio recorder <span class="vtag">L2</span></h3>
+        <p>Evidence = on-device transcripts and derived commitments/entities from ambient speech, not raw audio. Natural tasks: <strong style="color:var(--text)">meeting/event realization</strong> and <strong style="color:var(--text)">engagement vs. avoidance</strong> of a spoken obligation. Transcription stays local; only sealed forecasts and resolved labels leave the device.</p>
+      </div>
+      <div class="card">
+        <h3>Multimodal glasses <span class="vtag">L3&ndash;L4</span></h3>
+        <p>Evidence adds embodied context &mdash; objects, screens, documents, and locations in view. Natural tasks: <strong style="color:var(--text)">task continuation vs. switch</strong> and <strong style="color:var(--text)">priority maintained vs. displaced</strong>, where visual attention disambiguates transitions. Bystander redaction and on-device filtering are mandatory, and the ablation measures whether L3&ndash;L4 buys skill over the L2 audio-only condition.</p>
+      </div>
+      <div class="card">
+        <h3>Enterprise assistant <span class="vtag">L0&ndash;L1</span></h3>
+        <p>Evidence = consented organizational memory over trackers, commits, calendars, and communication metadata. Natural tasks: <strong style="color:var(--text)">task continuation vs. switch</strong> and <strong style="color:var(--text)">priority maintained vs. displaced</strong> for a tracked workstream. The target is a consenting individual or a defined unit; R2 is that unit's own routine, and skill must still collapse under permutation.</p>
+      </div>
+    </div>
+    <p class="muted small" style="margin-top:14px">These are product formulations of the protocol, <strong style="color:var(--text)">not validated empirical results</strong>. Attention, affect, and inferred goals stay evidence; they are never scored states.</p>
+  </div>
+
+  <!-- ============ STANDARD REPORTING ROW ============ -->
+  <div style="margin-top:44px">
+    <span class="eyebrow">The standard reporting row</span>
+    <h2>What every run must report</h2>
+    <p class="lead">A TargetSpace result is one row. Reporting a headline number without its controls is not a TargetSpace result.</p>
+    <ul class="metalist" style="margin-top:8px">
+      <li><span class="k">Skill vs R1</span><span>Bits gained over the population prior &mdash; the entry condition the system must clear to exceed base rates.</span></li>
+      <li><span class="k">Skill vs R2</span><span>Bits gained over the target's own routine &mdash; the headline number; a claimed improvement must beat R2.</span></li>
+      <li><span class="k">Calibration</span><span>pass / warn / fail via intercept, slope, and reliability; ECE is a coarse diagnostic at small n, not a hard gate.</span></li>
+      <li><span class="k">Permutation</span><span>collapses / survives when forecasts are scored against a matched wrong target.</span></li>
+      <li><span class="k">Evidence-tier lift</span><span>Skill as a function of the evidence rung &mdash; what each additional tier buys, measured rather than assumed.</span></li>
+      <li><span class="k">Resolved forecasts</span><span>Number of forecasts with a determined outcome.</span></li>
+      <li><span class="k">Independent targets</span><span>Number of distinct targets contributing to the row.</span></li>
+      <li><span class="k">Horizon</span><span>Time between sealing t and resolution r.</span></li>
+      <li><span class="k">Target domain</span><span>Which target class and task family the row covers.</span></li>
+      <li><span class="k">Result status</span><span>synthetic / private / public.</span></li>
+    </ul>
+    <div class="note note--warn" style="margin-top:20px">
+      <span class="ic">&#9888;</span>
+      <p><strong>A large forecast count from few targets is not a large independent sample.</strong> Many sealed forecasts drawn from a handful of targets do not license population-level claims; report the number of independent targets alongside the number of resolved forecasts, and stratify low-coverage targets separately rather than pooling them to inflate skill.</p>
+    </div>
+  </div>
+
+  <!-- ============ CONSENT / GOVERNANCE ============ -->
+  <div style="margin-top:44px">
+    <span class="eyebrow">Before any real run</span>
+    <h2>Consent and governance are binding, not optional</h2>
+    <p class="lead">Any run over real users requires consenting adults, per-instance consent and eligibility gating, ethics or IRB review before recruitment, bystander redaction, local-first storage, on-device filtering, and aggregate-only reporting &mdash; no raw media or transcripts leave the client, and benchmark validity is kept strictly separate from any permission to deploy or act. See the <a href="/governance">governance requirements</a> in full before recruiting a single target.</p>
+  </div>
+
+</div></section>
+</main>
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>

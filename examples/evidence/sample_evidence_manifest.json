@@ -1,0 +1,17 @@
+{
+  "participant_id": "P001",
+  "evidence_tier": "L0",
+  "evidence_start_time": "2026-07-01T08:00:00Z",
+  "evidence_end_time": "2026-07-31T08:00:00Z",
+  "modalities": [
+    "calendar",
+    "comms_metadata"
+  ],
+  "source_summary": "Synthetic L0 evidence stream for P001.",
+  "synthetic": true,
+  "privacy_notes": "Synthetic only. No real participant, bystander, or third-party data.",
+  "hash_manifest": {},
+  "metadata": {
+    "synthetic": true
+  }
+}

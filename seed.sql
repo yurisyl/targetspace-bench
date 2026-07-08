@@ -18,7 +18,7 @@ INSERT INTO admins (username, role) VALUES ('admin', 'owner');
 
 -- ---------- benchmark versions ----------
 INSERT INTO benchmark_versions (tag, name, status, is_current, released_at, notes, sort_order) VALUES
- ('v0.1-pilot', 'Pilot protocol v0.1', 'pilot', 1, '2026-06-01', 'Synthetic pre-pilot harness for the TS-Personal track. Spine frozen: sealed walk-forward forecasts, R1/R2 baselines, calibration gate, permutation specificity, evidence-tier ablation. No human-subject data; no official results.', 1),
+ ('v1.0', 'Benchmark protocol v1.0', 'pilot', 1, '2026-06-01', 'Synthetic pre-pilot harness for the TS-Personal track. Spine frozen: sealed walk-forward forecasts, R1/R2 baselines, calibration gate, permutation specificity, evidence-tier ablation. No human-subject data; no official results.', 1),
  ('v0.2-planned', 'Pilot protocol v0.2 (planned)', 'planned', 0, NULL, 'Planned: first consented federated TS-Personal pilot and a frozen private split. Not yet released.', 2);
 
 -- ---------- domain tracks (paper Section 9 / Table 8) ----------
@@ -133,32 +133,32 @@ INSERT INTO leaderboard_entries
   evidence_attribution, counterfactual_consistency, long_horizon_degradation, modality_contribution,
   paper_url, code_url, report_url, submitted_at, notes, sort_order)
 VALUES
- ('Human self-report','Human baseline (anchor)','ts-personal','TS-Long','v0.1-pilot','baseline',1,1,
+ ('Human self-report','Human baseline (anchor)','ts-personal','TS-Long','v1.0','baseline',1,1,
   0.82,2.60,0.71,0.90,0.06,0.80,0.74,0.28,0.66,
   NULL,NULL,NULL,'2026-06-02','Anchor, not ranked: the target (or an expert) predicting itself. Illustrative.',1),
- ('TargetSpace reference','TargetSpace','ts-personal','TS-Long','v0.1-pilot','baseline',1,1,
+ ('TargetSpace reference','TargetSpace','ts-personal','TS-Long','v1.0','baseline',1,1,
   0.61,1.40,0.55,0.82,0.09,0.62,0.58,0.41,0.52,
   '/paper','https://github.com/yurisyl/targetspace-bench',NULL,'2026-06-02','Reference pipeline on the synthetic harness. Illustrative.',2),
- ('Agent + memory','Reference baseline','ts-personal','TS-Long','v0.1-pilot','baseline',1,1,
+ ('Agent + memory','Reference baseline','ts-personal','TS-Long','v1.0','baseline',1,1,
   0.49,0.90,0.40,0.60,0.13,0.45,0.43,0.50,0.40,
   NULL,NULL,NULL,'2026-06-02','Tool-using agent with target-specific memory. Illustrative.',3),
- ('Long-context LLM','Reference baseline','ts-personal','TS-Long','v0.1-pilot','baseline',1,1,
+ ('Long-context LLM','Reference baseline','ts-personal','TS-Long','v1.0','baseline',1,1,
   0.38,0.40,0.18,0.30,0.17,0.30,0.31,0.62,0.25,
   NULL,NULL,NULL,'2026-06-02','Holds more history in context; little gain over routine. Illustrative.',4),
- ('Generic LLM','Reference baseline','ts-personal','TS-Long','v0.1-pilot','baseline',1,1,
+ ('Generic LLM','Reference baseline','ts-personal','TS-Long','v1.0','baseline',1,1,
   0.34,0.25,0.12,0.22,0.19,0.26,0.28,0.66,0.20,
   NULL,NULL,NULL,'2026-06-02','Prompted LLM, no target-specific adaptation. Illustrative.',5),
- ('Retrieval-only','Reference baseline','ts-personal','TS-Long','v0.1-pilot','baseline',1,1,
+ ('Retrieval-only','Reference baseline','ts-personal','TS-Long','v1.0','baseline',1,1,
   0.30,0.10,0.05,0.12,0.22,0.35,0.20,0.70,0.18,
   NULL,NULL,NULL,'2026-06-02','Surfaces what happened; does not model why. Illustrative.',6),
- ('Random','Control baseline','ts-personal','TS-Long','v0.1-pilot','baseline',1,1,
+ ('Random','Control baseline','ts-personal','TS-Long','v1.0','baseline',1,1,
   0.00,0.00,0.00,0.00,0.50,0.00,0.00,1.00,0.00,
   NULL,NULL,NULL,'2026-06-02','Population-uniform control. Illustrative lower bound.',7);
 
 -- ---------- FAQ ----------
 INSERT INTO faq_items (question, answer, category, sort_order) VALUES
  ('Is TargetSpace a world-model benchmark or a forecasting benchmark?',
-  'Both, at different layers. TargetSpace evaluates target-conditioned longitudinal world modeling -- building and updating a model of a specific target -- and measures it through calibrated, sealed forecasting. The forecast is the measurement; the world model is the capability under test.','positioning',1),
+  'Both, at different layers. TargetSpace evaluates whether a system can maintain and use a target-specific predictive representation, measured through calibrated, sealed forecasting under partial observation. Understanding is the capability; forecasting is the measurement -- a high score certifies calibrated prospective predictive skill only, not understanding itself.','positioning',1),
  ('Does it replace robotics, video, or physics benchmarks?',
   'No. TargetSpace is complementary. Physical-reasoning, video-generation, embodied-control, and forecasting benchmarks evaluate generic dynamics, realism, control, and event prediction. TargetSpace evaluates target-specific adaptation over time. A strong TargetSpace score implies nothing about those other capabilities.','positioning',2),
  ('What counts as a target?',
@@ -220,7 +220,7 @@ A sealed forecast record is line-delimited JSON:
   "instance_id": "p03-2026w23-001",
   "track": "ts-personal",
   "split": "TS-Long",
-  "version": "v0.1-pilot",
+  "version": "v1.0",
   "forecast_time": "2026-06-08T09:00:00Z",
   "resolution_time": "2026-06-10T17:00:00Z",
   "answer_space": ["completes", "defers"],
@@ -295,5 +295,5 @@ A stable, documented public API will ship with the first official benchmark vers
 
 -- ---------- announcements ----------
 INSERT INTO announcements (title, body, level, pinned, published) VALUES
- ('Pilot portal online -- illustrative data only','The TargetSpace-Bench portal is live on benchmark version v0.1-pilot. All leaderboard rows are illustrative mock baselines; no official submissions or empirical results exist yet.','release',1,1),
+ ('TargetSpace v1.0 online -- synthetic illustrative data only','The TargetSpace-Bench portal is live on benchmark protocol v1.0. All leaderboard rows are illustrative mock baselines; no official submissions or empirical results exist yet.','release',1,1),
  ('Call for pilot submissions on the synthetic harness','You can run the synthetic harness today and submit results, or request a private evaluation of your system. See the Submit and Docs pages.','info',0,1);

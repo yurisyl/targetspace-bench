@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Governance &amp; ethics — TargetSpace v1.0</title>
+<meta name="description" content="TargetSpace v1.0 governance: the derived inference object, not only the raw signal, is the privacy boundary. Observe-not-intervene, consent-first, aggregate-only. A high score is no licence to act on a person.">
+<link rel="canonical" href="https://targetspace.org/governance">
+<meta name="theme-color" content="#070b16">
+<meta property="og:type" content="website"><meta property="og:site_name" content="TargetSpace">
+<meta property="og:title" content="Governance &amp; ethics — TargetSpace v1.0"><meta property="og:description" content="The inference object, not only the raw signal, is the privacy boundary. Observe-not-intervene, consent-first, aggregate-only. Benchmark validity is not deployment legitimacy.">
+<meta property="og:image" content="https://targetspace.org/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+<main>
+<section class="section"><div class="container" style="max-width:960px">
+  <div class="page-head">
+    <span class="crumbs">Project / Governance</span>
+    <h1>The inference object, not only the raw signal, is the <span class="grad-text">privacy boundary</span></h1>
+    <p class="lead">Deleting or never storing raw audio and video is not enough if the layers derived from it persist. TargetSpace treats the <strong style="color:var(--text)">derived experiential model</strong> &mdash; the transcripts, embeddings, maps, routines, and inferred goals a system builds about a target &mdash; as the object that requires governance, not only the raw signal it was built from.</p>
+  </div>
+
+  <ul class="metalist" style="margin-bottom:26px">
+    <li><span class="k">Version</span><span><span class="vtag">Version 1.0</span> &middot; pre-pilot protocol proposal</span></li>
+    <li><span class="k">Scope</span><span>Governance principles for the benchmark; binding on any real-data submission</span></li>
+    <li><span class="k">Dataset</span><span>No raw public first-person dataset in v1.0</span></li>
+  </ul>
+
+  <div class="badges" style="margin-bottom:8px">
+    <span class="badge"><b>Status</b> &nbsp;pre-pilot protocol proposal</span>
+    <span class="badge"><b>Reporting</b> &nbsp;consent-first &middot; aggregate-only</span>
+    <span class="mockflag">no public raw first-person dataset in v1.0</span>
+  </div>
+
+  <!-- ============ THE DERIVED ARTIFACTS ============ -->
+  <h2 style="margin-top:34px">The derived artifacts that require governance</h2>
+  <p class="lead">Raw capture is the smallest part of the risk surface. A longitudinal system converts a recording into a durable, searchable model of a person. Each of the following derived artifacts is a governed object in its own right, whether or not the source media is retained:</p>
+  <div class="grid grid-2" style="margin-top:20px">
+    <div class="card"><h3>Transcripts &amp; OCR</h3><p>Spoken words and read text lifted out of transient audio and video into persistent, indexable records.</p></div>
+    <div class="card"><h3>Embeddings</h3><p>Vector representations that remain queryable and re-identifiable long after the source signal is gone.</p></div>
+    <div class="card"><h3>Scene labels</h3><p>Places, activities, and contexts tagged from first-person capture.</p></div>
+    <div class="card"><h3>Speaker &amp; entity maps</h3><p>Who was present, who said what, and how people and things relate across time.</p></div>
+    <div class="card"><h3>Commitments</h3><p>Promises, plans, and obligations extracted from ordinary conversation.</p></div>
+    <div class="card"><h3>Routines</h3><p>Recurring patterns of behaviour &mdash; the target's own baseline, R2, is itself a sensitive derived model.</p></div>
+    <div class="card"><h3>Summaries</h3><p>Condensed narratives that outlive the moments they compress and are easy to redistribute.</p></div>
+    <div class="card"><h3>Inferred goals</h3><p>Intentions and priorities attributed to a person &mdash; evidence in the benchmark, never a scored state.</p></div>
+    <div class="card" style="border-color:rgba(45,212,191,.4)"><h3>Derived target-state models</h3><p>The predictive representation of a specific person assembled from all of the above &mdash; the object TargetSpace measures, and the object that most needs governance.</p></div>
+  </div>
+  <p class="muted small" style="margin-top:14px">Attention, affect, and inferred goals are treated as <strong style="color:var(--text)">evidence, never scored states</strong>. A target state is scored only if it has a pre-registered observable resolution rule; otherwise it is evidence. Self-report may be evidence but is never the outcome label when it is also a model input.</p>
+
+  <!-- ============ OBSERVE, NOT INTERVENE ============ -->
+  <h2 style="margin-top:38px">Observe, do not intervene</h2>
+  <p class="lead">TargetSpace scores <strong style="color:var(--text)">sealed calibrated forecasts</strong> against outcomes that resolve on their own. During a benchmark window the system is an observer: it emits a sealed probability vector over a discrete answer space and waits for a deterministic, pre-registered resolution rule to settle the outcome.</p>
+  <div class="note note--info" style="margin-top:16px">
+    <span class="ic">&#9673;</span>
+    <p><strong>Observe-not-intervene rule.</strong> A system under evaluation must not act on, nudge, or otherwise alter the target during a scoring window. Intervening would both contaminate the outcome and cross the line the benchmark is careful to keep: TargetSpace measures whether a forecast was skilful, not whether a system may act on a person. Causal claims require intervention and are outside the default benchmark.</p>
+  </div>
+
+  <!-- ============ CONSENT-FIRST ARCHITECTURE ============ -->
+  <h2 style="margin-top:38px">Consent-first, local-first, aggregate-only</h2>
+  <p class="lead">Real-data participation is bound by architecture, not just policy. The principles below are requirements for any submission that uses longitudinal passive-observation data.</p>
+  <div class="grid grid-3" style="margin-top:20px">
+    <div class="card"><h3>Consent-first</h3><p>Every target is a consenting participant with a specific, revocable purpose. Derived, consented artifacts only &mdash; never raw bystander media.</p></div>
+    <div class="card"><h3>Federated &amp; local-first</h3><p>Local processing and open-source implementations are valuable mitigations. Data stays with the target where feasible; the protocol travels to the data.</p></div>
+    <div class="card"><h3>Aggregate-only reporting</h3><p>Results are reported as aggregate skill, calibration, and specificity statistics &mdash; never as a reconstructable record of an individual.</p></div>
+  </div>
+  <p class="muted small" style="margin-top:14px">Local and federated processing reduces exposure but is <strong style="color:var(--text)">incomplete</strong> against bystander consent, purpose drift, and derived-inference risk. It is a mitigation, not a solution.</p>
+
+  <!-- ============ BYSTANDER & THIRD-PARTY ============ -->
+  <h2 style="margin-top:38px">Bystander and third-party consent</h2>
+  <p class="lead">First-person capture records people who never opted in. A target consents; the colleague, family member, or stranger in frame does not. The framework names this risk explicitly rather than treating it as a deployment detail.</p>
+  <div class="vs" style="margin-top:20px">
+    <div class="panel panel--cold">
+      <h3>Risks the framework names</h3>
+      <ul>
+        <li>Bystander consent &mdash; people near the system become data subjects without agreeing</li>
+        <li>Third-party exposure &mdash; a target's records reveal information about others</li>
+        <li>Purpose drift &mdash; meeting notes quietly become behavioural prediction</li>
+        <li>Deletion ambiguity &mdash; erasing media may not erase the derived layers</li>
+        <li>Searchability &mdash; a forgotten remark becomes a queryable record</li>
+        <li>Power asymmetry &mdash; a memory can be interrogated by whoever holds power over the target</li>
+        <li>Inference leakage &mdash; goals and vulnerabilities surface through accumulation, not any single record</li>
+      </ul>
+    </div>
+    <div class="panel panel--hot">
+      <h3>Beneficial uses, held in balance</h3>
+      <ul>
+        <li>Accessibility &mdash; support for people whose needs current tools do not meet</li>
+        <li>Memory support &mdash; recall assistance for those who benefit from it</li>
+        <li>Productivity &mdash; lower-friction capture and follow-through on one's own commitments</li>
+        <li>Care coordination &mdash; continuity across caregivers with consent</li>
+        <li>Personal knowledge management &mdash; a person's own record, under their control</li>
+        <li>Safety &mdash; accountability and situational support where warranted</li>
+      </ul>
+    </div>
+  </div>
+  <p class="muted small" style="margin-top:14px">These beneficial uses are real. Naming them does not weaken the risks above, and naming the risks does not deny the benefits &mdash; both hold at once, which is why the two are kept side by side.</p>
+
+  <!-- ============ NO RAW PUBLIC DATASET ============ -->
+  <h2 style="margin-top:38px">No raw public first-person dataset in v1.0</h2>
+  <p class="lead">Version 1.0 ships the protocol, a minimal synthetic harness, and the submission specification. It does <strong style="color:var(--text)">not</strong> release a public raw first-person dataset, and no human pilot has run.</p>
+  <div class="note note--warn" style="margin-top:16px">
+    <span class="ic">&#9888;</span>
+    <p>There are <strong>no empirical results, no real leaderboard, no official submissions, and no cross-domain validation</strong> in v1.0. Any illustrative rows shown elsewhere on this site are mock baselines. A frozen private split and a first consented federated pilot are planned for a later version, gated on the governance requirements above.</p>
+  </div>
+
+  <!-- ============ THE HARD LINE ============ -->
+  <h2 style="margin-top:38px">Benchmark validity is not deployment legitimacy</h2>
+  <p class="lead">A TargetSpace score certifies one thing: calibrated prospective predictive skill on sealed, externally resolved outcomes. It measures whether a forecast beat the population prior and the target's own routine, stayed calibrated, and collapsed under target permutation. That is all it certifies.</p>
+  <div class="note note--warn" style="margin-top:16px">
+    <span class="ic">&#9888;</span>
+    <p style="font-size:1.05rem"><strong>Benchmark validity is not deployment legitimacy &mdash; a high score is no licence to act on, manipulate, surveil, or infer the inner life of a person.</strong></p>
+  </div>
+  <p class="muted small" style="margin-top:14px">A high score certifies <strong style="color:var(--text)">target-specific predictive skill</strong> only. It is not evidence of understanding, inner life, or causation, and it confers no permission to act on a person. Whether a capable system may be deployed &mdash; and under what consent, oversight, and recourse &mdash; is a separate question the benchmark deliberately does not answer.</p>
+
+  <div class="btns" style="margin-top:30px">
+    <a class="btn btn--primary" href="/paper">Read the paper</a>
+    <a class="btn btn--ghost" href="/assets/targetspace-paper-v1.0.pdf" download>Download PDF</a>
+    <a class="btn btn--ghost" href="/">Back to overview</a>
+  </div>
+</div></section>
+</main>
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>

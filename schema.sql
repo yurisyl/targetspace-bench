@@ -28,7 +28,7 @@ CREATE TABLE admins (
 -- Benchmark versions (MLCommons-style governance / versioning).
 CREATE TABLE benchmark_versions (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
-  tag         TEXT NOT NULL UNIQUE,                 -- e.g. v0.1-pilot
+  tag         TEXT NOT NULL UNIQUE,                 -- e.g. v1.0
   name        TEXT NOT NULL,
   status      TEXT NOT NULL DEFAULT 'pilot',        -- pilot|active|frozen|deprecated
   is_current  INTEGER NOT NULL DEFAULT 0,           -- 0/1

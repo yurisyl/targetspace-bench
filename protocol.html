@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Protocol — TargetSpace v1.0</title>
+<meta name="description" content="The TargetSpace v1.0 protocol: the forecast unit, the sealed walk-forward loop, proper scoring, the hard inclusion rule, and the reporting row. Pre-pilot proposal.">
+<link rel="canonical" href="https://targetspace.org/protocol">
+<meta name="theme-color" content="#070b16">
+<meta property="og:type" content="website"><meta property="og:site_name" content="TargetSpace">
+<meta property="og:url" content="https://targetspace.org/protocol">
+<meta property="og:title" content="TargetSpace v1.0 — Benchmark protocol"><meta property="og:description" content="The forecast unit, the sealed walk-forward loop, proper scoring, the hard inclusion rule, and the reporting row. A pre-pilot protocol proposal; no empirical results.">
+<meta property="og:image" content="https://targetspace.org/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+<main>
+<section class="section"><div class="container" style="max-width:960px">
+  <div class="page-head">
+    <span class="crumbs">Benchmark / Protocol</span>
+    <h1>The benchmark protocol</h1>
+    <p class="lead">A reviewer- and product-readable specification of what TargetSpace scores: the forecast unit, the sealed walk-forward loop, the scoring stack, and the reporting contract. This is the protocol a submission must satisfy.</p>
+  </div>
+
+  <div class="badges">
+    <span class="badge"><b>Version</b> &nbsp;1.0</span>
+    <span class="badge"><b>Status</b> &nbsp;pre-pilot protocol proposal</span>
+    <span class="badge"><b>Results</b> &nbsp;none reported</span>
+    <span class="mockflag">no empirical results &middot; no official submissions yet</span>
+  </div>
+
+  <!-- ============ 1. FORECAST UNIT ============ -->
+  <h2 style="margin-top:48px">1 &middot; The forecast unit</h2>
+  <p class="lead">Every scored item is one <strong style="color:var(--text)">forecast unit</strong>: a sealed probabilistic prediction about a single future state of a single target, resolved later by a deterministic rule.</p>
+  <div class="code" style="margin-top:16px">
+    <pre>forecast unit  =  ( i , E&le;t , q , A , r )   &rarr;   sealed probability vector over A</pre>
+  </div>
+  <ul class="metalist">
+    <li><span class="k">i</span><span><strong>Instance.</strong> The specific target and the specific occasion being scored.</span></li>
+    <li><span class="k">E&le;t</span><span><strong>Evidence up to t.</strong> All longitudinal evidence observable no later than the sealed time <span class="mono">t</span>. Strict walk-forward &mdash; no information from after <span class="mono">t</span> may enter the forecast.</span></li>
+    <li><span class="k">q</span><span><strong>Query.</strong> A question about a specific future state of the target.</span></li>
+    <li><span class="k">A</span><span><strong>Answer space.</strong> A discrete, enumerated set of possible outcomes.</span></li>
+    <li><span class="k">r</span><span><strong>Resolution time.</strong> A time <span class="mono">r &gt; t</span> at which a deterministic, pre-registered observable rule assigns the realized outcome in <span class="mono">A</span>.</span></li>
+    <li><span class="k">output</span><span><strong>Sealed forecast.</strong> The system emits a probability vector over <span class="mono">A</span>, sealed before the outcome exists.</span></li>
+  </ul>
+  <p class="muted small" style="margin-top:6px">Plain-language example: a note-taking app claims its memory helps its users. TargetSpace asks it to forecast &mdash; before the outcome exists &mdash; whether a user will complete, defer, cancel, or replace a recurring commitment. The forecast earns credit only if it beats population rates, beats that user's own routine, stays calibrated, and fails when scored against another user.</p>
+
+  <div class="flowline" style="margin:44px 0"></div>
+
+  <!-- ============ 2. WALK-FORWARD LOOP ============ -->
+  <h2>2 &middot; The sealed walk-forward loop</h2>
+  <p class="lead">One pass over a target produces one reporting row. The loop is strictly prospective: each forecast is sealed before its outcome exists, then scored against externally observable resolutions.</p>
+  <div class="stack" style="margin-top:22px">
+    <div class="layer"><span class="layer__n">1</span><div class="layer__b"><strong>Observe up to t</strong><span>Assemble the evidence set E&le;t under strict walk-forward. No future information may enter.</span></div></div>
+    <div class="layer"><span class="layer__n">2</span><div class="layer__b"><strong>Seal the forecast</strong><span>Emit and freeze the probability vector over A before r; timestamp and hash it so it cannot be revised after the fact.</span></div></div>
+    <div class="layer"><span class="layer__n">3</span><div class="layer__b"><strong>Resolve at r</strong><span>Apply the deterministic, pre-registered observable rule to read the realized outcome in A.</span></div></div>
+    <div class="layer"><span class="layer__n">4</span><div class="layer__b"><strong>Proper-score</strong><span>Score the sealed vector against the outcome with a proper scoring rule: log score in bits, plus Brier.</span></div></div>
+    <div class="layer"><span class="layer__n">5</span><div class="layer__b"><strong>Compare against R1 and R2</strong><span>Skill in bits over the R1 population prior and over the R2 own-routine baseline, on identical sealed instances.</span></div></div>
+    <div class="layer is-anchor"><span class="layer__n">6</span><div class="layer__b"><strong>Calibration and permutation</strong><span>Check calibration; re-score under matched target permutation, where target-specific skill must collapse.</span></div><span class="layer__r">gate</span></div>
+    <div class="layer"><span class="layer__n">7</span><div class="layer__b"><strong>Evidence-tier lift</strong><span>Ablate evidence tiers to measure the marginal contribution of each stream &mdash; measured, never assumed.</span></div></div>
+    <div class="layer"><span class="layer__n">8</span><div class="layer__b"><strong>Emit the reporting row</strong><span>Record skill, calibration, permutation outcome, counts, horizon, domain, and result status.</span></div></div>
+  </div>
+
+  <div class="note note--info" style="margin-top:22px">
+    <span class="ic">&#9673;</span>
+    <p><strong>The four-bar decision rule.</strong> A forecast earns target-specific credit only if it (1) beats the R1 population prior, (2) beats the R2 own-routine baseline, (3) stays calibrated, and (4) loses skill under matched target permutation. Miss any bar and the credit is not target-specific &mdash; the result reduces to generic prediction or routine replay.</p>
+  </div>
+
+  <div class="flowline" style="margin:44px 0"></div>
+
+  <!-- ============ 3. SCORING ============ -->
+  <h2>3 &middot; Scoring</h2>
+  <p class="lead">Scoring is applied to the full sealed probability vector, not to cherry-picked accuracy. Skill is reported relative to two baselines, gated by calibration and permutation, and attributed across evidence tiers.</p>
+  <div class="grid grid-2" style="margin-top:22px">
+    <div class="card"><h3>Log score (bits)</h3><p>The primary proper scoring rule over the full vector. Higher is better; expressed in bits so skill differences read directly.</p></div>
+    <div class="card"><h3>Brier score</h3><p>A secondary proper score over the vector, reported alongside the log score.</p></div>
+    <div class="card"><h3>Skill vs R1 (bits)</h3><p>Bits gained over the population prior. Rules out looking good by predicting what usually happens; the entry condition.</p></div>
+    <div class="card" style="border-color:rgba(45,212,191,.4)"><h3>Skill vs R2 (bits)</h3><p>Bits gained over the target's own routine. Rules out routine replay: skill over R2 is skill the routine does not already contain &mdash; the headline number.</p></div>
+    <div class="card"><h3>Calibration diagnostics</h3><p>Calibration intercept and slope plus a reliability read. ECE is a coarse diagnostic at small <span class="mono">n</span>, not a hard gate.</p></div>
+    <div class="card" style="border-color:rgba(45,212,191,.4)"><h3>Permutation specificity gate</h3><p>Forecasts re-scored against the wrong target must lose their skill. If skill survives permutation, target-specific credit is withdrawn.</p></div>
+    <div class="card"><h3>Evidence-tier ablation</h3><p>The marginal lift of each evidence tier, measured by removing streams &mdash; what each stream buys, never assumed.</p></div>
+  </div>
+
+  <div class="note note--warn" style="margin-top:22px">
+    <span class="ic">&#9888;</span>
+    <p><strong>What a score does and does not certify.</strong> A high score certifies calibrated prospective predictive skill only &mdash; evidence that the system can maintain and use a target-specific predictive representation on sealed calibrated forecasts. It is not evidence of understanding, inner life, or causation, and it is never permission to act on a person.</p>
+  </div>
+
+  <div class="flowline" style="margin:44px 0"></div>
+
+  <!-- ============ 4. HARD INCLUSION RULE ============ -->
+  <h2>4 &middot; The hard inclusion rule</h2>
+  <div class="note note--info" style="margin-top:14px">
+    <span class="ic">&#9673;</span>
+    <p><strong>A target state is scored only if it has a pre-registered observable resolution rule; otherwise it is evidence, not a scored state.</strong> Attention, affect, and inferred goals are always evidence &mdash; never scored states. Self-report may be evidence, but it is never the outcome label when it is also a model input. Causal claims require intervention and are outside the default benchmark.</p>
+  </div>
+
+  <!-- ============ 5. VALID VS INVALID ============ -->
+  <h2 style="margin-top:44px">5 &middot; Valid vs invalid target states</h2>
+  <p class="lead">The inclusion rule, made concrete. Only states with a deterministic observable resolution rule are scored; everything else is admissible as evidence or excluded.</p>
+  <div class="table-wrap" style="margin-top:16px">
+    <table class="dtable">
+      <thead><tr><th>Candidate target state</th><th>Category</th><th>Verdict</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="sys">P(no substantive reply to message <span class="mono">m</span> by <span class="mono">r</span>)</td>
+          <td>Observable outcome</td>
+          <td><span class="tag is-green"><span class="dot"></span>Scored</span></td>
+          <td>A deterministic observable rule reads the thread at <span class="mono">r</span> and assigns the outcome.</td>
+        </tr>
+        <tr>
+          <td class="sys">Commitment resolves as {complete, defer, cancel, replace}</td>
+          <td>Observable outcome</td>
+          <td><span class="tag is-green"><span class="dot"></span>Scored</span></td>
+          <td>Discrete answer space; each outcome is externally observable at <span class="mono">r</span>.</td>
+        </tr>
+        <tr>
+          <td class="sys">&ldquo;Feels anxious&rdquo;</td>
+          <td>Affect</td>
+          <td><span class="tag is-orange"><span class="dot"></span>Evidence only</span></td>
+          <td>An affective state with no pre-registered observable resolution rule. Usable as evidence, never as a scored state.</td>
+        </tr>
+        <tr>
+          <td class="sys">&ldquo;Attending to X right now&rdquo;</td>
+          <td>Attention</td>
+          <td><span class="tag is-orange"><span class="dot"></span>Evidence only</span></td>
+          <td>Attention is evidence, never a scored state.</td>
+        </tr>
+        <tr>
+          <td class="sys">&ldquo;True goal is Y&rdquo;</td>
+          <td>Inferred goal</td>
+          <td><span class="tag is-orange"><span class="dot"></span>Evidence only</span></td>
+          <td>Inferred goals are evidence, never scored states.</td>
+        </tr>
+        <tr>
+          <td class="sys">&ldquo;Attention causes the switch&rdquo;</td>
+          <td>Causal claim</td>
+          <td><span class="tag is-gray"><span class="dot"></span>Out of scope</span></td>
+          <td>A causal claim requires intervention and is outside the default benchmark.</td>
+        </tr>
+        <tr>
+          <td class="sys">A self-reported goal that is also a model input</td>
+          <td>Contaminated label</td>
+          <td><span class="tag is-gray"><span class="dot"></span>Invalid label</span></td>
+          <td>Self-report may be evidence, but it is never the outcome label when it is also a model input.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flowline" style="margin:44px 0"></div>
+
+  <!-- ============ 6. REPORTING ROW ============ -->
+  <h2>6 &middot; The reporting row</h2>
+  <p class="lead">Each pass reports one row. A result is the row, not a single number &mdash; skill is meaningful only next to its baselines, gates, counts, and status.</p>
+  <ul class="metalist">
+    <li><span class="k">Skill vs R1</span><span>Bits gained over the population prior.</span></li>
+    <li><span class="k">Skill vs R2</span><span>Bits gained over the target's own routine &mdash; the headline.</span></li>
+    <li><span class="k">Calibration</span><span>pass / warn / fail, or a diagnostic read at small <span class="mono">n</span>.</span></li>
+    <li><span class="k">Permutation</span><span>collapses (target-specific) / survives (not target-specific).</span></li>
+    <li><span class="k">Evidence lift</span><span>Marginal bits attributable to each evidence tier.</span></li>
+    <li><span class="k">Resolved n</span><span>Number of resolved sealed forecasts.</span></li>
+    <li><span class="k">Targets</span><span>Number of independent targets.</span></li>
+    <li><span class="k">Horizon</span><span>The interval from sealed time <span class="mono">t</span> to resolution time <span class="mono">r</span>.</span></li>
+    <li><span class="k">Domain</span><span>The target domain (for example, TS-Personal).</span></li>
+    <li><span class="k">Status</span><span>Result status: synthetic / private / public.</span></li>
+  </ul>
+  <div class="note note--warn" style="margin-top:18px">
+    <span class="ic">&#9888;</span>
+    <p><strong>A large forecast count from few targets is not a large independent sample.</strong> Resolved-forecast count and independent-target count are reported separately for exactly this reason.</p>
+  </div>
+
+  <!-- ============ END LINKS ============ -->
+  <div class="cta-band" style="margin-top:48px">
+    <h2>Run the loop, or read the schemas</h2>
+    <p class="lead" style="margin:0 auto 16px;max-width:60ch">The Version 1.0 reference harness executes this loop on synthetic data as a smoke test and reference path &mdash; not a validated leaderboard result. The schema reference defines the on-disk formats a submission must produce.</p>
+    <div class="btns" style="justify-content:center">
+      <a class="btn btn--primary" href="/run-harness">Run the harness</a>
+      <a class="btn btn--ghost" href="/schemas">Schema reference</a>
+    </div>
+  </div>
+
+</div></section>
+</main>
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>

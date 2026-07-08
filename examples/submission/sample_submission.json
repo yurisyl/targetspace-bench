@@ -1,0 +1,38 @@
+{
+  "submission_id": "example-2026-0001",
+  "benchmark_name": "TargetSpace",
+  "benchmark_version": "0.1.0",
+  "track": "ts-personal",
+  "domain": "person",
+  "system_id": "example_system",
+  "system_name": "Example Forecasting System",
+  "system_version": "1.0.0",
+  "system_date": "2026-06-09",
+  "submitter": {
+    "name": "Example Submitter",
+    "organization": "Example Lab",
+    "email": "submitter@example.org"
+  },
+  "protocol_version": "PWM-0.1",
+  "evidence_tier": "L3",
+  "task_set": [
+    "T1_next_contact",
+    "T2_event_realization",
+    "T3_response_behavior",
+    "T4_attention_allocation"
+  ],
+  "forecast_file": "../forecasts/sample_forecasts.jsonl",
+  "verification_level": "self_reported",
+  "environment": {
+    "hardware": "1x A100 (example)",
+    "software": "python 3.12; your-framework x.y",
+    "model": "example-model-name",
+    "seed": 20260609
+  },
+  "cost": { "usd": 0.0, "tokens": 0 },
+  "latency": { "mean_seconds": 0.0, "p95_seconds": 0.0 },
+  "reproducibility_notes": "Forecasts are produced by `your-system` from the evidence manifest; sealed and timestamped before each resolution_time. Outcomes are NOT included (organizer-held). To reproduce: <commands>.",
+  "metadata": {
+    "note": "Format example only. A real submission contains forecasts for one system at one evidence tier; outcomes are never submitted."
+  }
+}
