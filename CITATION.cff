@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use TargetSpace-Bench, please cite the following."
+title: "TargetSpace: Benchmarking Personal Intelligence by Target-Specific Forecasting Under Partial Observation"
+type: software
+authors:
+  - family-names: "Sylvester"
+    given-names: "Yuri Andrade"
+    email: "yurisyl@gmail.com"
+year: 2026
+version: "1.0"
+url: "https://targetspace.org"
+repository-code: "https://github.com/yurisyl/targetspace-bench"
+license: MIT
+keywords:
+  - benchmark
+  - world models
+  - forecasting
+  - longitudinal
+  - target-specific
+  - calibration
+  - partial observation
+abstract: >-
+  TargetSpace is a benchmark for target-specific forecasting under partial observation
+  from passive multimodal observation. It scores prospective, sealed, proper-scored
+  forecasts of a tracked target's latent target-state transitions under a strong
+  own-routine baseline (R2), a calibration gate, and a permutation specificity gate,
+  with an evidence-tier ablation. This is a pre-pilot proposal; it reports no
+  empirical results and ships only a synthetic demonstration harness.
+preferred-citation:
+  type: article
+  title: "TargetSpace: Benchmarking Personal Intelligence by Target-Specific Forecasting Under Partial Observation"
+  authors:
+    - family-names: "Sylvester"
+      given-names: "Yuri Andrade"
+  year: 2026
+  notes: "Preprint; pre-pilot proposal, no empirical results."

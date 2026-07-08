@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracks &amp; splits — TargetSpace v1.0</title>
+<meta name="description" content="TargetSpace is a multi-track apparatus: TS-Personal (flagship, current), TS-Health and TS-Energy (planned), TS-Robotics and TS-Enterprise (research), plus evaluation splits TS-Short/Long/Shift/Counterfactual/Multimodal/Private.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+<main>
+<section class="section">
+  <div class="container">
+    <div class="page-head">
+      <span class="crumbs">Benchmark / Tracks</span>
+      <h1>Tracks &amp; evaluation splits</h1>
+      <p class="lead">TargetSpace is not one dataset or one domain. It is a shared evaluation apparatus with multiple application tracks. Every track shares the same scoring spine &mdash; sealed forecasts, R1/R2 baselines, calibration, permutation specificity, evidence ablation, deterministic outcome validation &mdash; and differs in target, evidence bands, horizon, validator, and readiness.</p>
+    </div>
+
+    <div class="note note--info" style="margin:14px 0 26px">
+      <span class="ic">ℹ️</span>
+      <p><strong>Honest readiness.</strong> <strong>TS-Personal</strong> is the flagship and only currently-instantiated track, as a synthetic pre-pilot. The other tracks are <em>planned</em> or <em>research</em>-stage: no empirical validation exists for them yet, and TargetSpace does not claim to solve health, energy, robotics, or enterprise forecasting.</p>
+    </div>
+
+    <h2 id="domain">Domain tracks</h2>
+    <p class="lead">The apparatus (paper Section 9, Table 8). Choose a track to see its target object, evidence bands, horizon, example target states, validator, and readiness.</p>
+    <div class="trackgrid" id="domain-tracks" style="margin-top:20px"><div class="card"><p class="muted">Loading tracks…</p></div></div>
+
+    <div class="flowline" style="margin:44px 0"></div>
+
+    <h2 id="splits">Evaluation splits</h2>
+    <p class="lead">Task regimes &mdash; SWE-bench-style splits &mdash; currently instantiated within the flagship <strong>TS-Personal</strong> track. Each split has its own input/output, metrics, baselines, example task, and submission requirements.</p>
+    <div id="split-list" style="margin-top:20px"><p class="muted">Loading splits…</p></div>
+
+    <div class="cta-band" style="margin-top:40px">
+      <h2>Evaluate on a track</h2>
+      <p class="lead" style="margin:0 auto 16px;max-width:60ch">The synthetic TS-Personal harness is runnable today. Submit results or request a private evaluation.</p>
+      <div class="btns" style="justify-content:center"><a class="btn btn--primary" href="/submit">Submit a run</a><a class="btn btn--ghost" href="/leaderboard">Leaderboard</a><a class="btn btn--ghost" href="/docs">Docs</a></div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+<script src="/js/tracks.js"></script>
+</body>
+</html>

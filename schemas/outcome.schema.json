@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yurisyl/targetspace-bench/schemas/outcome.schema.json",
+  "title": "TargetSpace Outcome",
+  "description": "The resolved ground-truth label for one benchmark instance. One outcome per instance (task_id); every system that forecast that instance is scored against it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "forecast_id",
+    "participant_id",
+    "task_id",
+    "resolution_time",
+    "observed_answer",
+    "answer_space",
+    "resolver",
+    "resolution_method"
+  ],
+  "properties": {
+    "forecast_id": {
+      "type": "string",
+      "description": "Instance reference. In this release outcomes are per-instance, so this equals the task_id of the instance being resolved.",
+      "minLength": 1
+    },
+    "participant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_type": {
+      "type": "string",
+      "description": "Task family of the resolved instance. Optional but recommended; used by the population-prior baseline and leaderboard task-set labelling.",
+      "enum": [
+        "T1_next_contact",
+        "T2_event_realization",
+        "T3_response_behavior",
+        "T4_attention_allocation",
+        "T5_routine_deviation",
+        "T6_commitment_follow_through"
+      ]
+    },
+    "resolution_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "observed_answer": {
+      "type": "string",
+      "description": "The realized label. Must be a member of answer_space."
+    },
+    "answer_space": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2,
+      "uniqueItems": true
+    },
+    "resolver": {
+      "type": "string",
+      "description": "Who/what adjudicated the outcome (e.g. 'federated_client', 'synthetic_generator')."
+    },
+    "resolution_method": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "metadata": {
+      "type": "object"
+    }
+  }
+}

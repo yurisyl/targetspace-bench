@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Submission schemas — TargetSpace v1.0</title>
+<meta name="description" content="The six Version 1.0 public submission JSON Schemas for TargetSpace: participant, evidence manifest, forecast, outcome, submission, and leaderboard reporting row. Illustrative; no participant data.">
+<link rel="canonical" href="https://targetspace.org/schemas">
+<meta name="theme-color" content="#070b16">
+<meta property="og:type" content="website"><meta property="og:site_name" content="TargetSpace">
+<meta property="og:title" content="TargetSpace v1.0 submission schemas"><meta property="og:description" content="The six illustrative Version 1.0 JSON Schemas that describe a TargetSpace submission, from target instance to leaderboard reporting row. No participant data.">
+<meta property="og:image" content="https://targetspace.org/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+<main>
+<section class="section"><div class="container" style="max-width:960px">
+  <div class="page-head">
+    <span class="crumbs">Schemas</span>
+    <h1>Submission schemas</h1>
+    <p class="lead">Version 1.0 public submission schemas &mdash; illustrative and compatible with the v1.0 protocol; no participant data. The <a href="/paper">paper</a> is authoritative if there is a conflict; examples are in <span class="mono">examples/</span>.</p>
+  </div>
+
+  <div class="badges" style="margin-top:0">
+    <span class="badge"><b>Version</b> &nbsp;<span class="vtag">Version 1.0</span></span>
+    <span class="badge"><b>Status</b> &nbsp;pre-pilot protocol proposal</span>
+    <span class="badge"><b>Data</b> &nbsp;illustrative &mdash; no participant data</span>
+    <span class="mockflag">no official submissions yet</span>
+  </div>
+
+  <div class="note note--info" style="margin-top:26px">
+    <span class="ic">&#9673;</span>
+    <p>These six schemas describe the shape of a Version 1.0 submission, from a single target instance through to a leaderboard reporting row. They are provided so a team can prepare a well-formed run; they do not by themselves grant a score, and no participant data ships with them. Schemas are illustrative &mdash; where wording differs from the paper, the paper governs.</p>
+  </div>
+
+  <h2 style="margin-top:40px">The six schemas</h2>
+  <p class="muted" style="max-width:70ch">Each file is a standalone JSON Schema. Follow the <strong style="color:var(--text)">Schema</strong> link to read the raw file served from this site, or the <strong style="color:var(--text)">GitHub</strong> link to view it in the repository.</p>
+
+  <div class="grid grid-2" style="margin-top:22px">
+
+    <div class="card">
+      <h3 class="mono">participant.schema.json</h3>
+      <p>A <strong style="color:var(--text)">target instance</strong>: the record that identifies one target and the instance being forecast &mdash; the who and the what, with no outcome attached.</p>
+      <div class="btns" style="margin-top:16px">
+        <a class="btn btn--ghost btn--sm" href="/schemas/participant.schema.json">Schema</a>
+        <a class="btn btn--ghost btn--sm" href="https://github.com/yurisyl/targetspace-bench/blob/main/schemas/participant.schema.json" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="mono">evidence_manifest.schema.json</h3>
+      <p>The <strong style="color:var(--text)">evidence tiers, observation window, and hashes</strong>: which evidence streams were available up to the sealed time <span class="mono">t</span>, at what tier, with content hashes for auditability. Evidence, never a scored state.</p>
+      <div class="btns" style="margin-top:16px">
+        <a class="btn btn--ghost btn--sm" href="/schemas/evidence_manifest.schema.json">Schema</a>
+        <a class="btn btn--ghost btn--sm" href="https://github.com/yurisyl/targetspace-bench/blob/main/schemas/evidence_manifest.schema.json" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="mono">forecast.schema.json</h3>
+      <p>The <strong style="color:var(--text)">sealed probability vector</strong> over the discrete answer space <span class="mono">A</span>, emitted and hashed at time <span class="mono">t</span> before the outcome exists.</p>
+      <div class="btns" style="margin-top:16px">
+        <a class="btn btn--ghost btn--sm" href="/schemas/forecast.schema.json">Schema</a>
+        <a class="btn btn--ghost btn--sm" href="https://github.com/yurisyl/targetspace-bench/blob/main/schemas/forecast.schema.json" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="mono">outcome.schema.json</h3>
+      <p>The <strong style="color:var(--text)">resolved label</strong>: the observable answer recorded at resolution time <span class="mono">r</span> under the pre-registered, deterministic resolution rule.</p>
+      <div class="btns" style="margin-top:16px">
+        <a class="btn btn--ghost btn--sm" href="/schemas/outcome.schema.json">Schema</a>
+        <a class="btn btn--ghost btn--sm" href="https://github.com/yurisyl/targetspace-bench/blob/main/schemas/outcome.schema.json" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="mono">submission.schema.json</h3>
+      <p>The <strong style="color:var(--text)">run manifest</strong>: ties a set of sealed forecasts to the system, track, split, and version that produced them, with the attestations a run requires.</p>
+      <div class="btns" style="margin-top:16px">
+        <a class="btn btn--ghost btn--sm" href="/schemas/submission.schema.json">Schema</a>
+        <a class="btn btn--ghost btn--sm" href="https://github.com/yurisyl/targetspace-bench/blob/main/schemas/submission.schema.json" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="mono">leaderboard.schema.json</h3>
+      <p>The <strong style="color:var(--text)">reporting row</strong>: skill vs R1 and R2, calibration status, permutation result, evidence-tier lift, resolved-forecast and independent-target counts, horizon, domain, and result status.</p>
+      <div class="btns" style="margin-top:16px">
+        <a class="btn btn--ghost btn--sm" href="/schemas/leaderboard.schema.json">Schema</a>
+        <a class="btn btn--ghost btn--sm" href="https://github.com/yurisyl/targetspace-bench/blob/main/schemas/leaderboard.schema.json" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 style="margin-top:44px">How the abstract forecast unit maps to fields</h2>
+  <p class="muted" style="max-width:74ch">The paper defines a forecast unit as <span class="mono">(i, E&le;t, q, A, r)</span> &mdash; an instance <span class="mono">i</span>, evidence up to sealed time <span class="mono">t</span>, a query <span class="mono">q</span> about a future state, a discrete answer space <span class="mono">A</span>, and a resolution time <span class="mono">r &gt; t</span>. In the v1.0 personal-track schemas that abstract unit maps onto concrete fields as follows.</p>
+
+  <div class="table-wrap" style="margin-top:18px">
+    <table class="dtable">
+      <thead>
+        <tr><th>Abstract unit</th><th>Schema field</th><th>Lives in</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="sys">target</td><td class="mono">participant_id</td><td>participant.schema.json</td></tr>
+        <tr><td class="sys">instance <span class="mono">i</span></td><td class="mono">task_id</td><td>participant.schema.json / forecast.schema.json</td></tr>
+        <tr><td class="sys">question <span class="mono">q</span></td><td class="mono">task_type</td><td>forecast.schema.json</td></tr>
+        <tr><td class="sys">answer space <span class="mono">A</span></td><td class="mono">answer_space</td><td>forecast.schema.json</td></tr>
+        <tr><td class="sys">evidence <span class="mono">E&le;t</span></td><td class="mono">evidence_manifest</td><td>evidence_manifest.schema.json</td></tr>
+        <tr><td class="sys">label</td><td class="mono">observed_answer</td><td>outcome.schema.json</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note note--warn" style="margin-top:20px">
+    <span class="ic">&#9888;</span>
+    <p><strong>Inclusion rule.</strong> A target state is scored only if it has a pre-registered observable resolution rule; otherwise it is evidence, not a scored state. Attention, affect, and inferred goals are evidence and are never scored states. Self-report may be evidence but is never the outcome label when it is also a model input.</p>
+  </div>
+
+  <h2 style="margin-top:44px">Next steps</h2>
+  <div class="grid grid-2" style="margin-top:18px">
+    <div class="card">
+      <h3>Run the harness</h3>
+      <p>See how the schemas feed the reference checks &mdash; sealing, deterministic resolution, R1/R2 baselines, calibration, and the permutation gate &mdash; on synthetic data only.</p>
+      <div class="btns" style="margin-top:16px"><a class="btn btn--ghost btn--sm" href="/run-harness">Run the harness</a></div>
+    </div>
+    <div class="card">
+      <h3>Product quickstart</h3>
+      <p>For teams mapping a product's longitudinal traces onto a well-formed v1.0 submission, from target instance to sealed forecast.</p>
+      <div class="btns" style="margin-top:16px"><a class="btn btn--ghost btn--sm" href="/product-quickstart">Product quickstart</a></div>
+    </div>
+  </div>
+
+  <p class="muted small" style="margin-top:26px">A high score under these schemas certifies calibrated prospective predictive skill only &mdash; a target-specific predictive representation distinguished from generic prediction or routine replay. It does not certify understanding, inner life, causation, or permission to act on any person.</p>
+
+</div></section>
+</main>
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>

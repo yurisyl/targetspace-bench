@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Status &amp; illustrative leaderboard — TargetSpace v1.0</title>
+<meta name="description" content="TargetSpace v1.0 status. No empirical leaderboard results exist yet — every row is a synthetic illustrative mock baseline. Headline metric: skill in bits over the own-routine baseline R2, gated by calibration and permutation specificity.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+<main>
+<section class="section">
+  <div class="container">
+    <div class="page-head">
+      <span class="crumbs">Status</span>
+      <h1>Status &amp; illustrative leaderboard</h1>
+      <p class="lead">The headline signal is <strong style="color:var(--text)">skill in bits over the own-routine baseline R2</strong>, with calibration and permutation specificity as gates. The "overall" column is an illustrative roll-up for display only, not a canonical composite.</p>
+    </div>
+
+    <div class="note note--warn" style="margin:14px 0 22px;border-width:2px">
+      <span class="ic">&#9888;</span>
+      <p><strong>No empirical leaderboard results exist for v1.0.</strong> Every row below is a <strong>synthetic illustrative mock baseline</strong> on benchmark protocol v1.0 &mdash; not a real submission, not an official result, and not evidence about any system or product. Higher is better for every metric except <em>calibration error</em> and <em>long-horizon degradation</em> (lower is better). A large forecast count from few targets is not a large independent sample.</p>
+    </div>
+
+    <div class="filters" id="lb-filters">
+      <div class="field"><label for="f-track">Track</label><select id="f-track"><option value="">All tracks</option></select></div>
+      <div class="field"><label for="f-split">Split</label><select id="f-split"><option value="">All splits</option></select></div>
+      <div class="field"><label for="f-type">Submission type</label><select id="f-type"><option value="">All types</option><option value="baseline">Baseline</option><option value="public">Public</option><option value="verified">Verified</option><option value="private_eval">Private eval</option></select></div>
+      <div class="field"><label for="f-version">Version</label><select id="f-version"><option value="">All versions</option></select></div>
+      <div class="field"><label for="f-org">Organization</label><input id="f-org" type="text" placeholder="filter…" autocomplete="off"></div>
+      <button class="btn btn--ghost btn--sm reset" id="f-reset" type="button">Reset</button>
+    </div>
+
+    <div id="lb-table"><p class="muted">Loading leaderboard…</p></div>
+
+    <details class="card" style="margin-top:22px">
+      <summary style="cursor:pointer;font-weight:640;color:var(--text)">Metric definitions</summary>
+      <ul class="muted small" style="margin:12px 0 0;padding-left:18px;line-height:1.9">
+        <li><b>Overall score</b> — illustrative pilot roll-up for display only.</li>
+        <li><b>Target adaptation gain</b> — Skill in bits over the own-routine baseline R2 (headline).</li>
+        <li><b>Calibration error</b> — top-label ECE; lower is better.</li>
+        <li><b>Evidence attribution</b> — whether cited evidence supports the forecast.</li>
+        <li><b>Counterfactual consistency</b> — coherence of action-conditioned forecasts.</li>
+        <li><b>Temporal-order sensitivity / wrong-target penalty</b> — skill lost under shuffled history / the permutation gate (higher = more target-specific).</li>
+        <li><b>Long-horizon degradation</b> — skill decay at long horizon; lower is better.</li>
+        <li><b>Modality contribution</b> — marginal skill from added evidence streams.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+<script src="/js/leaderboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The benchmark — TargetSpace v1.0</title>
+<meta name="description" content="What TargetSpace-Bench is: target-specific forecasting under partial observation from passive multimodal observation. Definition, scope, what a target and target state are, and how it complements physical-reasoning, video, robotics, and forecasting benchmarks.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+<main>
+<section class="section">
+  <div class="container">
+    <div class="page-head">
+      <span class="crumbs">Benchmark / Overview</span>
+      <h1>What TargetSpace-Bench measures</h1>
+      <p class="lead">TargetSpace-Bench evaluates <strong style="color:var(--text)">target-specific forecasting under partial observation</strong>: whether a system can maintain and use a target-specific predictive representation for a <em>specific</em> target from passive, multimodal, non-IID observation &mdash; measured through calibrated, sealed forecasting.</p>
+    </div>
+
+    <div class="kpis" style="margin:22px 0 8px">
+      <div class="kpi"><b>1</b><span>capability: maintain a target-specific predictive representation</span></div>
+      <div class="kpi"><b>R2</b><span>headline baseline: the target's own routine</span></div>
+      <div class="kpi"><b>5+6</b><span>domain tracks &amp; evaluation splits</span></div>
+      <div class="kpi"><b>bits</b><span>skill, by strictly proper scoring</span></div>
+    </div>
+
+    <h2 style="margin-top:36px">Definition &amp; scope</h2>
+    <div class="grid grid-2" style="margin-top:14px">
+      <div class="card"><h3>A target</h3><p>A persistent, evolving entity tracked over time: a person, agent, system, organization, environment, or process. The flagship track targets a consenting individual; other tracks target patients, energy assets, embodied agents, and projects.</p></div>
+      <div class="card"><h3>A target state</h3><p>The latent configuration a target acts to reach or maintain &mdash; a commitment, priority, constraint, or regime &mdash; evaluated only through its externally observable consequences. The object to forecast is the <strong style="color:var(--text)">transition</strong> between target states.</p></div>
+      <div class="card"><h3>Passive longitudinal observation</h3><p>Evidence accrued over time without acting on the target: metadata, text, audio, passive multimodal streams, location, physiology. The benchmark measures whether richer, correctly-ordered observation improves target-specific forecasts.</p></div>
+      <div class="card"><h3>The capability under test</h3><p><em>Can a model maintain and use a target-specific predictive representation, rather than merely a model of generic scenes or generic events?</em> A high score means calibrated, prospective, target-specific skill &mdash; nothing about a target's inner life.</p></div>
+    </div>
+
+    <h2 style="margin-top:40px">Different from generic dynamics</h2>
+    <p class="lead">TargetSpace is <strong style="color:var(--text)">not</strong> a video-realism, robotics-manipulation, or intuitive-physics benchmark. Those evaluate generic dynamics, realism, and control. TargetSpace evaluates <strong style="color:var(--text)">target-specific dynamics</strong>: whether prediction improves when a model is given the correct target's history in the correct temporal order. A system can render plausible scenes, generate fluent continuations, or execute dexterous control and still be unable to track <em>this</em> target and forecast where it turns next.</p>
+
+    <h2 style="margin-top:40px" id="compare">How it complements other benchmark families</h2>
+    <p class="muted">The families are complementary, not competing. Each is the right instrument for a different question; TargetSpace is compared with them only on shared axes.</p>
+    <div class="cmp" style="margin-top:16px">
+      <div class="table-wrap"><table class="dtable">
+        <thead><tr><th>Benchmark family</th><th>Primary object of evaluation</th><th>Typical input</th><th>Typical output</th><th>What it misses</th><th>How TargetSpace complements it</th></tr></thead>
+        <tbody>
+          <tr><td>Physical reasoning / intuitive physics</td><td>physical plausibility, object permanence, causality, spatial continuity</td><td>short scenes / clips</td><td>plausibility or violation judgment</td><td>a persistent target; longitudinal adaptation; calibration over time</td><td>adds target-specific dynamics over generic physical law</td></tr>
+          <tr><td>Video generation / world simulation</td><td>visual realism, temporal consistency, plausible scene evolution</td><td>context frames</td><td>generated continuation</td><td>target identity; sealed prospective scoring; proper calibration</td><td>scores latent target-state transitions, not surface reconstruction</td></tr>
+          <tr><td>Embodied robotics</td><td>action utility, policy evaluation, manipulation / control success</td><td>proprioception, sensors, actions</td><td>actions; achieved configuration</td><td>passive longitudinal inference; calibration; an own-routine baseline</td><td>scores passive consequence forecasts, not control</td></tr>
+          <tr><td>Symbolic / event forecasting</td><td>probabilistic prediction of public events</td><td>question + context</td><td>calibrated probability</td><td>a tracked individual target; own-routine R2; permutation specificity</td><td>adds the target as the unit, with R2 + permutation controls</td></tr>
+          <tr><td>Agent memory / personalization</td><td>recall, preference modeling, retrieval QA</td><td>history / profile + query</td><td>held-out response / preference</td><td>prospective sealing; calibration; transition forecasting</td><td>scores why an episode matters and forecasts the next transition, sealed</td></tr>
+          <tr class="row-ts"><td><strong>TargetSpace-Bench</strong> (this work)</td><td>target-specific forecasting under partial observation</td><td>passive multimodal observation up to sealed <em>T</em></td><td>calibrated forecast over target-state transitions</td><td><em>by design:</em> physical realism, control, generation fidelity</td><td>is the complementary layer the other families omit</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <h2 style="margin-top:44px">Built like the benchmarks researchers trust</h2>
+    <p class="muted">We borrow the structure and seriousness of established efforts &mdash; not their branding.</p>
+    <div class="grid grid-2" style="margin-top:16px">
+      <div class="card"><div class="card__ic">◆</div><h3>Challenge &amp; leaderboard <span class="tag is-gray">ARC-style</span></h3><p>A clear mission, a public leaderboard, and explicit benchmark versions &mdash; with contamination-resistant, prospective evaluation rather than a static answer key.</p></div>
+      <div class="card"><div class="card__ic">▥</div><h3>Submissions &amp; splits <span class="tag is-gray">SWE-bench-style</span></h3><p>Defined task splits, a submission pipeline, and a verification path so leaderboard credibility rests on reproducibility, not self-report.</p></div>
+      <div class="card"><div class="card__ic">▦</div><h3>Transparent evaluation <span class="tag is-gray">HELM-style</span></h3><p>An explicit evaluation philosophy: scenarios (tracks/splits), multiple metrics reported side by side, and calibration treated as first-class.</p></div>
+      <div class="card"><div class="card__ic">⛓</div><h3>Governance &amp; verification <span class="tag is-gray">MLCommons-style</span></h3><p>Versioned rules, official vs unofficial (public/verified/private-eval) submissions, and organizer-run private evaluation for high-stakes claims.</p></div>
+    </div>
+
+    <div class="cta-band" style="margin-top:40px">
+      <h2>See it in practice</h2>
+      <div class="btns" style="justify-content:center"><a class="btn btn--primary" href="/tracks">Explore tracks</a><a class="btn btn--ghost" href="/baselines">Baselines &amp; controls</a><a class="btn btn--ghost" href="/leaderboard">Leaderboard</a></div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>

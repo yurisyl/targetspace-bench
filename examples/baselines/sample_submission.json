@@ -1,0 +1,34 @@
+{
+  "_note": "Illustrative synthetic example of a sealed-forecast submission. Not real data.",
+  "metadata": {
+    "system_name": "example-system",
+    "organization": "example-org",
+    "track": "ts-personal",
+    "split": "TS-Long",
+    "version": "v1.0",
+    "submission_type_requested": "public",
+    "output_adapter": "distribution-native",
+    "training_cutoff": "2026-01-01",
+    "attestations": { "no_future_leakage": true, "reproducibility_agreement": true }
+  },
+  "forecasts": [
+    {
+      "instance_id": "p03-2026w23-001",
+      "forecast_time": "2026-06-08T09:00:00Z",
+      "resolution_time": "2026-06-10T17:00:00Z",
+      "query": "Does the person complete this Wednesday's review?",
+      "answer_space": ["completes", "defers"],
+      "distribution": [0.30, 0.70],
+      "sha256": "<hash of the sealed payload>"
+    },
+    {
+      "instance_id": "p03-2026w23-002",
+      "forecast_time": "2026-06-08T09:00:00Z",
+      "resolution_time": "2026-06-12T17:00:00Z",
+      "query": "Is the recurring commitment resumed by end of week?",
+      "answer_space": ["resumed", "abandoned", "displaced"],
+      "distribution": [0.55, 0.20, 0.25],
+      "sha256": "<hash of the sealed payload>"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "benchmark": "TargetSpace-Bench",
+  "version": "v1.0",
+  "status": "pre-pilot",
+  "track": "ts-personal",
+  "split": "TS-Long",
+  "note": "Illustrative mock baselines only. No official submissions or empirical results exist yet. Do not present these numbers as real results.",
+  "metric_directions": {
+    "overall_score": "higher-better (illustrative roll-up)",
+    "target_adaptation_gain": "higher-better (bits over R2; headline)",
+    "temporal_order_sensitivity": "higher-better",
+    "wrong_target_penalty": "higher-better",
+    "calibration_error": "lower-better",
+    "evidence_attribution": "higher-better",
+    "counterfactual_consistency": "higher-better",
+    "long_horizon_degradation": "lower-better",
+    "modality_contribution": "higher-better"
+  },
+  "entries": [
+    { "system_name": "Human self-report", "organization": "Human baseline (anchor)", "submission_type": "baseline", "is_mock": true,
+      "metrics": { "overall_score": 0.82, "target_adaptation_gain": 2.60, "temporal_order_sensitivity": 0.71, "wrong_target_penalty": 0.90, "calibration_error": 0.06, "evidence_attribution": 0.80, "counterfactual_consistency": 0.74, "long_horizon_degradation": 0.28, "modality_contribution": 0.66 } },
+    { "system_name": "TargetSpace reference", "organization": "TargetSpace", "submission_type": "baseline", "is_mock": true,
+      "metrics": { "overall_score": 0.61, "target_adaptation_gain": 1.40, "temporal_order_sensitivity": 0.55, "wrong_target_penalty": 0.82, "calibration_error": 0.09, "evidence_attribution": 0.62, "counterfactual_consistency": 0.58, "long_horizon_degradation": 0.41, "modality_contribution": 0.52 } },
+    { "system_name": "Agent + memory", "organization": "Reference baseline", "submission_type": "baseline", "is_mock": true,
+      "metrics": { "overall_score": 0.49, "target_adaptation_gain": 0.90, "temporal_order_sensitivity": 0.40, "wrong_target_penalty": 0.60, "calibration_error": 0.13, "evidence_attribution": 0.45, "counterfactual_consistency": 0.43, "long_horizon_degradation": 0.50, "modality_contribution": 0.40 } },
+    { "system_name": "Long-context LLM", "organization": "Reference baseline", "submission_type": "baseline", "is_mock": true,
+      "metrics": { "overall_score": 0.38, "target_adaptation_gain": 0.40, "temporal_order_sensitivity": 0.18, "wrong_target_penalty": 0.30, "calibration_error": 0.17, "evidence_attribution": 0.30, "counterfactual_consistency": 0.31, "long_horizon_degradation": 0.62, "modality_contribution": 0.25 } },
+    { "system_name": "Generic LLM", "organization": "Reference baseline", "submission_type": "baseline", "is_mock": true,
+      "metrics": { "overall_score": 0.34, "target_adaptation_gain": 0.25, "temporal_order_sensitivity": 0.12, "wrong_target_penalty": 0.22, "calibration_error": 0.19, "evidence_attribution": 0.26, "counterfactual_consistency": 0.28, "long_horizon_degradation": 0.66, "modality_contribution": 0.20 } },
+    { "system_name": "Retrieval-only", "organization": "Reference baseline", "submission_type": "baseline", "is_mock": true,
+      "metrics": { "overall_score": 0.30, "target_adaptation_gain": 0.10, "temporal_order_sensitivity": 0.05, "wrong_target_penalty": 0.12, "calibration_error": 0.22, "evidence_attribution": 0.35, "counterfactual_consistency": 0.20, "long_horizon_degradation": 0.70, "modality_contribution": 0.18 } },
+    { "system_name": "Random", "organization": "Control baseline", "submission_type": "baseline", "is_mock": true,
+      "metrics": { "overall_score": 0.00, "target_adaptation_gain": 0.00, "temporal_order_sensitivity": 0.00, "wrong_target_penalty": 0.00, "calibration_error": 0.50, "evidence_attribution": 0.00, "counterfactual_consistency": 0.00, "long_horizon_degradation": 1.00, "modality_contribution": 0.00 } }
+  ]
+}

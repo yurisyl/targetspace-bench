@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yurisyl/targetspace-bench/schemas/evidence_manifest.schema.json",
+  "title": "TargetSpace Evidence Manifest",
+  "description": "Declares what evidence a system was permitted to use for a participant, at which tier and time window. Used for audit and leakage control. In this release all evidence is synthetic.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "participant_id",
+    "evidence_tier",
+    "evidence_start_time",
+    "evidence_end_time",
+    "modalities",
+    "synthetic"
+  ],
+  "properties": {
+    "participant_id": { "type": "string", "minLength": 1 },
+    "evidence_tier": {
+      "type": "string",
+      "enum": ["L0", "L1", "L2", "L3", "L4", "L5"]
+    },
+    "evidence_start_time": { "type": "string", "format": "date-time" },
+    "evidence_end_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Latest evidence timestamp. For a valid submission this must not exceed any forecast's evidence_cutoff_time."
+    },
+    "modalities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "source_summary": { "type": "string" },
+    "synthetic": {
+      "type": "boolean",
+      "description": "True if the evidence is synthetic. Must be true in this release."
+    },
+    "privacy_notes": { "type": "string" },
+    "hash_manifest": {
+      "type": "object",
+      "description": "Optional map from logical evidence source to a content hash, for integrity/audit.",
+      "additionalProperties": { "type": "string" }
+    },
+    "metadata": { "type": "object" }
+  }
+}

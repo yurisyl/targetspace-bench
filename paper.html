@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper &amp; citation — TargetSpace v1.0</title>
+<meta name="description" content="The TargetSpace methodology preprint: abstract, citation, BibTeX, version history, and the Positioning and Using TargetSpace summary.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+<main>
+<section class="section">
+  <div class="container" style="max-width:920px">
+    <div class="page-head">
+      <span class="crumbs">Project / Paper</span>
+      <h1>The methodology paper</h1>
+      <p class="lead"><em>TargetSpace: Benchmarking Personal Intelligence by Target-Specific Forecasting Under Partial Observation</em> &mdash; a prospective framework with own-routine baselines, permutation specificity, calibration, and evidence ablation.</p>
+    </div>
+
+    <ul class="metalist" style="margin-bottom:8px">
+      <li><span class="k">Authors</span><span>Yuri Andrade Sylvester</span></li>
+      <li><span class="k">Type</span><span>Preprint <span class="pill">pre-pilot</span> <span class="pill">no empirical results</span></span></li>
+      <li><span class="k">Version</span><span><span class="vtag">Version 1.0</span> &middot; public preprint, 2026 &middot; pre-pilot protocol proposal</span></li>
+      <li><span class="k">Protocol</span><span>benchmark protocol <span class="vtag">v1.0</span> (synthetic harness)</span></li>
+      <li><span class="k">arXiv</span><span class="muted">forthcoming &mdash; arXiv is a preprint repository, not a journal (non-peer-reviewed)</span></li>
+      <li><span class="k">Code</span><span><a href="https://github.com/yurisyl/targetspace-bench" rel="noopener">github.com/yurisyl/targetspace-bench</a></span></li>
+    </ul>
+
+    <div class="btns" style="margin:8px 0 30px">
+      <a class="btn btn--primary" href="/assets/targetspace-paper-v1.0.pdf?v=v1.0-final" download>Download PDF</a>
+      <a class="btn btn--ghost" href="/assets/targetspace-paper-v1.0.pdf?v=v1.0-final" target="_blank" rel="noopener">Open in browser</a>
+      <a class="btn btn--ghost" href="#cite">Cite</a>
+    </div>
+
+    <h2>Abstract</h2>
+    <p class="abstract">Personal AI is increasingly evaluated on recall, chat memory, personalization, and satisfaction of stated preferences &mdash; how well a system re-serves what a person has already externalized. TargetSpace evaluates a harder capability: target-specific prospective forecasting under partial observation. A model receives observations of a specific target up to a sealed time and must emit calibrated probabilistic forecasts of the target's future observable state transitions before those outcomes exist; forecasts are timestamped and hashed, outcomes resolve by deterministic rules, and scoring is strictly proper. A stack of controls makes target-specificity the measured quantity &mdash; a population-prior baseline (R1), an own-routine baseline (R2), a calibration gate, a permutation specificity gate under which forecasts scored against the wrong target lose their skill, and an evidence-tier ablation that measures what passive longitudinal observation adds over digital exhaust and self-report. Proper scoring, calibration, sealing, and ablation are adopted from prior work and cited; the contribution is their conjunction, anchored on the own-routine baseline and the permutation gate. This is a pre-pilot protocol proposal: no empirical results are reported, only the personal track is instantiated (synthetically), and a high score would certify calibrated prospective predictive skill only &mdash; never licence to act on, manipulate, or infer the inner life of a person.</p>
+
+    <h2 style="margin-top:34px">Positioning and using TargetSpace</h2>
+    <p class="muted">A summary of the paper's positioning section.</p>
+    <div class="grid grid-2" style="margin-top:14px">
+      <div class="card"><h3>A complementary, under-measured axis</h3><p>TargetSpace is not the "best world-model benchmark overall." It addresses a distinct, under-measured axis &mdash; target-specific forecasting under partial observation &mdash; that physical-plausibility, generation-fidelity, and control-success benchmarks do not, by construction, score.</p></div>
+      <div class="card"><h3>Compared on shared axes only</h3><p>Physical reasoning, video generation, embodied robotics, symbolic forecasting, and agent memory are complementary families. TargetSpace is compared with each only where they overlap &mdash; see the <a href="/benchmark#compare">comparison table</a>.</p></div>
+      <div class="card"><h3>A battery of controls</h3><p>Apply it as a protocol: zero/short/longitudinal history, shuffled-history and wrong-target controls, modality ablation, oracle and human anchors, calibration, and evidence attribution. See <a href="/baselines">Baselines</a>.</p></div>
+      <div class="card"><h3>Positioning statement</h3><p>TargetSpace evaluates a missing layer &mdash; whether a model can transform passive longitudinal observation into a target-specific predictive model &mdash; central for agents that reason about particular people, teams, systems, or environments over time.</p></div>
+    </div>
+
+    <h2 id="cite" style="margin-top:34px">Cite</h2>
+    <div class="code">
+      <button class="copy" id="copyBib" type="button">Copy</button>
+      <pre id="bib">@misc{targetspace2026,
+  title  = {TargetSpace: Benchmarking Personal Intelligence by
+            Target-Specific Forecasting Under Partial Observation},
+  author = {Sylvester, Yuri Andrade},
+  year   = {2026},
+  note   = {Public preprint, Version 1.0; pre-pilot protocol proposal},
+  url    = {https://targetspace.org/}
+}</pre>
+    </div>
+
+    <h2 style="margin-top:34px">Version history</h2>
+    <ul class="metalist">
+      <li><span class="k">Version 1.0 (2026)</span><span>First public release: benchmark-first structure, apparatus-first framing, task/protocol tables, product-readiness guide, and full appendices &mdash; pre-pilot protocol proposal, no empirical results.</span></li>
+      <li><span class="k">Protocol v1.0</span><span>This site and the synthetic harness; illustrative synthetic leaderboard only, no official submissions.</span></li>
+      <li><span class="k">Planned (post-v1.0)</span><span>First consented federated TS-Personal feasibility pilot and a frozen private split.</span></li>
+    </ul>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+<script>
+  (function () {
+    var btn = document.getElementById('copyBib'), bib = document.getElementById('bib');
+    if (btn && bib) btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(bib.innerText).then(function () {
+        var t = btn.textContent; btn.textContent = 'Copied ✓';
+        setTimeout(function () { btn.textContent = t; }, 1500);
+      }).catch(function () { btn.textContent = 'Copy failed'; });
+    });
+  })();
+</script>
+</body>
+</html>

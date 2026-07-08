@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yurisyl/targetspace-bench/schemas/forecast.schema.json",
+  "title": "TargetSpace Forecast",
+  "description": "A single sealed, timestamped probabilistic forecast over a discrete answer space. Cross-field rules (probabilities sum to 1, answer-space coverage, time ordering) are enforced by pwm_bench.validation in addition to this schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "forecast_id",
+    "participant_id",
+    "task_id",
+    "task_type",
+    "forecast_time",
+    "horizon",
+    "resolution_time",
+    "evidence_cutoff_time",
+    "evidence_tier",
+    "protocol_version",
+    "system_id",
+    "answer_space",
+    "probabilities"
+  ],
+  "properties": {
+    "forecast_id": {
+      "type": "string",
+      "description": "Globally unique id for this forecast record (one per system per instance).",
+      "minLength": 1
+    },
+    "participant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_id": {
+      "type": "string",
+      "description": "Identifier of the benchmark instance (question). Shared by every system that forecasts it and by the resolving outcome record.",
+      "minLength": 1
+    },
+    "task_type": {
+      "type": "string",
+      "enum": [
+        "T1_next_contact",
+        "T2_event_realization",
+        "T3_response_behavior",
+        "T4_attention_allocation",
+        "T5_routine_deviation",
+        "T6_commitment_follow_through"
+      ]
+    },
+    "forecast_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "horizon": {
+      "type": "string",
+      "description": "Human-readable forecast horizon, e.g. '24h' or '7d'."
+    },
+    "resolution_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "evidence_cutoff_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Latest timestamp of evidence the system was permitted to use. Must be <= forecast_time."
+    },
+    "evidence_tier": {
+      "type": "string",
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5"
+      ]
+    },
+    "protocol_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "system_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_name": {
+      "type": "string"
+    },
+    "question": {
+      "type": "string"
+    },
+    "answer_space": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2,
+      "uniqueItems": true
+    },
+    "probabilities": {
+      "type": "object",
+      "description": "Map from each answer-space label to its probability in [0, 1]. Must cover the full answer space and sum to 1 within tolerance.",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "minProperties": 2
+    },
+    "metadata": {
+      "type": "object"
+    }
+  }
+}

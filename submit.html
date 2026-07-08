@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prepare a v1.0 record — TargetSpace v1.0</title>
+<meta name="description" content="Format a v1.0-compatible synthetic or private-evaluation record against the TargetSpace schemas and contact for a pilot or private evaluation. No official submissions or empirical results exist for v1.0.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+<main>
+<section class="section">
+  <div class="container">
+    <div class="page-head">
+      <span class="crumbs">Participate</span>
+      <h1>Prepare a v1.0-compatible record</h1>
+      <p class="lead"><strong style="color:var(--text)">No official submissions or empirical results exist for v1.0.</strong> You can format a v1.0-compatible synthetic or private-evaluation record against the <a href="/schemas">schemas</a>, run the reference checks in the <a href="/run-harness">harness</a>, and <a href="mailto:yurisyl@gmail.com">contact us for a pilot or private evaluation</a>. Any record shown is labeled by status (synthetic / private / public) and is not an official result.</p>
+    </div>
+
+    <div class="grid grid-2" style="align-items:start;margin-top:8px">
+      <div>
+        <h3>How submission works</h3>
+        <ol class="muted" style="line-height:1.9;padding-left:18px">
+          <li>Run your system under <strong>walk-forward sealing</strong> on the chosen track/split.</li>
+          <li>Produce a sealed results file (timestamped + hashed) and a metadata record.</li>
+          <li>Submit the form below. Your entry lands as <span class="tag is-gray"><span class="dot"></span>pending review</span>.</li>
+          <li>The organizer triages it to public, verified, or private-eval (or requests changes).</li>
+        </ol>
+
+        <h3 style="margin-top:24px">Submission tiers</h3>
+        <ul class="muted" style="line-height:1.8;padding-left:18px">
+          <li><strong>Public (unofficial)</strong> — self-reported on the open/synthetic split. Clearly labeled.</li>
+          <li><strong>Verified</strong> — the organizer reproduces your result from submitted code.</li>
+          <li><strong>Private eval</strong> — the organizer runs your system on a frozen hidden split end to end.</li>
+        </ul>
+
+        <div class="note note--warn" style="margin-top:18px">
+          <span class="ic">⛔</span>
+          <p><strong>No future leakage.</strong> Only evidence timestamped at or before the forecast time <span class="mono">t</span> may inform a forecast. Random cross-validation, peeking at outcomes, or training on the resolution window invalidates a submission.</p>
+        </div>
+
+        <h3 style="margin-top:24px">Required files &amp; metadata</h3>
+        <ul class="muted" style="line-height:1.8;padding-left:18px">
+          <li>Results file (sealed forecasts), or a runnable system for private eval.</li>
+          <li>Model/system name, output adapter, training cutoff.</li>
+          <li>Track, split, and benchmark version.</li>
+          <li>Both attestations below.</li>
+        </ul>
+        <p class="muted small">Need a private evaluation or have questions? Email <a href="mailto:yurisyl@gmail.com">yurisyl@gmail.com</a>.</p>
+      </div>
+
+      <div>
+        <div class="card" style="padding:24px">
+          <h3 class="mt0">Submission form</h3>
+          <div class="notice" id="form-notice"></div>
+          <form class="form" id="submit-form" novalidate>
+            <div class="form__row">
+              <div class="field"><label for="submitter_name">Your name <span class="req">*</span></label><input id="submitter_name" name="submitter_name" type="text" maxlength="120" required><span class="err">Required.</span></div>
+              <div class="field"><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" maxlength="254" required><span class="err">A valid email is required.</span></div>
+            </div>
+            <div class="form__row">
+              <div class="field"><label for="organization">Organization</label><input id="organization" name="organization" type="text" maxlength="160"></div>
+              <div class="field"><label for="system_name">Model / system name <span class="req">*</span></label><input id="system_name" name="system_name" type="text" maxlength="160" required><span class="err">Required.</span></div>
+            </div>
+            <div class="form__row">
+              <div class="field"><label for="track_slug">Track</label><select id="track_slug" name="track_slug"><option value="">Select…</option></select></div>
+              <div class="field"><label for="split_code">Split</label><select id="split_code" name="split_code"><option value="">Select…</option></select></div>
+            </div>
+            <div class="form__row">
+              <div class="field"><label for="version_tag">Benchmark version</label><select id="version_tag" name="version_tag"><option value="">Select…</option></select></div>
+              <div class="field"><label for="submission_type_requested">Submission type requested</label><select id="submission_type_requested" name="submission_type_requested"><option value="public">Public (unofficial)</option><option value="verified">Verified</option><option value="private_eval">Private eval</option></select></div>
+            </div>
+            <div class="form__row">
+              <div class="field"><label for="paper_url">Paper URL</label><input id="paper_url" name="paper_url" type="url" maxlength="600" placeholder="https://"><span class="err">Must be a valid URL.</span></div>
+              <div class="field"><label for="code_url">Code URL</label><input id="code_url" name="code_url" type="url" maxlength="600" placeholder="https://"><span class="err">Must be a valid URL.</span></div>
+            </div>
+            <div class="form__row">
+              <div class="field"><label for="report_url">Report URL</label><input id="report_url" name="report_url" type="url" maxlength="600" placeholder="https://"><span class="err">Must be a valid URL.</span></div>
+              <div class="field"><label for="results_url">Results file URL</label><input id="results_url" name="results_url" type="url" maxlength="600" placeholder="https:// (sealed forecasts)"><span class="err">Must be a valid URL.</span></div>
+            </div>
+            <div class="field"><label for="method_summary">Method summary</label><textarea id="method_summary" name="method_summary" maxlength="4000" placeholder="Architecture, adaptation/memory, output adapter, how target history is used…"></textarea></div>
+            <div class="field"><label for="compute_notes">Compute notes</label><textarea id="compute_notes" name="compute_notes" maxlength="1000" placeholder="Hardware, runtime, cost (optional)." style="min-height:72px"></textarea></div>
+
+            <label class="check" id="chk-leakage"><input type="checkbox" id="no_leakage" name="no_leakage"> <span>I attest that this submission contains <strong>no future leakage</strong>: only evidence available at or before each forecast time was used.</span></label>
+            <label class="check" id="chk-repro"><input type="checkbox" id="repro_agreement" name="repro_agreement"> <span>I agree to the <strong>reproducibility terms</strong>: on request I will provide enough detail or code for the organizer to reproduce or verify the result.</span></label>
+
+            <button class="btn btn--primary" type="submit" id="submit-btn">Submit for review</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+<script src="/js/submit.js"></script>
+</body>
+</html>

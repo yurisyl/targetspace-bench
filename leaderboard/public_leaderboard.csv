@@ -1,0 +1,8 @@
+system_name,organization,track,split,version,submission_type,is_mock,overall_score,target_adaptation_gain,temporal_order_sensitivity,wrong_target_penalty,calibration_error,evidence_attribution,counterfactual_consistency,long_horizon_degradation,modality_contribution
+Human self-report,Human baseline (anchor),ts-personal,TS-Long,v1.0,baseline,true,0.82,2.60,0.71,0.90,0.06,0.80,0.74,0.28,0.66
+TargetSpace reference,TargetSpace,ts-personal,TS-Long,v1.0,baseline,true,0.61,1.40,0.55,0.82,0.09,0.62,0.58,0.41,0.52
+Agent + memory,Reference baseline,ts-personal,TS-Long,v1.0,baseline,true,0.49,0.90,0.40,0.60,0.13,0.45,0.43,0.50,0.40
+Long-context LLM,Reference baseline,ts-personal,TS-Long,v1.0,baseline,true,0.38,0.40,0.18,0.30,0.17,0.30,0.31,0.62,0.25
+Generic LLM,Reference baseline,ts-personal,TS-Long,v1.0,baseline,true,0.34,0.25,0.12,0.22,0.19,0.26,0.28,0.66,0.20
+Retrieval-only,Reference baseline,ts-personal,TS-Long,v1.0,baseline,true,0.30,0.10,0.05,0.12,0.22,0.35,0.20,0.70,0.18
+Random,Control baseline,ts-personal,TS-Long,v1.0,baseline,true,0.00,0.00,0.00,0.00,0.50,0.00,0.00,1.00,0.00

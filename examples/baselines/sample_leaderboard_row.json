@@ -1,0 +1,21 @@
+{
+  "_note": "Illustrative mock leaderboard row. Not a real result.",
+  "system_name": "TargetSpace reference",
+  "organization": "TargetSpace",
+  "track": "ts-personal",
+  "split": "TS-Long",
+  "version": "v1.0",
+  "submission_type": "baseline",
+  "is_mock": true,
+  "metrics": {
+    "overall_score": 0.61,
+    "target_adaptation_gain": 1.40,
+    "temporal_order_sensitivity": 0.55,
+    "wrong_target_penalty": 0.82,
+    "calibration_error": 0.09,
+    "evidence_attribution": 0.62,
+    "counterfactual_consistency": 0.58,
+    "long_horizon_degradation": 0.41,
+    "modality_contribution": 0.52
+  }
+}

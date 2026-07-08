@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yurisyl/targetspace-bench/schemas/submission.schema.json",
+  "title": "TargetSpace Submission",
+  "description": "Metadata bundle describing a system submission to TargetSpace (the TS-Personal track). A submission contains forecasts only; outcomes/resolutions are organizer-held and never submitted.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "submission_id",
+    "benchmark_name",
+    "benchmark_version",
+    "track",
+    "system_id",
+    "system_name",
+    "submitter",
+    "protocol_version",
+    "evidence_tier",
+    "task_set",
+    "forecast_file",
+    "verification_level"
+  ],
+  "properties": {
+    "submission_id": { "type": "string", "minLength": 1 },
+
+    "benchmark_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Benchmark this submission targets, e.g. 'TargetSpace'."
+    },
+    "benchmark_version": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Benchmark/protocol version targeted, e.g. '0.1.0' or 'PWM-0.1'."
+    },
+    "track": {
+      "type": "string",
+      "description": "Application track id. Only 'ts-personal' is live; other tracks are planned/research and do not accept submissions yet.",
+      "enum": ["ts-personal"]
+    },
+    "domain": {
+      "type": "string",
+      "description": "Optional domain label within the track (e.g. 'person')."
+    },
+
+    "system_id": { "type": "string", "minLength": 1 },
+    "system_name": { "type": "string", "minLength": 1 },
+    "system_version": {
+      "type": "string",
+      "description": "Version/build identifier of the submitted system."
+    },
+    "system_date": {
+      "type": "string",
+      "description": "Date the system was built/frozen (ISO-8601 date or date-time)."
+    },
+
+    "submitter": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "organization": { "type": "string" },
+        "email": { "type": "string" }
+      }
+    },
+
+    "protocol_version": { "type": "string", "minLength": 1 },
+
+    "evidence_tier": {
+      "type": "string",
+      "enum": ["L0", "L1", "L2", "L3", "L4", "L5"]
+    },
+    "task_set": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "T1_next_contact",
+          "T2_event_realization",
+          "T3_response_behavior",
+          "T4_attention_allocation",
+          "T5_routine_deviation",
+          "T6_commitment_follow_through"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+
+    "forecast_file": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Relative path to the JSONL file of forecasts in this submission. Forecasts only — no outcomes."
+    },
+    "evidence_manifest_file": { "type": "string" },
+
+    "verification_level": {
+      "type": "string",
+      "description": "How the result was obtained. Submitters declare at most 'self_reported'; organizers assign higher tiers after review.",
+      "enum": [
+        "synthetic_demo",
+        "self_reported",
+        "artifact_verified",
+        "organizer_reproduced"
+      ]
+    },
+
+    "environment": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Run environment (hardware, OS, framework, model details, seeds).",
+      "properties": {
+        "hardware": { "type": "string" },
+        "software": { "type": "string" },
+        "model": { "type": "string" },
+        "seed": { "type": ["integer", "string"] }
+      }
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Optional cost accounting (e.g. usd, tokens, api_calls).",
+      "properties": {
+        "usd": { "type": "number" },
+        "tokens": { "type": "integer" },
+        "api_calls": { "type": "integer" }
+      }
+    },
+    "latency": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Optional latency accounting per forecast (seconds).",
+      "properties": {
+        "mean_seconds": { "type": "number" },
+        "p95_seconds": { "type": "number" }
+      }
+    },
+    "reproducibility_notes": {
+      "type": "string",
+      "description": "How an organizer could reproduce this submission (commands, data access, dependencies, determinism)."
+    },
+
+    "metadata": { "type": "object", "additionalProperties": true }
+  }
+}
