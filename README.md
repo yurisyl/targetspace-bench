@@ -6,7 +6,7 @@ sealed, calibrated forecasts of a specific target's future observable state tran
 beating R1 population priors and R2 own-routine baselines, and losing skill under target
 permutation — instantiated first (synthetically) in the flagship **TS-Personal** track.
 
-**Live:** https://targetspace.org · **Paper:** [Version 1.0 preprint (PDF)](assets/targetspace-paper-v1.0.pdf) · **Benchmark protocol:** v1.0 · **Schemas:** [`schemas/`](schemas/)
+**Live:** https://targetspace.org · **Paper:** [Version 1.0 preprint (PDF)](assets/targetspace-paper-v1.0-final.pdf) · **Benchmark protocol:** v1.0 · **Schemas:** [`schemas/`](schemas/)
 
 > **No empirical results yet.** Version 1.0 is a pre-pilot protocol proposal: protocol and synthetic
 > harness available, pilot validation pending. All leaderboard rows are synthetic illustrative mock
@@ -16,7 +16,7 @@ permutation — instantiated first (synthetically) in the flagship **TS-Personal
 
 Contents: the Version 1.0 paper PDF (`assets/`), the synthetic harness (`targetspace_synthetic_demo.py`),
 the v1.0 submission **schemas** (`schemas/`), worked **examples** (`examples/`), and the website.
-Cite via `paper.html` or `assets/targetspace-paper-v1.0.pdf`.
+Cite via `paper.html` or `assets/targetspace-paper-v1.0-final.pdf`.
 
 > The target is not a profile; it is an observed trajectory in motion.
 

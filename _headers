@@ -23,5 +23,5 @@
 /api/*
   Cache-Control: no-store
 
-/assets/targetspace-paper-v1.0.pdf
+/assets/targetspace-paper-v1.0-final.pdf
   Cache-Control: public, max-age=3600, must-revalidate
