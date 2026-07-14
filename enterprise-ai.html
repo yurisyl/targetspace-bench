@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enterprise AI &mdash; TargetSpace v1.0</title>
+<meta name="description" content="How enterprise copilots and organizational memory systems map onto TargetSpace: sealed, target-specific forecasts over organizational exhaust for consenting individuals, scored against population-prior and own-routine baselines. Pre-pilot protocol proposal; no empirical results.">
+<link rel="canonical" href="https://targetspace.org/enterprise-ai">
+<meta name="theme-color" content="#070b16">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero section">
+  <div class="container">
+    <span class="eyebrow">Industry map &middot; Enterprise AI</span>
+    <h1>Enterprise copilots and the <span class="grad-text">organizational memory</span> question</h1>
+    <p class="hero__sub">Enterprise copilots retrieve documents, summarize meetings, and accumulate organizational memory. What they are not evaluated on is whether any of it produces calibrated, target-specific foresight: will <em>this</em> commitment land by <em>this</em> review date? TargetSpace states that question as a sealed-forecast protocol with baselines and controls.</p>
+    <div class="btns">
+      <a class="btn btn--primary" href="/paper">Read the v1.0 preprint</a>
+      <a class="btn btn--ghost" href="/product-quickstart">Run TargetSpace</a>
+      <a class="btn btn--ghost" href="/industry">Industry map</a>
+    </div>
+    <p class="statusline" style="margin-top:16px;font-size:.82rem;color:var(--muted)"><strong style="color:var(--text)">Version 1.0 &mdash; pre-pilot protocol proposal.</strong> Synthetic harness only. No human-subject results.</p>
+  </div>
+</header>
+
+<!-- ============ WHERE THIS CATEGORY SITS ============ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Where this category sits</span>
+    <h2>On the convergence ladder</h2>
+    <p class="lead">The category has climbed from meeting intelligence (transcribe, summarize) to memory systems (persistent recall across tools and threads). The rungs above &mdash; longitudinal context, personal world models, and target-specific understanding as TargetSpace defines and measures it &mdash; require something recall does not test: forecasts about future observable states, sealed before the outcome exists. Memory is not understanding, and a copilot that recalls every commitment perfectly may still have no skill at forecasting which ones will slip.</p>
+    <div class="note note--info" style="margin-top:18px">
+      <span class="ic">&#9673;</span>
+      <p><strong>Current rung: memory systems.</strong> Enterprise copilots are competitive on retrieval and summarization over organizational corpora. <strong style="color:var(--text)">Next rung: longitudinal context</strong> &mdash; using an individual's history in correct temporal order to beat their own routine on forecasts, a property that must be demonstrated, not assumed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT TARGETSPACE MEASURES HERE ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <span class="eyebrow">What TargetSpace measures here</span>
+    <h2>Organizational exhaust as evidence, scored under the flagship track</h2>
+    <p class="lead">Enterprise settings supply L0&ndash;L1 evidence tiers: organizational exhaust &mdash; calendars, issue trackers, commits, documents, and communications <em>metadata</em> &mdash; for consenting individuals evaluated under the flagship TS-Personal formulation. Whether each stream adds forecasting lift is an empirical question answered by the evidence-tier ablation, never assumed. TS-Enterprise, an organizational-level track, is research-status and not instantiated; v1.0 makes no commitment to it.</p>
+    <div class="card" style="margin-top:20px">
+      <h3>Example forecast task</h3>
+      <p>For a consenting employee under TS-Personal: forecast whether a specific project commitment resolves as <span class="mono">{complete, defer, cancel, replace}</span> by its pre-registered review date. The forecast is a full probability distribution over the four outcomes, sealed and hashed at time <em>t</em>; resolution is deterministic from the tracker state at the review date. Skill is scored against the <strong style="color:var(--text)">R1 population-prior baseline</strong> and the <strong style="color:var(--text)">R2 own-routine baseline</strong>, with calibration reported and the <strong style="color:var(--text)">permutation specificity gate</strong> applied: forecasts rescored against a different employee's outcomes should lose their skill.</p>
+    </div>
+    <div class="note note--warn" style="margin-top:16px">
+      <span class="ic">&#9673;</span>
+      <p><strong>Consent boundary.</strong> Evaluation covers consenting individuals only, with the observation window and evidence tiers declared in the manifest. Workplace surveillance is a named risk in the protocol, not a use case.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RUN IT ============ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Run it</span>
+    <h2>A minimal, auditable experiment</h2>
+    <div class="grid grid-3" style="margin-top:22px">
+      <div class="card">
+        <h3>Minimal experiment</h3>
+        <p>Pick one copilot feature &mdash; organizational memory, retrieval, meeting summaries &mdash; and run feature-on vs. feature-off over the <em>same</em> sealed forecast tasks. The difference in skill, in bits, is the feature's measured contribution to foresight rather than to answer quality.</p>
+      </div>
+      <div class="card">
+        <h3>Federated execution</h3>
+        <p>Raw organizational data never leaves the company. Forecasts are sealed inside the boundary; only sealed forecasts, resolved outcomes, and aggregate metrics are exported for scoring. The evidence manifest declares what was observed, at which tier.</p>
+      </div>
+      <div class="card">
+        <h3>Expected output</h3>
+        <p>One leaderboard row per condition: skill vs. the R1 population-prior baseline, skill vs. the R2 own-routine baseline, calibration, the permutation-gate result, and lift per evidence tier. A single headline number without the battery is not a result.</p>
+      </div>
+    </div>
+    <div class="btns" style="margin-top:22px">
+      <a class="btn btn--primary" href="/product-quickstart">Product quickstart</a>
+      <a class="btn btn--ghost" href="/protocol">View protocol</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPEN RESEARCH QUESTIONS ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <span class="eyebrow">Open research questions</span>
+    <h2>What an enterprise instantiation would have to settle</h2>
+    <div class="grid grid-2" style="margin-top:22px">
+      <div class="card">
+        <h3>Organizational context lift</h3>
+        <p>Does organizational context &mdash; dependency graphs, team load, meeting density &mdash; add forecasting skill over the individual R2 own-routine baseline, or is most of the signal already in the individual's history? A question for the evidence-tier ablation.</p>
+      </div>
+      <div class="card">
+        <h3>An org-level own-routine baseline</h3>
+        <p>Can R2 be defined for a team or workflow &mdash; a recency-weighted routine of the unit itself &mdash; strongly enough to license an enterprise track? Without a defensible org-level R2, TS-Enterprise stays research-status.</p>
+      </div>
+      <div class="card">
+        <h3>Consent under power asymmetry</h3>
+        <p>How should consent be structured when the observer is an employer? Opt-in that is not freely refusable is not consent. The protocol treats workplace surveillance as a named risk and requires governance answers before any enterprise instantiation.</p>
+      </div>
+      <div class="card">
+        <h3>Prospective skill vs. answer quality</h3>
+        <p>Which copilot features &mdash; retrieval, summarization, persistent memory &mdash; improve calibrated prospective skill rather than perceived answer quality? Feature A-B runs over sealed tasks can separate the two; current evaluations cannot.</p>
+      </div>
+      <div class="card">
+        <h3>The work&ndash;life leakage boundary</h3>
+        <p>Where does organizational evidence end and personal life begin &mdash; a calendar entry, a commit timestamp at midnight, a message header &mdash; and how is that boundary declared and enforced in the evidence manifest so that scoring can audit it?</p>
+      </div>
+    </div>
+    <p class="muted small" style="margin-top:18px">These are open questions, not roadmap commitments. v1.0 instantiates TS-Personal synthetically; everything above is stated so it can be tested.</p>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>

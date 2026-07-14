@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memory Devices &mdash; TargetSpace v1.0</title>
+<meta name="description" content="How wearable memory assistants and personal-memory layers map onto the TargetSpace protocol: testing whether a derived memory layer adds calibrated, target-specific forecast skill, not just recall. Pre-pilot protocol proposal; no empirical results.">
+<link rel="canonical" href="https://targetspace.org/memory-devices">
+<meta name="theme-color" content="#070b16">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero section">
+  <div class="container">
+    <span class="eyebrow">Industry map &middot; Memory Devices</span>
+    <h1>Does a personal memory layer carry <span class="grad-text">predictive information</span> about its wearer?</h1>
+    <p class="hero__sub">Wearable memory assistants capture conversational audio all day and distill it into a memory layer &mdash; summaries, entities, commitments. Today the category is evaluated on transcription accuracy and recall quality: can it answer questions about the past? That leaves the harder claim untested &mdash; whether the memory layer <em>models</em> the wearer, or merely indexes them.</p>
+    <div class="btns">
+      <a class="btn btn--primary" href="/paper">Read the v1.0 preprint</a>
+      <a class="btn btn--ghost" href="/product-quickstart">Run TargetSpace</a>
+      <a class="btn btn--ghost" href="/industry">Industry map</a>
+    </div>
+    <p class="statusline" style="margin-top:16px;font-size:.82rem;color:var(--muted)"><strong style="color:var(--text)">Version 1.0 &mdash; pre-pilot protocol proposal.</strong> Synthetic harness only. No human-subject results.</p>
+  </div>
+</header>
+
+<!-- ============ WHERE THIS CATEGORY SITS ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <span class="eyebrow">Where this category sits</span>
+    <h2>On the convergence ladder</h2>
+    <p class="lead">The ambient-AI stack is converging along one ladder: meeting intelligence &rarr; memory systems &rarr; longitudinal context &rarr; personal world models &rarr; target-specific understanding, with the last rung measured by TargetSpace. Memory devices are the canonical <strong style="color:var(--text)">memory systems</strong> rung: continuous capture already gives them the raw material of longitudinal context, but the derived layer is built and marketed for recall, not for prediction.</p>
+    <div class="note note--info" style="margin-top:16px">
+      <span class="ic">&#9673;</span>
+      <p><strong>Current rung:</strong> memory systems &mdash; store, summarize, and retrieve what the wearer said and heard. <strong>Next rung:</strong> longitudinal context &mdash; treating the accumulated record as evidence about the wearer's future transitions, a claim that must be tested rather than assumed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT TARGETSPACE MEASURES HERE ============ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">What TargetSpace measures here</span>
+    <h2>The memory layer as a <span class="grad-text">component under test</span></h2>
+    <p class="lead">In the flagship TS-Personal track, memory devices contribute <strong style="color:var(--text)">L2 evidence</strong> &mdash; conversational audio &mdash; over an L0&ndash;L1 digital-exhaust floor. The derived memory layer itself (summaries, entities, commitments) is treated as a model component under test, not as ground truth: whether it adds forecast skill beyond the raw tiers is exactly what the evidence-tier ablation measures. Memory is not understanding; retrieval is not understanding &mdash; the protocol asks whether remembered context improves calibrated forecasts of what the wearer does next.</p>
+    <div class="card" style="margin-top:22px">
+      <div class="card__ic">&#9635;</div>
+      <h3>Example forecast task: memory on vs. memory off</h3>
+      <p>Run the same sealed forecast tasks twice &mdash; once with the memory layer enabled, once with it disabled. Each task seals, before the outcome exists, a probability distribution over a discrete answer space: for example, whether a commitment the wearer stated aloud this week is <em>completed</em>, <em>deferred</em>, <em>cancelled</em>, or <em>replaced</em> by its deadline. Outcomes resolve deterministically under pre-registered rules; forecasts are scored with proper scoring rules against the <strong style="color:var(--text)">R1 population-prior baseline</strong> and the <strong style="color:var(--text)">R2 own-routine baseline</strong>, with calibration reported alongside skill.</p>
+      <p style="margin-top:10px">The memory layer earns target-specific credit only if the enabled condition adds calibrated skill over R2 <em>and</em> that lift collapses under the <strong style="color:var(--text)">permutation specificity gate</strong> &mdash; the same forecasts matched to the wrong wearer. If skill survives permutation, the layer captured generic patterns, not this wearer.</p>
+    </div>
+    <div class="note note--warn" style="margin-top:16px">
+      <span class="ic">&#9673;</span>
+      <p><strong>Scope.</strong> This measures calibrated, target-specific forecasting skill about future observable states &mdash; a bounded, product-facing notion of personal intelligence. It makes no claim about inner life, true intent, or what the wearer &ldquo;really&rdquo; means.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RUN IT ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <span class="eyebrow">Run it</span>
+    <h2>Three steps to a defensible claim</h2>
+    <div class="grid grid-3" style="margin-top:22px">
+      <div class="card">
+        <div class="card__ic">&#9634;</div>
+        <h3>Minimal experiment</h3>
+        <p>A feature on/off A-B over the same sealed task set: memory layer enabled vs. disabled, identical targets, identical horizons. One switch, one frozen battery &mdash; the difference in calibrated skill is the memory layer's measured contribution.</p>
+      </div>
+      <div class="card">
+        <div class="card__ic">&#9673;</div>
+        <h3>Federated execution</h3>
+        <p>Raw audio and the memory store never leave the company. Only sealed forecasts, resolved outcomes, and aggregate metrics are exported &mdash; the protocol audits skill without ever seeing the wearer's data.</p>
+      </div>
+      <div class="card">
+        <div class="card__ic">&#9707;</div>
+        <h3>Expected output</h3>
+        <p>A leaderboard row: Skill vs. R1, Skill vs. R2, calibration, permutation result &mdash; reported per evidence tier, so the marginal value of conversational audio and of the derived memory layer is visible separately.</p>
+      </div>
+    </div>
+    <div class="btns" style="margin-top:22px">
+      <a class="btn btn--primary" href="/product-quickstart">Product quickstart</a>
+      <a class="btn btn--ghost" href="/baselines">Baselines &amp; controls</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPEN RESEARCH QUESTIONS ============ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Open research questions</span>
+    <h2>What the category could learn from running this</h2>
+    <div class="grid grid-2" style="margin-top:22px">
+      <div class="card">
+        <h3>Retrieval or modeling?</h3>
+        <p>Does the memory layer improve prospective forecasts, or only question answering about the past? The two are routinely conflated; the on/off A-B under the permutation specificity gate separates them.</p>
+      </div>
+      <div class="card">
+        <h3>Which memories predict?</h3>
+        <p>Which stored memories carry predictive information about the wearer's future transitions, and which are inert? Per-memory ablation over sealed tasks could rank the store by forecast value rather than by recency or salience.</p>
+      </div>
+      <div class="card">
+        <h3>Decay and consolidation</h3>
+        <p>What memory-decay or consolidation policy maximizes forecast skill per stored byte? Skill-per-byte gives compression and forgetting an objective the category currently lacks.</p>
+      </div>
+      <div class="card">
+        <h3>Stated intentions vs. observed behaviour</h3>
+        <p>Does remembering what the wearer <em>said they would do</em> add lift over what they were <em>observed doing</em>, given the intention&ndash;behaviour gap? Self-report is biased but not dismissable &mdash; it is an auxiliary channel whose marginal value should be measured.</p>
+      </div>
+      <div class="card">
+        <h3>Uncertainty about the store itself</h3>
+        <p>How should a memory layer represent uncertainty about what it stored &mdash; misheard audio, wrong speaker attribution, stale summaries? Calibrated forecasting penalizes overconfident memories; the store may need confidence of its own.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>

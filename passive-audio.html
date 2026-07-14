@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Passive Audio &mdash; TargetSpace v1.0</title>
+<meta name="description" content="How TargetSpace evaluates always-on and semi-passive audio capture: sealed target-specific forecasts scored against population and own-routine baselines, with the audio stream's marginal value measured by evidence-tier ablation.">
+<link rel="canonical" href="https://targetspace.org/passive-audio">
+<meta name="theme-color" content="#070b16">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero section">
+  <div class="container">
+    <span class="eyebrow">Industry map &middot; Passive Audio</span>
+    <h1>Pricing <span class="grad-text">always-on audio</span> as predictive evidence</h1>
+    <p class="hero__sub">Always-on pendants, wearable recorders, and semi-passive ambient devices capture speech, prosody, turn-taking, and timing at a scale no other consumer category matches. What the category lacks is a shared way to show that this stream buys anything beyond recall: today there is no standard test of whether continuous audio improves calibrated, target-specific forecasts of what the wearer does next.</p>
+    <div class="btns">
+      <a class="btn btn--primary" href="/paper">Read the v1.0 preprint</a>
+      <a class="btn btn--ghost" href="/product-quickstart">Run TargetSpace</a>
+      <a class="btn btn--ghost" href="/industry">Industry map</a>
+    </div>
+    <p class="statusline" style="margin-top:16px;font-size:.82rem;color:var(--muted)"><strong style="color:var(--text)">Version 1.0 &mdash; pre-pilot protocol proposal.</strong> Synthetic harness only. No human-subject results.</p>
+  </div>
+</header>
+
+<!-- ============ WHERE THIS CATEGORY SITS ============ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Where this category sits</span>
+    <h2>The convergence ladder</h2>
+    <p class="lead">The industry is climbing one ladder: meeting intelligence &rarr; memory systems &rarr; longitudinal context &rarr; personal world models &rarr; target-specific understanding, measured by TargetSpace. Passive audio devices clear the first three rungs by form factor alone &mdash; continuous capture makes weeks of history the default, not an achievement. The fourth rung is not supplied by hardware: a complete record of the target is not a model of the target, and memory is not understanding &mdash; a searchable transcript surfaces what was said, not what happens next.</p>
+    <div class="note note--info" style="margin-top:18px">
+      <span class="ic">&#9673;</span>
+      <p><strong>Current rung: longitudinal context.</strong> The category already holds long, dense, temporally ordered evidence. <strong style="color:var(--text)">Next rung: personal world models</strong> &mdash; earned only when that evidence demonstrably improves sealed, calibrated forecasts specific to the wearer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT TARGETSPACE MEASURES HERE ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <span class="eyebrow">What TargetSpace measures here</span>
+    <h2>Evidence tier L2, priced against the exhaust floor</h2>
+    <p class="lead">TS-Personal &mdash; the flagship track, currently instantiated in a synthetic harness only &mdash; orders evidence into tiers and prices each tier's marginal contribution. Passive audio enters at <strong style="color:var(--text)">L2: speech content, prosody, turn-taking, and timing</strong>, layered over an L0&ndash;L1 exhaust floor of timestamps, device and app events, calendar and message metadata, with self-report retained as an auxiliary channel and baseline. That the L2 stream adds calibrated lift over the floor is the category's central claim &mdash; and in TargetSpace it is a hypothesis to be tested by <strong style="color:var(--text)">evidence-tier ablation</strong>, never an assumption: the same sealed tasks are scored with and without the audio stream, and the difference is the stream's measured value.</p>
+    <div class="card" style="margin-top:22px">
+      <div class="card__ic">&#9635;</div>
+      <h3>Example forecast task: response behaviour</h3>
+      <p>Given the target's evidence up to seal time <span class="mono">t</span>, forecast the probability that a specific incoming message receives <em>no substantive reply</em> by resolution time <span class="mono">r</span>. The forecast is sealed before the outcome exists; the answer space is discrete under a pre-registered definition of &ldquo;substantive&rdquo;; resolution is deterministic from the message log at <span class="mono">r</span>.</p>
+      <p style="margin-top:10px">Scoring follows the standard battery: proper scores against the <strong style="color:var(--text)">R1 population-prior baseline</strong> and the <strong style="color:var(--text)">R2 own-routine baseline</strong>, calibration reported alongside skill, and the <strong style="color:var(--text)">permutation specificity gate</strong> &mdash; skill must collapse when forecasts are matched to the wrong target. The evidence-tier ablation then reports the same row with L2 audio removed, isolating what listening actually bought.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RUN IT ============ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Run it</span>
+    <h2>Three steps from claim to leaderboard row</h2>
+    <div class="grid grid-3" style="margin-top:22px">
+      <div class="card">
+        <div class="card__ic">&#8646;</div>
+        <h3>Minimal experiment</h3>
+        <p>An A-B over the same sealed tasks: the audio feature on versus off, everything else held fixed. The difference in skill over R1 and R2 is the audio stream's value &mdash; measured, not asserted.</p>
+      </div>
+      <div class="card">
+        <div class="card__ic">&#9670;</div>
+        <h3>Federated execution</h3>
+        <p>Raw audio never leaves the company. Only sealed forecasts, resolved outcomes, and aggregate metrics are exported &mdash; the protocol audits skill without ever touching recordings.</p>
+      </div>
+      <div class="card">
+        <div class="card__ic">&#9636;</div>
+        <h3>Expected output</h3>
+        <p>One leaderboard row: skill vs R1, skill vs R2, calibration, permutation result &mdash; reported per evidence tier, so the L2 audio contribution is visible on its own line.</p>
+      </div>
+    </div>
+    <div class="btns" style="margin-top:22px">
+      <a class="btn btn--primary" href="/product-quickstart">Product quickstart</a>
+      <a class="btn btn--ghost" href="/baselines">Baselines &amp; controls</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPEN RESEARCH QUESTIONS ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <span class="eyebrow">Open research questions</span>
+    <h2>What a passive-audio pilot should settle</h2>
+    <div class="grid grid-2" style="margin-top:22px">
+      <div class="card">
+        <h3>How much audio is enough?</h3>
+        <p>Does calibrated lift saturate at minutes of captured audio per day, or does it continue to grow under continuous capture? The sufficiency curve decides the form factor.</p>
+      </div>
+      <div class="card">
+        <h3>Sparse vs continuous capture</h3>
+        <p>Can event-triggered or scheduled sparse sampling match continuous capture on the same sealed tasks, at a fraction of the energy cost and bystander burden?</p>
+      </div>
+      <div class="card">
+        <h3>The price of redaction</h3>
+        <p>How do bystander redaction and on-device filtering change evidence value? Privacy-preserving pipelines should be scored, so their cost in bits is known rather than guessed.</p>
+      </div>
+      <div class="card">
+        <h3>Prosody beyond transcript</h3>
+        <p>Do prosody and turn-taking add lift over transcript content alone? If not, text-tier capture may suffice and the acoustic channel can be dropped.</p>
+      </div>
+      <div class="card">
+        <h3>Representing missing audio</h3>
+        <p>How should gaps &mdash; device off, out of range &mdash; be encoded so that missingness neither leaks outcome information into the forecast nor biases it against low-coverage targets?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>

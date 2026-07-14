@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart Glasses — TargetSpace v1.0</title>
+<meta name="description" content="How camera-and-microphone glasses and egocentric capture map onto TargetSpace: evidence tiers L2–L4, sealed target-specific forecasts, and an ablation protocol for testing whether egocentric vision earns calibrated lift. Pre-pilot protocol proposal; no empirical results.">
+<link rel="canonical" href="https://targetspace.org/smart-glasses">
+<meta name="theme-color" content="#070b16">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero section">
+  <div class="container">
+    <span class="eyebrow">Industry map &middot; Smart Glasses</span>
+    <h1>Egocentric capture, measured as <span class="grad-text">target-specific forecasting skill</span></h1>
+    <p class="hero__sub">Camera-and-microphone glasses record the richest first-person evidence stream any consumer device produces: what the wearer sees, where, and with which objects, documents, and people present. Today that stream is evaluated by capture quality and recall &mdash; transcription accuracy, scene search, question answering over footage. What no current evaluation tests is whether egocentric evidence makes a system measurably better at forecasting what <em>this</em> wearer does next.</p>
+    <div class="btns">
+      <a class="btn btn--primary" href="/paper">Read the v1.0 preprint</a>
+      <a class="btn btn--ghost" href="/product-quickstart">Run TargetSpace</a>
+      <a class="btn btn--ghost" href="/industry">Industry map</a>
+    </div>
+    <p class="statusline" style="margin-top:16px;font-size:.82rem;color:var(--muted)"><strong style="color:var(--text)">Version 1.0 &mdash; pre-pilot protocol proposal.</strong> Synthetic harness only. No human-subject results.</p>
+  </div>
+</header>
+
+<!-- ============ WHERE THIS CATEGORY SITS ============ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Where this category sits</span>
+    <h2>On the convergence ladder</h2>
+    <p class="lead">Personal AI products are converging along one ladder: meeting intelligence &rarr; memory systems &rarr; longitudinal context &rarr; personal world models &rarr; target-specific understanding, with the last rung measured by TargetSpace. Smart glasses entered as hands-free meeting intelligence &mdash; transcribe what was said, caption what was seen &mdash; and current flagship features are memory-shaped: &ldquo;where did I leave my keys&rdquo;, &ldquo;who was that person&rdquo;, &ldquo;summarize my morning&rdquo;. That is retrieval over an egocentric archive. Memory is not understanding; a system that surfaces what the wearer saw is not yet a system that forecasts what the wearer will do.</p>
+    <div class="note note--info" style="margin-top:18px">
+      <span class="ic">&#9673;</span>
+      <p><strong>Current rung: memory systems.</strong> Egocentric capture plus retrieval and summarization over it. <strong style="color:var(--text)">Next rung: longitudinal context</strong> &mdash; treating the wearer's visual history as ordered evidence about their state transitions, which is the input TargetSpace scores. Whether that history buys forecasting skill is an open, testable question, not a premise.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT TARGETSPACE MEASURES HERE ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <span class="eyebrow">What TargetSpace measures here</span>
+    <h2>Evidence tiers <span class="grad-text">L3&ndash;L4, plus L2 audio</span></h2>
+    <p class="lead">In the TargetSpace evidence-tier scheme, smart glasses contribute L3&ndash;L4 evidence &mdash; screen and egocentric audiovisual context: what is seen, where, and which objects, documents, and people are present &mdash; layered on top of L2 audio from the on-device microphones. Tasks come from the flagship <a href="/tracks">TS-Personal</a> track: sealed forecasts about a specific wearer's next observable state transition, resolved deterministically after the fact. The marginal value of each tier is established by <strong style="color:var(--text)">evidence-tier ablation</strong>: run the same sealed tasks with vision on and off, and report what the egocentric stream actually bought. Passive visual capture outperforming lighter channels is a hypothesis this protocol tests, not an assumption it makes.</p>
+    <div class="card" style="margin-top:22px">
+      <h3>Example forecast task &mdash; session continuation vs. switch</h3>
+      <p>At a sealed time <span class="mono">t</span> inside a defined work session, forecast the wearer's next transition using only egocentric context observed up to <span class="mono">t</span>: <em>continue the current task</em>, <em>switch to a different task</em>, or <em>end the session</em>, within a pre-registered horizon. The answer space is discrete; resolution is deterministic from the subsequent observation stream against pre-registered rules; the forecast is timestamped and hashed before the outcome exists.</p>
+      <p style="margin-top:10px">Scoring follows the standard battery: skill in bits over the <strong style="color:var(--text)">R1 population-prior baseline</strong> (what wearers in general do at such moments) and over the <strong style="color:var(--text)">R2 own-routine baseline</strong> (what this wearer's recency-weighted routine predicts), with calibration checked across the forecast set. The <strong style="color:var(--text)">permutation specificity gate</strong> then swaps in another wearer's egocentric history: if skill does not collapse, the system was reading generic scene priors, not this target.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RUN IT ============ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Run it</span>
+    <h2>Three steps to a defensible claim</h2>
+    <div class="grid grid-3" style="margin-top:22px">
+      <div class="card">
+        <h3>Minimal experiment</h3>
+        <p>An A&ndash;B design over the same sealed tasks: the assistant with the egocentric feature on versus off (audio-only, or retrieval-only). Same wearers, same forecast horizons, same resolution rules. The difference in skill is the feature's measured contribution &mdash; not a demo, not a preference survey.</p>
+      </div>
+      <div class="card">
+        <h3>Federated execution</h3>
+        <p>Egocentric video and audio are the most sensitive data a wearer produces, and none of it needs to leave the company. Raw footage stays inside the operator's boundary; only sealed forecasts, resolved outcomes, and aggregate metrics are exported for scoring.</p>
+      </div>
+      <div class="card">
+        <h3>Expected output</h3>
+        <p>One leaderboard row per condition: Skill vs R1, Skill vs R2, calibration, and the permutation result &mdash; reported per evidence tier, so the marginal lift of L3&ndash;L4 vision over L2 audio is a number, not a claim.</p>
+      </div>
+    </div>
+    <div class="btns" style="margin-top:22px">
+      <a class="btn btn--primary" href="/product-quickstart">Product quickstart</a>
+      <a class="btn btn--ghost" href="/baselines">Baselines &amp; controls</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPEN RESEARCH QUESTIONS ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <span class="eyebrow">Open research questions</span>
+    <h2>What this category could settle</h2>
+    <p class="lead">Questions the smart-glasses instantiation of TS-Personal is positioned to answer &mdash; none of them answerable from capture-quality or recall benchmarks.</p>
+    <div class="grid grid-2" style="margin-top:22px">
+      <div class="card">
+        <h3>Vision over audio</h3>
+        <p>Does egocentric vision add calibrated forecasting lift over L2 audio alone &mdash; and on which transition types? Vision may pay only where the antecedents are silent: object handling, document context, spatial movement.</p>
+      </div>
+      <div class="card">
+        <h3>Stills vs. continuous video</h3>
+        <p>Can sparse still images replace continuous video for target-state forecasting? At what sampling rate does skill saturate? The answer sets the power, storage, and privacy budget for the entire category.</p>
+      </div>
+      <div class="card">
+        <h3>Device-specific evidence bias</h3>
+        <p>Field of view, occlusion, and framing systematically shape what the camera sees of the wearer's context. Can this bias be characterized per device, so that skill comparisons across hardware are meaningful?</p>
+      </div>
+      <div class="card">
+        <h3>Reactivity cost</h3>
+        <p>Does visibly wearing a camera change the behaviour being forecast &mdash; in the wearer and in the people around them? If observation perturbs the target, R2 own-routine baselines drawn from pre-wear periods may misstate skill.</p>
+      </div>
+      <div class="card">
+        <h3>Evidence efficiency</h3>
+        <p>Bits of target-specific skill per joule and per captured byte: on that ledger, does video justify its cost against audio? Evidence-tier ablation turns the trade-off into a measurable quantity.</p>
+      </div>
+      <div class="card">
+        <h3>Self-report as a channel</h3>
+        <p>Wearers can also just say what they intend to do next. Self-report is biased but not dismissible: how much of the egocentric stream's lift survives once a cheap self-report auxiliary channel is included as a baseline?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>

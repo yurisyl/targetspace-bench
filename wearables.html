@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wearables &mdash; TargetSpace v1.0</title>
+<meta name="description" content="How wearables &mdash; watches, bands, rings, pendants &mdash; map onto the TargetSpace protocol: physiological and mobility evidence tiers, sealed target-specific forecasts, and the ablations that test whether continuous sensing adds forecasting skill.">
+<link rel="canonical" href="https://targetspace.org/wearables">
+<meta name="theme-color" content="#070b16">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero section">
+  <div class="container">
+    <span class="eyebrow">Industry map &middot; Wearables</span>
+    <h1>Wearables: from health scores to <span class="grad-text">target-specific forecasts</span></h1>
+    <p class="hero__sub">Watches, bands, rings, and pendants already collect the longest continuous physiological and mobility record of any product category &mdash; heart rate, sleep, motion, location, and in some devices ambient audio. Yet that record is mostly rendered as descriptive scores: readiness, strain, sleep quality. The open measurement question is whether any of it yields calibrated, target-specific forecasts of what the wearer does next &mdash; and TargetSpace is a protocol for testing exactly that.</p>
+    <div class="btns">
+      <a class="btn btn--primary" href="/paper">Read the v1.0 preprint</a>
+      <a class="btn btn--ghost" href="/product-quickstart">Run TargetSpace</a>
+      <a class="btn btn--ghost" href="/industry">Industry map</a>
+    </div>
+    <p class="statusline" style="margin-top:16px;font-size:.82rem;color:var(--muted)"><strong style="color:var(--text)">Version 1.0 &mdash; pre-pilot protocol proposal.</strong> Synthetic harness only. No human-subject results.</p>
+  </div>
+</header>
+
+<!-- ============ WHERE THIS CATEGORY SITS ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <span class="eyebrow">Where this category sits</span>
+    <h2>Position on the convergence ladder</h2>
+    <p class="lead">Personal-AI products are converging along one ladder: meeting intelligence &rarr; memory systems &rarr; longitudinal context &rarr; personal world models &rarr; target-specific understanding, measured by TargetSpace. Wearables entered the ladder from the opposite end to most software: they began with continuous longitudinal sensing and only later added interpretation. The record is deep, but a record is not a model &mdash; retrieval and summary scores describe what the wearer did; they do not, by themselves, forecast what the wearer will do.</p>
+    <div class="note note--info" style="margin-top:16px">
+      <span class="ic">&#9673;</span>
+      <p><strong>Current rung: longitudinal context.</strong> Wearables hold multi-year physiological and mobility histories per wearer, surfaced as trends and scores. <strong style="color:var(--text)">Next rung: personal world models</strong> &mdash; demonstrated not by richer dashboards but by sealed forecasts of the wearer's next observable transitions that beat the wearer's own routine and collapse under target permutation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT TARGETSPACE MEASURES HERE ============ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">What TargetSpace measures here</span>
+    <h2>Evidence tiers and the flagship personal track</h2>
+    <p class="lead">Wearables instantiate the upper evidence tiers of the flagship <strong style="color:var(--text)">TS-Personal</strong> track. Whether each tier adds forecasting skill is a hypothesis the protocol tests, never an assumption.</p>
+    <div class="grid grid-3" style="margin-top:22px">
+      <div class="card"><h3>L5 &mdash; location &amp; mobility</h3><p>GPS and visit traces, movement patterns, commute regularity. The candidate signal for transitions that show up first in <em>where</em> the wearer is.</p></div>
+      <div class="card"><h3>L6 &mdash; physiology</h3><p>Heart rate, heart-rate variability, sleep stages, motion and activity intensity. The tier only wearables can supply continuously.</p></div>
+      <div class="card"><h3>L2 &mdash; audio, where present</h3><p>Pendant- and watch-class devices with microphones add ambient audio. Its marginal value over L5&ndash;L6 is measured by evidence-tier ablation, not presumed.</p></div>
+    </div>
+    <p class="muted" style="margin-top:18px">Passive sensing is the working hypothesis of this whole category &mdash; that observation beats asking. TargetSpace treats it as exactly that: a hypothesis, tested tier by tier against the self-report channel, which remains a biased but legitimate auxiliary baseline.</p>
+    <div class="card" style="margin-top:18px">
+      <h3>Example forecast task</h3>
+      <p>At a sealed decision point, forecast whether a recurring health-adjacent commitment &mdash; a scheduled workout, a planned sleep window &mdash; resolves as <span class="mono">{complete, defer, cancel, replace}</span>. The forecast is timestamped and sealed before the outcome exists; resolution is deterministic from the device's own record (the session occurred, the sleep window was kept, within pre-registered tolerances).</p>
+      <p class="small muted" style="margin-top:8px">Scored with proper scoring rules against the <strong style="color:var(--text)">R1 population-prior baseline</strong> and the <strong style="color:var(--text)">R2 own-routine baseline</strong>; calibration is checked over the full distribution; and the <strong style="color:var(--text)">permutation specificity gate</strong> requires skill to collapse when forecasts are scored against a different wearer. An <strong style="color:var(--text)">evidence-tier ablation</strong> (physiology off, mobility off, audio off) reports what each stream actually buys.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RUN IT ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <span class="eyebrow">Run it</span>
+    <h2>A minimal experiment for a wearables team</h2>
+    <div class="grid grid-3" style="margin-top:22px">
+      <div class="card">
+        <h3>Minimal experiment</h3>
+        <p>Pick one recurring commitment type. Run your forecaster A-B over the <em>same sealed tasks</em> with a single feature toggled &mdash; physiology on vs. off, or mobility on vs. off &mdash; and compare skill. One toggle, one answer.</p>
+      </div>
+      <div class="card">
+        <h3>Federated execution</h3>
+        <p>Raw sensor data never leaves the company. Only sealed forecasts, resolved outcomes, and aggregate metrics are exported for scoring. The protocol audits skill, not data.</p>
+      </div>
+      <div class="card">
+        <h3>Expected output</h3>
+        <p>One leaderboard row: skill vs. R1, skill vs. R2, calibration, permutation result &mdash; reported per evidence tier, so the marginal value of each sensor stream is a number, not a claim.</p>
+      </div>
+    </div>
+    <div class="btns" style="margin-top:20px">
+      <a class="btn btn--primary" href="/product-quickstart">Product quickstart</a>
+      <a class="btn btn--ghost" href="/baselines">Baselines &amp; controls</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPEN RESEARCH QUESTIONS ============ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Open research questions</span>
+    <h2>What a wearables pilot should settle</h2>
+    <div class="grid grid-2" style="margin-top:22px">
+      <div class="card"><h3>Physiology beyond routine</h3><p>Do physiological signals add target-specific forecasting lift beyond routine, or do they largely re-encode the same regularities the R2 own-routine baseline already captures?</p></div>
+      <div class="card"><h3>Forward-looking mobility features</h3><p>Which mobility features &mdash; location entropy, visit patterns, commute regularity &mdash; carry forward-looking information about upcoming transitions, rather than merely describing past ones?</p></div>
+      <div class="card"><h3>Battery vs. coverage</h3><p>What battery and wear-time envelope maximizes longitudinal coverage, given that charging gaps and non-wear periods may correlate with exactly the events being forecast?</p></div>
+      <div class="card"><h3>Low-power sufficiency</h3><p>Can low-power sensors (accelerometer, optical heart rate) substitute for high-power ones for most transition types, and for which task families does the ablation show the difference matters?</p></div>
+      <div class="card"><h3>Representing dropout</h3><p>How should sensor dropout and non-wear periods be represented in the evidence manifest so that missingness is scored honestly rather than silently imputed away?</p></div>
+    </div>
+    <div class="note note--warn" style="margin-top:22px">
+      <span class="ic">&#9673;</span>
+      <p>None of these questions has an empirical answer yet. TargetSpace v1.0 is a pre-pilot protocol proposal with a synthetic harness; these are the questions a first wearables pilot is designed to make answerable.</p>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>
