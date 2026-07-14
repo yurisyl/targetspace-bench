@@ -17,7 +17,7 @@
 
 <header class="hero section">
   <div class="container">
-    <span class="eyebrow">Hardware architecture for personal world models</span>
+    <span class="eyebrow">Hardware and observation architecture for personal AI</span>
     <h1>Hardware, evaluated by <span class="grad-text">evidence efficiency</span></h1>
     <p class="hero__sub" style="max-width:70ch">Every device that captures longitudinal evidence occupies a point on two axes: what it observes (the evidence tiers) and what that observation costs in energy, burden, and risk. TargetSpace turns observation hardware into a measurable variable. This is a research framework, not a product review; no device has been ranked, and no measurements exist.</p>
     <div class="btns">
@@ -46,13 +46,24 @@
     <span class="eyebrow">The metric</span>
     <h2>Evidence efficiency</h2>
     <p class="lead">Calibrated, permutation-passing Skill over the R2 own-routine baseline, in bits, per unit observation cost. The evidence-tier ablation measures what each stream adds; evidence efficiency normalizes that by what the stream costs to capture.</p>
-    <div class="card" style="margin-top:18px;text-align:center"><p class="mono" style="font-size:1.05rem;margin:6px 0">&eta; &nbsp;=&nbsp; Skill vs R2 (bits, calibration- and permutation-gated) &nbsp;&divide;&nbsp; observation cost</p></div>
+    <div class="card" style="margin-top:18px;text-align:center"><p class="mono" style="font-size:1.02rem;margin:6px 0">EE(E&#8342; | E&#8336;) &nbsp;=&nbsp; [ Skill<sub>R2</sub>(E&#8336; + E&#8342;) &minus; Skill<sub>R2</sub>(E&#8336;) ] &nbsp;&divide;&nbsp; Cost(E&#8342;)</p><p class="muted small" style="margin:4px 0 6px">Incremental and conditional: the gated skill an <em>added</em> modality, sensor, or schedule contributes over a pre-registered baseline configuration, per disclosed unit of its cost.</p></div>
     <div class="grid grid-3" style="margin-top:18px">
       <div class="card"><h3>Bits per joule</h3><p>Energy consumed by capture, storage, and inference. The <strong style="color:var(--text)">architecture</strong> variable: which sensing stack converts watts into forecast skill?</p></div>
       <div class="card"><h3>Bits per wear-hour</h3><p>Hours worn, grams carried, charging events. The <strong style="color:var(--text)">forgettability</strong> variable: burden that reduces coverage destroys evidence.</p></div>
-      <div class="card"><h3>Bits per captured bit</h3><p>Predictive yield per stored bit. The <strong style="color:var(--text)">privacy-exposure</strong> variable: how much of what is recorded converts into forward-looking information at all?</p></div>
+      <div class="card"><h3>Bits per captured bit</h3><p>Predictive yield per stored bit &mdash; an <strong style="color:var(--text)">information-exposure and storage</strong> measure: how much of what is recorded converts into forward-looking information at all?</p></div>
+      <div class="card"><h3>Bits per valid capture hour</h3><p>The <strong style="color:var(--text)">sensor-productivity</strong> variable: separates wearability failure (device not worn) from capture failure (worn but not sensing validly).</p></div>
+      <div class="card"><h3>Bits per manual activation</h3><p>The <strong style="color:var(--text)">burden</strong> variable: skill per required user intervention. An instrument that must be operated is an instrument that gets forgotten.</p></div>
+      <div class="card"><h3>Privacy: a vector, not a score</h3><p>Raw audio hours &middot; image count &middot; video duration &middot; bystander exposure &middot; retention &middot; identifiability &middot; processing locality &middot; derived-inference retention. Reported as Pareto dimensions; never collapsed into one number.</p></div>
     </div>
-    <div class="note note--info" style="margin-top:18px"><span class="ic">&#9673;</span><p>Only gated skill enters the numerator &mdash; uncalibrated confidence, or skill that survives the permutation gate, would let a device buy efficiency with noise. And the quantity is deliberately not named &ldquo;understanding per joule&rdquo;: understanding is not the measured object; calibrated skill is. Evidence efficiency is <strong>specified, not yet measured</strong> &mdash; it inherits the protocol's pre-pilot status.</p></div>
+    <div class="note note--info" style="margin-top:18px"><span class="ic">&#9673;</span><p>The numerator is admissible only when the run passes <strong>every</strong> gate: prospective sealing, an admitted R2, acceptable calibration, wrong-target permutation collapse, disclosed coverage, matched model architecture across arms, and a pre-registered cost boundary (EE-energy default: capture + required edge preprocessing; transfer, storage, training, and inference reported separately). Efficiency computed from ungated skill is descriptive only. The quantity is deliberately not named &ldquo;understanding per joule&rdquo;: understanding is not the measured object; gated skill is. Evidence efficiency is <strong>specified, not yet measured</strong> &mdash; it inherits the protocol's pre-pilot status. A reference implementation of the computation and the gates ships with the protocol materials.</p></div>
+  </div>
+</section>
+
+<section class="section" id="mso">
+  <div class="container">
+    <span class="eyebrow">The design objective</span>
+    <h2>Minimum sufficient observation</h2>
+    <p class="lead">The least burdensome governed evidence configuration that preserves a pre-specified level of gated, target-specific predictive skill. Task-dependent by construction &mdash; there is no universal minimum sensor suite &mdash; and deliberately anti-surveillance: when less invasive sensing produces equivalent gated skill, the smaller configuration wins the comparison. More invasive capture must earn its place in bits, and loses when it cannot. See the <a href="/observation-science#mso">conceptual curve</a> on the observation-science page.</p>
   </div>
 </section>
 

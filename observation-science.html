@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Observation science — TargetSpace v1.0</title>
+<meta name="description" content="Human observation science, proposed: which longitudinal observations, sensing schedules, representations, and governance constraints are sufficient to support reliable target-specific prediction. TargetSpace is the operational instrument.">
+<link rel="canonical" href="https://targetspace.org/observation-science">
+<meta name="theme-color" content="#070b16">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+
+<header class="hero section">
+  <div class="container">
+    <span class="eyebrow">A proposed research program</span>
+    <h1>Human <span class="grad-text">observation science</span></h1>
+    <p class="hero__sub" style="max-width:72ch">The study of which longitudinal observations, sensing schedules, representations, and governance constraints are sufficient to support reliable target-specific prediction. The name proposes a research program, not an established field: it draws on personal sensing, lifelogging, ubiquitous and mobile sensing, egocentric vision, activity recognition, behavioural forecasting, HCI, wearable computing, privacy-preserving machine learning, and information and decision theory. The contribution is the measurement link &mdash; TargetSpace connects an observation choice to the gated, target-specific predictive skill it produces, so sensing questions get answered by experiment rather than assumption.</p>
+    <div class="btns">
+      <a class="btn btn--primary" href="/product-quickstart">Run a starter experiment</a>
+      <a class="btn btn--ghost" href="/paper">Read the paper</a>
+      <a class="btn btn--ghost" href="/hardware">Hardware framework</a>
+      <a class="btn btn--ghost" href="/research">Research agenda</a>
+    </div>
+    <p class="statusline" style="margin-top:16px;font-size:.82rem;color:var(--muted)"><strong style="color:var(--text)">Version 1.0 &mdash; pre-pilot protocol proposal.</strong> Synthetic harness only. No human-subject results.</p>
+  </div>
+</header>
+
+<section class="section" id="question">
+  <div class="container">
+    <span class="eyebrow">The central question</span>
+    <h2>What observations are sufficient to produce calibrated, <span class="grad-text">target-specific</span> predictive skill?</h2>
+    <p class="lead">The limiting factor for personal AI is increasingly not only model capability but observation quality. A stronger model cannot indefinitely infer target-specific state from evidence that does not contain it, and richer evidence is not automatically useful: quality, continuity, attribution, coverage, and timing constrain what any model can learn about a particular person. Personal-AI evaluation is incomplete when model performance is measured without characterizing the evidence available to the model. TargetSpace treats observation quality as a first-class experimental variable.</p>
+    <div class="grid grid-2" style="margin-top:22px">
+      <div class="panel panel--hot">
+        <h3>Evidence-side subquestions</h3>
+        <ul>
+          <li>Which sensing modalities matter &mdash; and which are redundant?</li>
+          <li>How much temporal coverage is required?</li>
+          <li>What sampling schedules are sufficient?</li>
+          <li>When does additional sensing stop helping?</li>
+          <li>Which evidence improves prediction beyond the target's own routine (R2)?</li>
+          <li>Which evidence improves wrong-target specificity?</li>
+        </ul>
+      </div>
+      <div class="panel panel--cold">
+        <h3>System-side subquestions</h3>
+        <ul>
+          <li>How should missingness and non-wear be represented?</li>
+          <li>What is the minimum governed evidence required for reliable lift?</li>
+          <li>How should acquisition be optimized under energy, burden, and privacy constraints?</li>
+          <li>Which internal architectures best convert the same evidence into predictive skill? (The benchmark is architecture-neutral; a world model is one hypothesis, not a requirement.)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="mso">
+  <div class="container">
+    <span class="eyebrow">The design objective</span>
+    <h2>Minimum sufficient observation</h2>
+    <p class="lead">The least burdensome governed evidence configuration that preserves a pre-specified level of gated, target-specific predictive skill. It is task-dependent &mdash; for one outcome calendar metadata may suffice, for another audio may be necessary, for another sparse images add real lift, and for some outcomes no acceptable configuration exists at all, which is itself a benchmark result. When less invasive sensing produces equivalent gated skill, the smaller configuration wins the comparison: the objective is minimum sufficient governed observation, not maximal surveillance.</p>
+    <div style="overflow-x:auto;margin-top:22px">
+      <svg viewBox="0 0 880 360" role="img" aria-label="Conceptual plot: gated skill over R2 rises with observation cost then saturates; the minimum sufficient observation point sits where a target skill level is first reached; higher-cost configurations delivering no additional gated skill are dominated. Conceptual illustration with no data." xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:680px;height:auto;font-family:ui-sans-serif,system-ui,sans-serif">
+        <defs><marker id="osarr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6f7e9b"/></marker></defs>
+        <line x1="70" y1="300" x2="830" y2="300" stroke="#6f7e9b" stroke-width="1.6" marker-end="url(#osarr)"/>
+        <line x1="70" y1="300" x2="70" y2="30" stroke="#6f7e9b" stroke-width="1.6" marker-end="url(#osarr)"/>
+        <text x="450" y="338" text-anchor="middle" fill="#8ea3c4" font-size="13">one disclosed cost dimension (e.g. energy); privacy stays a separate vector</text>
+        <text x="40" y="165" text-anchor="middle" fill="#8ea3c4" font-size="13" transform="rotate(-90 40 165)">gated skill over R2 (bits)</text>
+        <path d="M85,290 C160,220 220,130 310,95 C420,55 560,45 810,40" fill="none" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round"/>
+        <line x1="310" y1="95" x2="310" y2="300" stroke="#a78bfa" stroke-width="1.4" stroke-dasharray="5 5"/>
+        <line x1="70" y1="95" x2="310" y2="95" stroke="#a78bfa" stroke-width="1.4" stroke-dasharray="5 5"/>
+        <circle cx="310" cy="95" r="6" fill="#a78bfa"/>
+        <text x="310" y="318" text-anchor="middle" fill="#cdd8ec" font-size="12.5">minimum sufficient observation</text>
+        <text x="76" y="88" fill="#cdd8ec" font-size="12">target skill</text>
+        <circle cx="640" cy="180" r="5.5" fill="#6f7e9b"/>
+        <text x="655" y="184" fill="#8ea3c4" font-size="12">dominated configuration</text>
+        <rect x="580" y="235" width="235" height="30" rx="8" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.2)"/>
+        <text x="697" y="255" text-anchor="middle" fill="#9fb0cc" font-size="12">conceptual illustration &#8212; no data</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="efficiency">
+  <div class="container">
+    <span class="eyebrow">The measurement</span>
+    <h2>Evidence efficiency and the Pareto frontier</h2>
+    <p class="lead">Evidence efficiency is a family of experimental ratios, not a score: <span class="mono">EE(E&#8342; | E&#8336;) = &Delta;Skill<sub>R2</sub> &divide; Cost(E&#8342;)</span> &mdash; the incremental gated skill an added modality, sensor, or schedule contributes, per disclosed unit of cost (joules, worn hours, valid capture hours, captured bytes, or manual activations). Only gated skill counts: sealed, calibrated, permutation-passing, coverage-disclosed, architecture-matched. Privacy is deliberately a vector, never a single score. And the optimal system is not the one with the highest raw skill &mdash; TargetSpace does not assume that richer sensing is better; it asks which evidence configurations remain non-dominated after predictive lift and observation cost are measured together.</p>
+    <div class="btns" style="margin-top:16px"><a class="btn btn--ghost" href="/hardware#metric">Full definition on the hardware page</a></div>
+  </div>
+</section>
+
+<section class="section" id="threats">
+  <div class="container">
+    <span class="eyebrow">Validity threats the program treats as first-class</span>
+    <h2>Missingness, reactivity, transitions</h2>
+    <div class="grid grid-3" style="margin-top:22px">
+      <div class="card"><h3>Missingness</h3><p>Non-wear, charging gaps, and consent pauses are structured, not random. Explicit missingness logs keep &ldquo;no event&rdquo; distinguishable from &ldquo;no observation&rdquo; and protect calibration analysis from silent imputation.</p></div>
+      <div class="card"><h3>Reactivity</h3><p>Devices change the behaviour they measure &mdash; visible cameras, indicators, prompts, charging rituals. Forgettability is an experimental property: awareness reports, interaction counts, removal frequency, early-vs-late behaviour drift. Inconspicuousness never overrides consent or recording law.</p></div>
+      <div class="card"><h3>Transition windows</h3><p>Hypothesis, not finding: a small fraction of observed time may carry a disproportionate share of transition-relevant information. Routine and transition strata are reported separately; any capture trigger must be frozen before evaluation &mdash; adaptive sensing that peeks at outcomes is leakage, not efficiency.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight" id="operationalize">
+  <div class="container">
+    <span class="eyebrow">How TargetSpace operationalizes it</span>
+    <h2>From observation choice to gated skill</h2>
+    <p class="lead">Fix the task set. Vary the sensing arm &mdash; tier, modality, schedule, placement, device. Seal every forecast before its outcome exists. Score against the R1 population-prior and R2 own-routine baselines, gate on calibration and wrong-target permutation, and attribute any lift to the evidence that produced it via the evidence-tier ablation. The result is a measured answer to a sensing question &mdash; including the null answers, which are just as informative.</p>
+    <div class="btns" style="margin-top:16px">
+      <a class="btn btn--primary" href="/product-quickstart">Run a starter experiment</a>
+      <a class="btn btn--ghost" href="/protocol">The protocol</a>
+      <a class="btn btn--ghost" href="/schemas">Schemas (incl. hardware, coverage, energy manifests)</a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>
