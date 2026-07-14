@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hardware framework — TargetSpace v1.0</title>
+<meta name="description" content="The TargetSpace hardware framework: scientific instruments, observation devices, and interaction devices — evaluated by evidence efficiency, not features. A research agenda, not product reviews.">
+<link rel="canonical" href="https://targetspace.org/hardware">
+<meta name="theme-color" content="#070b16">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+
+<header class="hero section">
+  <div class="container">
+    <span class="eyebrow">Hardware and observation architecture for personal AI</span>
+    <h1>Hardware, evaluated by <span class="grad-text">evidence efficiency</span></h1>
+    <p class="hero__sub" style="max-width:70ch">Every device that captures longitudinal evidence occupies a point on two axes: what it observes (the evidence tiers) and what that observation costs in energy, burden, and risk. TargetSpace turns observation hardware into a measurable variable. This is a research framework, not a product review; no device has been ranked, and no measurements exist.</p>
+    <div class="btns">
+      <a class="btn btn--primary" href="/paper">Read the v1.0 preprint</a>
+      <a class="btn btn--ghost" href="/research">Research agenda</a>
+      <a class="btn btn--ghost" href="/industry">Industry map</a>
+    </div>
+    <p class="statusline" style="margin-top:16px;font-size:.82rem;color:var(--muted)"><strong style="color:var(--text)">Version 1.0 &mdash; pre-pilot protocol proposal.</strong> Synthetic harness only. No human-subject results.</p>
+  </div>
+</header>
+
+<section class="section" id="classes">
+  <div class="container">
+    <span class="eyebrow">Three device classes</span>
+    <h2>Roles, not product categories</h2>
+    <div class="grid grid-3" style="margin-top:22px">
+      <div class="card"><h3>1 &middot; Scientific instruments</h3><p><strong style="color:var(--text)">Existing hardware</strong> used to validate Layer 1: phones, audio recorders, wearables, glasses &mdash; selected for evidence coverage, exportability, and privacy architecture rather than product features. The pilot requires nothing more than instruments that already ship.</p></div>
+      <div class="card" style="border-color:rgba(45,212,191,.4)"><h3>2 &middot; Observation devices</h3><p><strong style="color:var(--text)">Future hardware</strong> optimized for a single objective: maximize calibrated, target-specific evidence per unit cost, under consent. No shipping product is optimized for this today &mdash; current wearables spend most of their budget on interaction.</p></div>
+      <div class="card"><h3>3 &middot; Interaction devices</h3><p><strong style="color:var(--text)">Consumer products</strong> &mdash; assistants, displays, glasses with output &mdash; that consume a validated model rather than produce one. The objectives conflict: an interaction surface invites exactly the reactivity an observation instrument must minimize. Design and evaluate the roles separately.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="metric">
+  <div class="container">
+    <span class="eyebrow">The metric</span>
+    <h2>Evidence efficiency</h2>
+    <p class="lead">Calibrated, permutation-passing Skill over the R2 own-routine baseline, in bits, per unit observation cost. The evidence-tier ablation measures what each stream adds; evidence efficiency normalizes that by what the stream costs to capture.</p>
+    <div class="card" style="margin-top:18px;text-align:center"><p class="mono" style="font-size:1.02rem;margin:6px 0">EE(E&#8342; | E&#8336;) &nbsp;=&nbsp; [ Skill<sub>R2</sub>(E&#8336; + E&#8342;) &minus; Skill<sub>R2</sub>(E&#8336;) ] &nbsp;&divide;&nbsp; Cost(E&#8342;)</p><p class="muted small" style="margin:4px 0 6px">Incremental and conditional: the gated skill an <em>added</em> modality, sensor, or schedule contributes over a pre-registered baseline configuration, per disclosed unit of its cost.</p></div>
+    <div class="grid grid-3" style="margin-top:18px">
+      <div class="card"><h3>Bits per joule</h3><p>Energy consumed by capture, storage, and inference. The <strong style="color:var(--text)">architecture</strong> variable: which sensing stack converts watts into forecast skill?</p></div>
+      <div class="card"><h3>Bits per wear-hour</h3><p>Hours worn, grams carried, charging events. The <strong style="color:var(--text)">forgettability</strong> variable: burden that reduces coverage destroys evidence.</p></div>
+      <div class="card"><h3>Bits per captured bit</h3><p>Predictive yield per stored bit &mdash; an <strong style="color:var(--text)">information-exposure and storage</strong> measure: how much of what is recorded converts into forward-looking information at all?</p></div>
+      <div class="card"><h3>Bits per valid capture hour</h3><p>The <strong style="color:var(--text)">sensor-productivity</strong> variable: separates wearability failure (device not worn) from capture failure (worn but not sensing validly).</p></div>
+      <div class="card"><h3>Bits per manual activation</h3><p>The <strong style="color:var(--text)">burden</strong> variable: skill per required user intervention. An instrument that must be operated is an instrument that gets forgotten.</p></div>
+      <div class="card"><h3>Privacy: a vector, not a score</h3><p>Raw audio hours &middot; image count &middot; video duration &middot; bystander exposure &middot; retention &middot; identifiability &middot; processing locality &middot; derived-inference retention. Reported as Pareto dimensions; never collapsed into one number.</p></div>
+    </div>
+    <div class="note note--info" style="margin-top:18px"><span class="ic">&#9673;</span><p>The numerator is admissible only when the run passes <strong>every</strong> gate: prospective sealing, an admitted R2, acceptable calibration, wrong-target permutation collapse, disclosed coverage, matched model architecture across arms, and a pre-registered cost boundary (EE-energy default: capture + required edge preprocessing; transfer, storage, training, and inference reported separately). Efficiency computed from ungated skill is descriptive only. The quantity is deliberately not named &ldquo;understanding per joule&rdquo;: understanding is not the measured object; gated skill is. Evidence efficiency is <strong>specified, not yet measured</strong> &mdash; it inherits the protocol's pre-pilot status. A reference implementation of the computation and the gates ships with the protocol materials.</p></div>
+  </div>
+</section>
+
+<section class="section" id="mso">
+  <div class="container">
+    <span class="eyebrow">The design objective</span>
+    <h2>Minimum sufficient observation</h2>
+    <p class="lead">The least burdensome governed evidence configuration that preserves a pre-specified level of gated, target-specific predictive skill. Task-dependent by construction &mdash; there is no universal minimum sensor suite &mdash; and deliberately anti-surveillance: when less invasive sensing produces equivalent gated skill, the smaller configuration wins the comparison. More invasive capture must earn its place in bits, and loses when it cannot. See the <a href="/observation-science#mso">conceptual curve</a> on the observation-science page.</p>
+  </div>
+</section>
+
+<section class="section" id="ideal">
+  <div class="container">
+    <span class="eyebrow">Design envelope</span>
+    <h2>The ideal observation device</h2>
+    <p class="lead">The benchmark's validity conditions imply a design envelope for Layer 2 hardware &mdash; stated as hypotheses to test, not a product specification. Each property matters for a measurable reason.</p>
+    <div class="grid grid-2" style="margin-top:22px">
+      <div class="card"><h3>12&ndash;24+ hour battery</h3><p>Charging gaps are structured missingness: the hours a device spends on a charger correlate with exactly the routine breaks the benchmark most needs to observe.</p></div>
+      <div class="card"><h3>Passive, comfortable, forgettable</h3><p>Reactivity is a validity threat. A device the wearer performs for measures the performance, not the person. No display, minimal interaction, minimal thermal output.</p></div>
+      <div class="card"><h3>No interaction surface</h3><p>An output channel turns the instrument into an intervention and strains the observe-not-intervene rule that binds scoring windows.</p></div>
+      <div class="card"><h3>Simple sensing, deferred inference</h3><p>An ultra-low-power microcontroller writing compressed evidence to encrypted local storage, uploaded once daily to the wearer's own enclave, keeps the energy budget in capture rather than compute &mdash; and keeps raw data inside the federation boundary.</p></div>
+      <div class="card"><h3>Unremarkable in burden, never in disclosure</h3><p>Wearer notice and a bystander-perceptible recording state are hard constraints that dominate forgettability. Venue-based removal &mdash; the dinner table, the clinic &mdash; is the protocol working as intended: legitimate structured missingness, not a coverage defect.</p></div>
+      <div class="card"><h3>Consent-first by construction</h3><p>Participant controls for review, pause, deletion, and opt-out; bystander redaction; no raw third-party export. The privacy boundary includes derived inference objects, not only raw audio.</p></div>
+    </div>
+    <p class="muted small" style="margin-top:14px">Whether such a device outperforms today's instruments is an empirical question &mdash; precisely the one evidence efficiency is defined to answer.</p>
+  </div>
+</section>
+
+<section class="section" id="dimensions">
+  <div class="container">
+    <span class="eyebrow">Evaluation dimensions</span>
+    <h2>The TargetSpace hardware framework</h2>
+    <p class="lead">Not a ranking of shipping products &mdash; a rubric for evaluating any capture device as a scientific instrument. Flashy AI features do not appear on it.</p>
+    <div class="grid grid-3" style="margin-top:22px">
+      <div class="card"><h3>Coverage</h3><p>Continuous wearability &middot; battery life &middot; comfort &middot; forgettability &middot; social acceptability.</p></div>
+      <div class="card"><h3>Evidence</h3><p>Passive capture &middot; evidence density (tiers reachable) &middot; evidence efficiency (bits per joule / wear-hour / captured bit).</p></div>
+      <div class="card"><h3>Research fitness</h3><p>Exportability &middot; SDK openness &middot; privacy architecture &middot; on-device redaction &middot; suitability as instrument vs. consumer product.</p></div>
+    </div>
+    <div class="note note--warn" style="margin-top:18px"><span class="ic">&#9888;</span><p>Version 1.0 provides the rubric, not scores. Applying it to shipping devices is future work that requires measurements this pre-pilot release does not claim.</p></div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>

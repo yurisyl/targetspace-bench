@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meeting AI &mdash; TargetSpace v1.0</title>
+<meta name="description" content="How TargetSpace evaluates meeting recorders, notetakers, and meeting-intelligence systems: sealed, target-specific forecasts over commitments assigned in meetings, scored against population and own-routine baselines. Pre-pilot protocol proposal; no results yet.">
+<link rel="canonical" href="https://targetspace.org/meeting-ai">
+<meta name="theme-color" content="#070b16">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero section">
+  <div class="container">
+    <span class="eyebrow">Industry map &middot; Meeting AI</span>
+    <h1>Meeting AI: from notes taken to <span class="grad-text">outcomes forecast</span></h1>
+    <p class="hero__sub">Meeting recorders, notetakers, and meeting-intelligence systems transcribe, summarize, and extract action items &mdash; and are evaluated on transcript accuracy and summary quality. None of that tests whether the system has learned anything about the people in the room. TargetSpace poses the missing question: given weeks of a team's meetings, can the system forecast what a <em>specific</em> person does next, better than base rates and better than that person's own routine?</p>
+    <div class="btns">
+      <a class="btn btn--primary" href="/paper">Read the v1.0 preprint</a>
+      <a class="btn btn--ghost" href="/product-quickstart">Run TargetSpace</a>
+      <a class="btn btn--ghost" href="/industry">Industry map</a>
+    </div>
+    <p class="statusline" style="margin-top:16px;font-size:.82rem;color:var(--muted)"><strong style="color:var(--text)">Version 1.0 &mdash; pre-pilot protocol proposal.</strong> Synthetic harness only. No human-subject results.</p>
+  </div>
+</header>
+
+<!-- ============ WHERE THIS CATEGORY SITS ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <span class="eyebrow">Where this category sits</span>
+    <h2>The convergence ladder</h2>
+    <p class="lead">Personal-AI product categories are converging on one ladder: recording &rarr; structured memory &rarr; longitudinal evidence &rarr; target-specific predictive capability &rarr; validated assistance, with the predictive-capability rung measured by TargetSpace. Meeting AI is the ladder's natural entry point: it already captures the among the richest recurring evidence streams in knowledge work &mdash; who said what to whom, and what was promised &mdash; and its products are now adding cross-meeting memory. But a summary of a meeting is not understanding of the people in it; the ladder is climbed by forecasting, not by recall.</p>
+    <div class="note note--info" style="margin-top:16px">
+      <span class="ic">&#9673;</span>
+      <p><strong>Current rung:</strong> recording, extending into structured memory (search and recall across past meetings). <strong>Next rung:</strong> longitudinal context &mdash; treating weeks of meetings as one evidence stream about specific people, evaluated by whether it improves sealed, calibrated forecasts of their observable next states.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT TARGETSPACE MEASURES HERE ============ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">What TargetSpace measures here</span>
+    <h2>Evidence tiers and the <span class="grad-text">TS-Personal</span> mapping</h2>
+    <p class="lead">Meeting AI maps onto the flagship TS-Personal track with an unusually strong tier-2 stream. The category's central empirical question is whether that stream earns its cost.</p>
+    <div class="grid grid-2" style="margin-top:22px">
+      <div class="card">
+        <h3>L2 &mdash; rich capture</h3>
+        <p>Meeting audio, ASR transcripts, and speaker turns: who committed to what, in which words, under whose eyes. High-bandwidth, high-cost, privacy-sensitive &mdash; and its forecasting value is a hypothesis to be tested by <strong style="color:var(--text)">evidence-tier ablation</strong>, never assumed.</p>
+      </div>
+      <div class="card">
+        <h3>L0&ndash;L1 &mdash; digital exhaust</h3>
+        <p>Calendar and communications metadata plus user-authored notes and task lists: cheap, ambient, already logged. The ablation asks how much of the forecast skill survives when the L2 stream is removed &mdash; and how much the L2 stream adds on top. Self-reported notes stay in as an auxiliary channel and baseline, not a discard.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h3>Example forecast task &mdash; commitment resolution</h3>
+      <p>At a sealed time <span class="mono">t</span>, before the outcome exists, forecast whether a commitment assigned to a named owner in a recorded meeting resolves as <span class="mono">{complete, defer, cancel, replace}</span> by its stated deadline, using evidence only up to <span class="mono">t</span>. The answer space is discrete; resolution is deterministic, from pre-registered rules over observable workspace state at the deadline.</p>
+      <p style="margin-top:10px">The forecast is scored with proper scoring rules against the <strong style="color:var(--text)">R1 population-prior baseline</strong> (base rates across all owners) and the <strong style="color:var(--text)">R2 own-routine baseline</strong> (this owner's recency-weighted habit). Calibration is reported alongside skill, and the <strong style="color:var(--text)">permutation specificity gate</strong> requires that skill collapse when the same forecasts are matched against a different owner's history. A meeting-AI system earns target-specific credit only if it clears all four checks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RUN IT ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <span class="eyebrow">Run it</span>
+    <h2>Three steps to a defensible number</h2>
+    <div class="grid grid-3" style="margin-top:22px">
+      <div class="card">
+        <h3>Minimal experiment</h3>
+        <p>Pick one feature &mdash; say, conditioning on meeting audio or on the generated summary &mdash; and run it on/off as an A-B over the <em>same</em> sealed task set: same owners, same commitments, same seal times. The only difference between arms is the feature; the difference in skill is the feature's measured value.</p>
+      </div>
+      <div class="card">
+        <h3>Federated execution</h3>
+        <p>Raw data never leaves the company. Audio, transcripts, calendars, and notes stay inside the operator's boundary; only sealed forecasts, resolved outcomes, and aggregate metrics are exported for scoring. The protocol needs the forecasts, not the meetings.</p>
+      </div>
+      <div class="card">
+        <h3>Expected output</h3>
+        <p>One leaderboard row: skill vs R1, skill vs R2 (in bits), calibration, the permutation result, and the breakdown per evidence tier. Not a demo, not a testimonial &mdash; a number another lab could check.</p>
+      </div>
+    </div>
+    <div class="btns" style="margin-top:20px">
+      <a class="btn btn--primary" href="/product-quickstart">Product quickstart</a>
+      <a class="btn btn--ghost" href="/baselines">Baselines &amp; controls</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPEN RESEARCH QUESTIONS ============ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Open research questions</span>
+    <h2>What a meeting-AI run of TargetSpace would settle</h2>
+    <p class="lead">None of these have empirical answers yet; each is directly addressable by the v1.0 protocol.</p>
+    <div class="grid grid-2" style="margin-top:22px">
+      <div class="card">
+        <h3>Audio lift over exhaust</h3>
+        <p>Does meeting audio add calibrated forecasting lift over calendar and task metadata alone, or is most of the signal already present in the L0&ndash;L1 exhaust? Passive rich capture is the hypothesis; the evidence-tier ablation is the test.</p>
+      </div>
+      <div class="card">
+        <h3>Summaries: predictive or descriptive?</h3>
+        <p>Does conditioning on the generated summary beat conditioning on the raw transcript &mdash; or does summarization discard exactly the forward-looking evidence (hedges, phrasing, hesitation) that carries forecast skill?</p>
+      </div>
+      <div class="card">
+        <h3>Error propagation</h3>
+        <p>How do ASR word-error and diarization error propagate into forecast skill and calibration, and can the degradation be normalized per capture device so that scores remain comparable across hardware?</p>
+      </div>
+      <div class="card">
+        <h3>Which features look forward?</h3>
+        <p>Which meeting features carry forward-looking information about resolution: the assigned owner, the phrasing of the commitment, who was present when it was made, or the time pressure at the moment of assignment?</p>
+      </div>
+      <div class="card">
+        <h3>Cross-meeting accumulation</h3>
+        <p>Does accumulating weeks of meetings beat single-meeting context &mdash; and by how many bits of skill over the R2 own-routine baseline? The answer locates where longitudinal context starts to pay in this category.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>

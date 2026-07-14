@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/yurisyl/targetspace-bench/schemas/forecast.schema.json",
   "title": "TargetSpace Forecast",
-  "description": "A single sealed, timestamped probabilistic forecast over a discrete answer space. Cross-field rules (probabilities sum to 1, answer-space coverage, time ordering) are enforced by pwm_bench.validation in addition to this schema.",
+  "description": "A single sealed, timestamped probabilistic forecast over a discrete answer space. Cross-field rules (probabilities sum to 1, answer-space coverage, time ordering) are enforced by the reference harness validation layer in addition to this schema.",
   "type": "object",
   "additionalProperties": false,
   "required": [

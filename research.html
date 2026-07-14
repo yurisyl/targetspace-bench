@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research agenda — TargetSpace v1.0</title>
+<meta name="description" content="The TargetSpace research agenda: sensing sufficiency, sampling schedules, compute placement, and uncertainty propagation for personal AI observation architecture — each answerable with the benchmark apparatus.">
+<link rel="canonical" href="https://targetspace.org/research">
+<meta name="theme-color" content="#070b16">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+
+<header class="hero section">
+  <div class="container">
+    <span class="eyebrow">Research agenda</span>
+    <h1>Open questions in <span class="grad-text">observation architecture</span></h1>
+    <p class="hero__sub" style="max-width:70ch">If Layer 1 validates &mdash; if passive longitudinal observation produces calibrated, target-specific lift beyond the R1 population-prior and R2 own-routine baselines &mdash; the next question is how to observe a person continuously over months to years. That is a different optimization problem from any current product. Every question below is answerable with the apparatus already specified: fix the task set, vary the sensing arm, read the evidence-efficiency curve.</p>
+    <div class="btns">
+      <a class="btn btn--primary" href="/hardware">Hardware framework</a>
+      <a class="btn btn--ghost" href="/protocol">Protocol</a>
+      <a class="btn btn--ghost" href="/paper">Paper</a>
+    </div>
+    <p class="statusline" style="margin-top:16px;font-size:.82rem;color:var(--muted)"><strong style="color:var(--text)">Version 1.0 &mdash; pre-pilot protocol proposal.</strong> Synthetic harness only. No human-subject results.</p>
+  </div>
+</header>
+
+<section class="section" id="agenda">
+  <div class="container">
+    <span class="eyebrow">Four clusters</span>
+    <h2>The agenda</h2>
+    <div class="grid grid-2" style="margin-top:22px">
+      <div class="panel panel--hot">
+        <h3>Sensing sufficiency</h3>
+        <ul>
+          <li>What is the minimum sensing needed to model a person well?</li>
+          <li>Which modalities add measurable predictive lift &mdash; and which mostly re-encode routine?</li>
+          <li>Is continuous video necessary, or can sparse images match it?</li>
+          <li>How much audio is sufficient before lift saturates?</li>
+          <li>How much context is enough for each transition type?</li>
+        </ul>
+      </div>
+      <div class="panel panel--cold">
+        <h3>Sampling &amp; scheduling</h3>
+        <ul>
+          <li>What capture schedule maximizes predictive information per joule?</li>
+          <li>Can event-triggered sensing outperform continuous sensing?</li>
+          <li>How should missing data be represented so missingness neither leaks the outcome nor biases the forecast?</li>
+          <li>What battery life is necessary before charging gaps censor the evidence that matters?</li>
+        </ul>
+      </div>
+      <div class="panel panel--cold">
+        <h3>Compute placement</h3>
+        <ul>
+          <li>How much local computation is actually required?</li>
+          <li>Can inference happen offline &mdash; deferred to a daily upload &mdash; without losing time-sensitive evidence?</li>
+          <li>What evidence value is lost to on-device redaction and privacy filtering?</li>
+          <li>What architecture maximizes calibrated skill per watt?</li>
+        </ul>
+      </div>
+      <div class="panel panel--hot">
+        <h3>Uncertainty &amp; representation</h3>
+        <ul>
+          <li>How should sensor error and coverage gaps propagate into the forecast distribution rather than being imputed away?</li>
+          <li>How should a belief state represent what the device did not see?</li>
+          <li>Which derived representations (transcripts, entities, commitments) preserve predictive information, and which discard it?</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note note--info" style="margin-top:20px"><span class="ic">&#9673;</span><p><strong>Status.</strong> These are open research questions, stated as formulation. None has been answered; no experiments have run. The proposed pre-pilot feasibility study (five consenting participants, thirty days, audio-first, daily sealed forecasts) is designed to validate only that the harness can run &mdash; it is not powered to answer any question on this page.</p></div>
+  </div>
+</section>
+
+<section class="section section--tight" id="participate">
+  <div class="container">
+    <span class="eyebrow">Contribute</span>
+    <h2>How to work on these questions</h2>
+    <div class="grid grid-3" style="margin-top:18px">
+      <div class="card"><h3>Run the harness</h3><p>The synthetic reference path exercises the full loop &mdash; sealing, resolution, scoring, permutation. <a href="/run-harness">Run it</a>.</p></div>
+      <div class="card"><h3>Run a sensing ablation</h3><p>Fix the task set, vary the sensing arm (tier, schedule, device), and report Skill vs R1/R2 per arm. <a href="/product-quickstart">The playbook</a>.</p></div>
+      <div class="card"><h3>Propose an instrument</h3><p>Evaluate a capture device against the <a href="/hardware">hardware framework</a>: coverage, evidence, research fitness &mdash; and pre-register an evidence-efficiency estimate.</p></div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>

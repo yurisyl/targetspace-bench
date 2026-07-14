@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assistive Devices &mdash; TargetSpace v1.0</title>
+<meta name="description" content="How TargetSpace applies to assistive devices: sealed, target-specific forecasts of care-relevant transitions in accessibility, memory-support, and care-coordination systems — under strict consent, with no empirical results yet.">
+<link rel="canonical" href="https://targetspace.org/assistive-devices">
+<meta name="theme-color" content="#070b16">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero section">
+  <div class="container">
+    <span class="eyebrow">Industry map &middot; Assistive Devices</span>
+    <h1>Accessibility, memory support, and care coordination, tested as <span class="grad-text">target-specific forecasting</span></h1>
+    <p class="hero__sub">Assistive systems &mdash; reminder and memory aids, accessibility interfaces, care-coordination platforms &mdash; increasingly claim to know the person they support: their routine, their needs, their likely next step. Today that claim is evaluated by recall accuracy and task completion, which cannot distinguish knowing the person from replaying their schedule. TargetSpace states the claim as a falsifiable forecasting question about one specific person, sealed before the outcome exists.</p>
+    <div class="btns">
+      <a class="btn btn--primary" href="/paper">Read the v1.0 preprint</a>
+      <a class="btn btn--ghost" href="/product-quickstart">Run TargetSpace</a>
+      <a class="btn btn--ghost" href="/industry">Industry map</a>
+    </div>
+    <p class="statusline" style="margin-top:16px;font-size:.82rem;color:var(--muted)"><strong style="color:var(--text)">Version 1.0 &mdash; pre-pilot protocol proposal.</strong> Synthetic harness only. No human-subject results.</p>
+  </div>
+</header>
+
+<!-- ============ WHERE THIS CATEGORY SITS ============ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Where this category sits</span>
+    <h2>Position on the convergence ladder</h2>
+    <p class="lead">Personal AI is converging along one ladder: recording &rarr; structured memory &rarr; longitudinal evidence &rarr; target-specific predictive capability &rarr; validated assistance, with the predictive-capability rung measured by TargetSpace. Assistive technology is unusually far along in ambition: a memory aid for cognitive impairment or a care-coordination platform is <em>built</em> on the premise of longitudinal, person-specific knowledge. But a reminder that resurfaces what was said is memory, not understanding &mdash; it says nothing about whether the reminder will be acted on, ignored, or needed at all.</p>
+    <div class="note note--info" style="margin-top:18px">
+      <span class="ic">&#9673;</span>
+      <p><strong>Current rung: structured memory</strong>, with care-coordination platforms entering longitudinal evidence. <strong style="color:var(--text)">Next rung: target-specific predictive capability</strong> &mdash; does the system anticipate <em>this</em> person's next care-relevant transition better than their own routine predicts it, and does that skill collapse on the wrong person?</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT TARGETSPACE MEASURES HERE ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <span class="eyebrow">What TargetSpace measures here</span>
+    <h2>Evidence tiers and the flagship personal track</h2>
+    <p class="lead">Assistive tasks instantiate as <strong style="color:var(--text)">TS-Personal</strong> tasks &mdash; the flagship track, currently instantiated synthetically. The tier mix depends on the assistive function: consented <span class="mono">L2</span> audio for memory support, and <span class="mono">L5&ndash;L6</span> streams for care-relevant physiology and mobility &mdash; always under strict consent. Whether the higher tiers add forecasting skill is a hypothesis the <strong style="color:var(--text)">evidence-tier ablation</strong> tests; it is never assumed. Self-report from the person and their caregivers is an auxiliary channel and baseline, biased but never dismissed.</p>
+    <div class="card" style="margin-top:20px">
+      <h3>Example sealed forecast &mdash; care-obligation follow-through</h3>
+      <p>Before the window opens, the system seals a hashed forecast: will the target <em>engage with</em> or <em>avoid</em> a defined care obligation &mdash; a medication pickup or a scheduled appointment &mdash; within its resolution window? Discrete answer space <span class="mono">{engaged, deferred, avoided}</span>; deterministic resolution from the pickup or attendance record, pre-registered before sealing. The forecast is scored in bits against the <strong style="color:var(--text)">R1 population-prior baseline</strong> (what people in general do) and the <strong style="color:var(--text)">R2 own-routine baseline</strong> (what this person's recency-weighted routine predicts), with calibration reported over R1 and R2. Target-specific credit requires passing the <strong style="color:var(--text)">permutation specificity gate</strong>: skill must collapse when the same forecasts are scored against a different person's history. The <strong style="color:var(--text)">evidence-tier ablation</strong> then reports what L2 audio adds over scheduling metadata, and what L5&ndash;L6 physiology and mobility add over L2.</p>
+    </div>
+    <div class="note note--warn" style="margin-top:16px">
+      <span class="ic">&#9673;</span>
+      <p><strong>Scope of the claim.</strong> A passing score measures calibrated forecasting of future observable states &mdash; nothing about inner life, intent, or wellbeing, and never permission to intervene. In assistive settings consent is the entry condition, not a formality: tiers above L2 are exercised only under explicit, revocable consent from the person or their lawful representative.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RUN IT ============ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Run it</span>
+    <h2>Three steps from claim to leaderboard row</h2>
+    <div class="grid grid-3" style="margin-top:22px">
+      <div class="card">
+        <h3>Minimal experiment</h3>
+        <p>An A&#8209;B design over the same sealed tasks: the assistive feature (memory support, coordination model) on versus off, everything else held fixed. If the feature carries person-specific signal, skill over the R2 own-routine baseline should differ between arms; if it does not, the feature's personalization claim reads as null.</p>
+      </div>
+      <div class="card">
+        <h3>Federated execution</h3>
+        <p>Raw observations never leave the operator &mdash; audio, physiology, and mobility streams stay inside the care provider's or vendor's boundary. Only sealed forecasts, resolved outcomes, and aggregate metrics are exported. The protocol is designed so that auditing a claim does not require exporting a resident's data.</p>
+      </div>
+      <div class="card">
+        <h3>Expected output</h3>
+        <p>One leaderboard row: skill vs the R1 population-prior baseline, skill vs the R2 own-routine baseline (bits), calibration error, permutation specificity gate result, each broken out per evidence tier. A battery of conditions &mdash; not a single number.</p>
+      </div>
+    </div>
+    <div class="btns" style="margin-top:22px">
+      <a class="btn btn--primary" href="/product-quickstart">Product quickstart</a>
+      <a class="btn btn--ghost" href="/baselines">Baselines &amp; controls</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPEN RESEARCH QUESTIONS ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <span class="eyebrow">Open research questions</span>
+    <h2>What a pilot in assistive devices must answer</h2>
+    <div class="grid grid-2" style="margin-top:22px">
+      <div class="card">
+        <h3>Where does forecasting pay?</h3>
+        <p>Which assistive contexts benefit most from target-specific forecasting &mdash; memory support, care coordination, or safety monitoring &mdash; and which are served just as well by the R2 own-routine baseline?</p>
+      </div>
+      <div class="card">
+        <h3>Anticipation vs paternalism</h3>
+        <p>How does the benchmark keep helpful anticipation separate from paternalistic steering? A high forecasting score is a measurement, never permission to act on the person's behalf.</p>
+      </div>
+      <div class="card">
+        <h3>Consent under fluctuating capacity</h3>
+        <p>What consent architecture holds when the subject's capacity fluctuates and caregivers are co-observers &mdash; who consents, to which tiers, and how is consent revisited and revoked?</p>
+      </div>
+      <div class="card">
+        <h3>Calibration across heterogeneity</h3>
+        <p>Do assistive forecasts remain calibrated across cognitive and behavioural heterogeneity, or does the R1 population-prior baseline systematically mislead for atypical targets?</p>
+      </div>
+      <div class="card">
+        <h3>Federated audit</h3>
+        <p>Can federated evaluation let care providers audit vendor claims &mdash; sealed forecasts in, aggregate metrics out &mdash; without any resident data leaving the facility?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>

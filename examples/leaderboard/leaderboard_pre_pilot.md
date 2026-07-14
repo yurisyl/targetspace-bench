@@ -1,4 +1,4 @@
-<!-- Synthetic demo only. Not empirical PWM-Pilot results. -->
+<!-- Synthetic demo only. Not empirical pilot results. -->
 | Rank | System | Tier | Tasks | Horizon | Forecasts | Skill vs R1 (bits) | Skill vs R2 (bits) | ECE | Calib. | Perm. skill | Perm. | Status | Verif. |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Combined Evidence Model | L3 | T1–T5 | 24h/7d | 600 | 0.7765 | 0.2243 | 0.0686 | pass | -0.3007 | pass | synthetic_demo | synthetic_demo |
