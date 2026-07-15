@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why TargetSpace — TargetSpace v1.0</title>
+<meta name="description" content="Why a benchmark for personal AI had to exist: the gap between recalling a person's past and forecasting their future, why longitudinal observation changes the problem, and why prediction — not understanding — is the measurable claim.">
+<link rel="canonical" href="https://targetspace.org/why">
+<meta name="theme-color" content="#070b16">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why TargetSpace">
+<meta property="og:description" content="Personal AI claims to know people. No shared instrument checks the claim. The engineering case for a benchmark of target-specific forecasting under partial observation.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/portal.css">
+<style>
+  .essay{max-width:72ch;margin:0 auto}
+  .essay p{font-size:1.02rem;line-height:1.75;color:var(--text-soft,#cdd8ec);margin:0 0 18px}
+  .essay h2{margin:44px 0 14px;font-size:1.35rem}
+  .essay h2 .knum{color:var(--muted,#6f7e9b);font-family:ui-monospace,monospace;font-size:.85em;margin-right:10px}
+  .essay .pull{border-left:3px solid rgba(45,212,191,.55);padding:6px 0 6px 18px;margin:26px 0;color:var(--text,#eef2fa);font-size:1.06rem;line-height:1.6}
+  .essay table{width:100%;border-collapse:collapse;margin:22px 0;font-size:.95rem}
+  .essay th,.essay td{text-align:left;padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.09);vertical-align:top}
+  .essay th{color:var(--muted,#8ea3c4);font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.04em}
+  .essay .meta{color:var(--muted,#6f7e9b);font-size:.85rem;margin-bottom:34px}
+  @media print{.essay p{color:#222}.essay .pull{color:#000}}
+</style>
+</head>
+<body>
+<div id="ts-banner"></div>
+<div id="site-header"></div>
+
+<header class="hero section" style="padding-bottom:8px">
+  <div class="container essay">
+    <span class="eyebrow">Editorial</span>
+    <h1>Why TargetSpace</h1>
+    <p class="hero__sub" style="max-width:none">The engineering case for measuring what personal AI actually claims.</p>
+    <p class="statusline" style="margin-top:12px;font-size:.82rem;color:var(--muted)"><strong style="color:var(--text)">Version 1.0 &mdash; pre-pilot protocol proposal.</strong> Synthetic harness only. No human-subject results. This essay introduces the project; the <a href="/paper">paper</a> is the canonical reference wherever the two differ in precision.</p>
+  </div>
+</header>
+
+<section class="section" style="padding-top:18px">
+  <div class="container essay">
+    <p class="meta">~12 minute read &middot; written for researchers, engineers, and builders &middot; assumes no familiarity with the paper &middot; <a href="/assets/why-targetspace.pdf">download as PDF</a></p>
+
+    <h2><span class="knum">1</span>A claim every product makes and no instrument checks</h2>
+    <p>A growing class of products records, remembers, and reasons about one person over long stretches of time. Meeting recorders summarize your week. Wearable pendants transcribe your conversations. Glasses see what you see. Assistants accumulate months of email, calendar, and chat, and advertise the result as memory, context, or personal understanding. Whatever the form factor, the underlying promise is the same: <em>the longer this system observes you, the better it knows you.</em></p>
+    <p>It is a testable promise. It is almost never tested.</p>
+    <p>What gets measured instead is everything around it: transcription accuracy, retrieval precision, summary quality, user satisfaction, conversational fluency. These are real and useful measurements, and every one of them can be excellent while the promise itself is false. A system can transcribe perfectly, retrieve flawlessly, and summarize beautifully while having learned nothing about the person that generalizes to tomorrow &mdash; because none of those metrics ever asks a question whose answer is not already in the record.</p>
+    <p>TargetSpace exists to ask that question. It is a benchmark protocol built around a single measurable capability: given longitudinal observations of one consenting person up to a sealed moment in time, can a system forecast what that specific person does next &mdash; better than population statistics, better than the person's own routine, with honest probabilities, in a way that falls apart when scored against the wrong person?</p>
+    <p>This page explains why that particular question, with those particular controls, is the one worth standardizing. The <a href="/paper">paper</a> specifies the machinery; this is the reasoning that made the machinery necessary.</p>
+
+    <h2><span class="knum">2</span>Where existing evaluations stop</h2>
+    <p>Consider what today's evaluations ask. A transcript benchmark asks: <em>what was said?</em> A memory benchmark asks: <em>what happened?</em> A personalization benchmark asks: <em>what does this user prefer, given what they told us?</em> Each scores a system against evidence that already exists. Call the shared failure mode retrospective agreement: the answer key is the past, and the past is exactly what a large model with a large context window is best at re-serving.</p>
+    <p>Now consider what the promise actually implies. If a system has really built a model of you from months of observation, it should know things the record does not literally contain. Not just that you have a gym block on Thursdays &mdash; your calendar knows that &mdash; but that this Thursday's session will slip, because a deadline moved on Tuesday and your last two evenings went to the project. The first fact is retrieval. The second is a forecast, and it has a property retrieval never has: it can be scored against reality before reality happens, and it can be wrong.</p>
+    <div class="pull">Recall is graded against the past, which the system has already seen. A forecast is graded against the future, which nobody has.</div>
+    <p>The difficulty is that a convincing forecast can be a fake in three different ways, and a useful benchmark has to rule out all three.</p>
+    <p>First, base rates. Most scheduled meetings happen. Most emails eventually get a reply. A system that predicts the population's average behaviour looks accurate while knowing nothing about you. TargetSpace handles this with a population-prior baseline, R1: skill only counts above what the base rates already deliver.</p>
+    <p>Second, routine. You check email at nine. You defer the same recurring review most months. A model that memorizes your habits looks personalized while capturing only repetition. This is the subtle one, because most of anyone's life <em>is</em> routine &mdash; so TargetSpace fits an explicit model of your own routine, R2, from your own history, and demands skill beyond it. Beating R2 is the line between modeling the target's routine and modeling the target.</p>
+    <p>Third, generic pattern-matching dressed up as intimacy. If a system's forecasts are equally good when scored against a different person's outcomes, they were never about you. TargetSpace scores every system against wrong-target outcomes on matched tasks &mdash; the permutation gate &mdash; and genuine person-specific skill must degrade by a pre-registered margin when the pairing is broken.</p>
+    <p>One more requirement holds the rest together: calibration. A forecast is a probability, and downstream decisions consume probabilities, so a system that says 80% must be right about four times in five. Overconfident luck fails the gate even when the top guesses are correct.</p>
+    <p>None of these instruments is new on its own. Proper scoring rules have graded weather forecasters since the 1950s; calibration analysis, prospective sealing, and ablation studies are standard practice; ubiquitous-computing research was fitting individual-routine models from passive data two decades ago. What has not existed is the conjunction, standardized: sealed, proper-scored forecasts about a tracked person, under an own-routine baseline and a wrong-target gate, with the evidence disclosed and attributed. That conjunction is the benchmark.</p>
+
+    <h2><span class="knum">3</span>Longitudinal observation is a different problem</h2>
+    <p>Static benchmarks get to ignore time. A labeled image is as good today as yesterday; shuffle the dataset and nothing breaks. Evidence about a person is nothing like this, and the differences are exactly where naive evaluation goes wrong.</p>
+    <p>Chronology is load-bearing. Whether a commitment slips depends on what happened Tuesday, so evaluation must be walk-forward &mdash; the model sees only what was observable before the sealed moment, indices rebuilt per slice, no random cross-validation. People also drift: the routine baseline that was true in March misleads in June, so baselines are refit as time advances, and adaptation is part of what gets rewarded.</p>
+    <p>Missingness carries information. When a wearable sits on its charger, the gap in the record is not random &mdash; charging hours correlate with exactly the schedule breaks a forecaster most needs to see. When a device is removed at dinner, that is consent working as intended, and the record must say so rather than silently impute. TargetSpace treats coverage logs and missingness manifests as first-class artifacts: <em>no observation</em> and <em>no event</em> must remain distinguishable, or calibration analysis quietly rots.</p>
+    <p>Observation is also reactive. A device the wearer performs for measures the performance, not the person. And the observed record is never the person: speech, location, calendar entries, and self-reports are partial projections of an underlying state through particular channels. A calendar entry is not a commitment; a missed reply is not avoidance. The record is not the target &mdash; which is precisely why the test must be whether a system can forecast the record's <em>next</em> entries, not summarize its existing ones.</p>
+    <p>Put together, this means personal-AI evaluation is incomplete when model scores are reported without characterizing the evidence behind them. Two systems with identical architectures and different capture coverage are different experiments. TargetSpace therefore treats observation quality &mdash; what was sensed, when, how completely, under what consent &mdash; as a first-class experimental variable, disclosed in machine-readable manifests and ablated like any other variable. The limiting factor for this field is increasingly not only model capability but the quality, continuity, and governance of the evidence a model is given. That deserves measurement, not assumption.</p>
+
+    <h2><span class="knum">4</span>From memory to measurement</h2>
+    <p>A fair objection: isn't this just asking whether the model <em>understands</em> the user? Deliberately, no &mdash; and the distinction is the project's spine rather than a lawyer's footnote.</p>
+    <p>Understanding, in the rich sense, is not observable. No benchmark measures it, including this one. What is observable is whether a system's stated probabilities about a specific person's future observable behaviour are better than base rates, better than that person's routine, honest about their own uncertainty, and specific to that person. TargetSpace names that bundle <em>target-specific predictive capability</em> and measures exactly it. Wherever the project uses the word understanding, it is operational shorthand for that bundle and nothing more &mdash; the same discipline by which prediction and explanation are kept distinct in statistics.</p>
+    <p>Narrowing the claim is what makes the claim testable, and testable in both directions. A well-run TargetSpace evaluation can return answers a marketing benchmark cannot afford: no lift over base rates; lift over base rates but nothing beyond routine; skill that fails calibration; skill that survives against the wrong person and was therefore never personal; a cheaper sensor matching an expensive one. Every one of these nulls is an informative result about a named configuration, and the protocol is built so they are reportable rather than buried. A field that cannot publish its nulls cannot converge.</p>
+    <p>This is also why the benchmark is an instrument, not a philosophy. ImageNet did not define vision; it standardized a measurement that let a field converge on what worked. SWE-bench did the same for software agents. TargetSpace claims the same functional role for personal AI &mdash; the shared task that turns a diffuse promise into a number with error bars &mdash; and no comparable scale or importance. The larger inquiry it serves, which the paper calls human observation science as a <em>proposed</em> research program, is the study of which observations, schedules, and governance constraints are sufficient for reliable person-specific prediction. The benchmark is how that program gets its data.</p>
+
+    <h2><span class="knum">5</span>More sensors are not automatically better</h2>
+    <p>A benchmark that rewarded raw predictive skill alone would carry an ugly incentive: capture everything, always, from every angle, because somewhere in the pile there might be bits. Personal AI does not need an instrument that grades surveillance as diligence.</p>
+    <p>TargetSpace is built so that invasiveness has to pay rent. Two mechanisms do the work.</p>
+    <p><strong>Evidence efficiency</strong> asks, of every added sensor, modality, or sampling schedule: how much gated skill did it add, per unit of what it cost? Cost is measured in the units engineers actually budget &mdash; joules, worn hours, captured bytes, required manual interactions &mdash; and only skill that survives every gate counts in the numerator, so a stream cannot buy efficiency with noise. Privacy is deliberately never collapsed into the denominator as a single number; it stays a reported vector &mdash; raw audio hours, image counts, retention, bystander exposure &mdash; because a scalar privacy score is how privacy gets traded away.</p>
+    <p><strong>Minimum sufficient observation</strong> is the design objective the ratios point at: the least burdensome governed evidence configuration that still preserves a pre-specified level of gated skill. It is task-dependent by construction. For forecasting whether a meeting slips, calendar metadata may be enough. For forecasting a shift in what someone is working toward, audio may earn its place. For some outcomes, no acceptable configuration may exist at all &mdash; and that finding is a result, not a failure. Where two configurations tie within a pre-registered margin, the less invasive one wins the comparison by rule.</p>
+    <div class="pull">The benchmark's question is never &ldquo;what could we capture?&rdquo; It is &ldquo;what is the least we can observe and still know what we claim to know?&rdquo;</div>
+    <p>This inverts the field's default. Today, sensing decisions are made by product intuition and component pricing; justification, if any, comes later. Under measurement, an engineer can defend a microphone the way they defend a cache: with a curve. And a regulator, an IRB, or a user can ask for the same curve.</p>
+
+    <h2><span class="knum">6</span>The engineering surface</h2>
+    <p>Framed this way, personal AI stops being one product race and becomes several measurable engineering problems, each with its own community.</p>
+    <p><strong>Hardware.</strong> No shipping device was designed as an observation instrument; today's wearables spend their budgets on interaction. The open design space &mdash; duty cycling against battery-shaped missingness, sensor placement against attribution quality, edge preprocessing against evidence loss, disclosure hardware that bystanders can see &mdash; currently runs on intuition. Bits of gated skill per joule, per worn hour, per captured byte turn it into an optimization with a scoreboard. The paper's ideal observation device is stated as a testable envelope, not a product spec: every property, from 12&ndash;24&nbsp;hour battery life to the absence of a display, traces to a validity requirement you can check.</p>
+    <p><strong>Software and protocol.</strong> The reference harness, schemas, and baselines are deliberately boring: deterministic synthetic data, machine-readable manifests for evidence, hardware, coverage, and energy, a scoring pipeline that refuses to headline any efficiency number whose gates did not pass. Sealing is a protocol, not a pinky-swear &mdash; forecast hashes must reach an external witness before outcomes exist, and runs without one are labelled self-attested. Boring is the point; reproducibility lives in the boring parts.</p>
+    <p><strong>Governance.</strong> Federated execution is the default: raw recordings stay with the participant or the company that holds them, the harness travels to the data, and what crosses the boundary is sealed forecasts, resolved outcomes, and aggregate reports above a minimum cohort size. The trust model is explicit rather than implied &mdash; a self-run evaluation is a within-study diagnostic, and only organizer-verified runs compare across systems. Consent is ongoing, bystander exclusion is a hard constraint, and a valid forecast never grants permission to act on the person. These are design commitments of a pre-pilot protocol, stated so they can be audited, not achievements to date.</p>
+    <p><strong>Ecosystem.</strong> Meeting tools, passive audio, glasses, wearables, enterprise copilots, assistive systems &mdash; the categories look unrelated until you notice they are climbing the same ladder: recording, then structured memory, then longitudinal evidence, then &mdash; if it exists at all &mdash; person-specific predictive capability. A shared instrument at that rung gives every category the same starter experiment: pick a high-frequency observable outcome, run the same sealed tasks with your feature on and off, and report whether memory became foresight.</p>
+
+    <h2><span class="knum">7</span>What TargetSpace actually contributes</h2>
+    <p>Stripped to its parts, the contribution is four named things, offered at pre-pilot status with a synthetic reference harness and no human results &mdash; the paper is explicit about this boundary, and so is every page of this site.</p>
+    <table aria-label="The four named contributions of the project">
+      <tr><th>Named thing</th><th>What it is</th></tr>
+      <tr><td><strong>TargetSpace</strong></td><td>The instrument: sealed, proper-scored forecasts of one tracked person's future observable transitions, gated by R1, R2, calibration, and wrong-target permutation, with evidence disclosed and attributed.</td></tr>
+      <tr><td><strong>Target-specific predictive capability</strong></td><td>The measured object &mdash; what a passed evaluation certifies, and the operational content behind any use of the word &ldquo;understanding.&rdquo;</td></tr>
+      <tr><td><strong>Evidence efficiency</strong></td><td>A family of gated ratios &mdash; incremental skill per disclosed unit of observation cost &mdash; connecting sensing decisions to measured value.</td></tr>
+      <tr><td><strong>Minimum sufficient observation</strong></td><td>The design objective: the least burdensome governed configuration that preserves a specified skill level. Less invasive wins ties, by rule.</td></tr>
+    </table>
+    <p>Equally important is what is <em>not</em> claimed. The ingredients &mdash; proper scoring, calibration, sealing, ablation, routine models from passive data &mdash; are adopted from decades of prior work in forecasting, evaluation, and ubiquitous computing, and the paper cites its debts. No architecture is mandated: a personal world model is one hypothesis for passing the benchmark, not a requirement of it. And nothing here proves that passive observation improves forecasting at all &mdash; that is the flagship hypothesis the instrument exists to test, and it is allowed to come back false.</p>
+
+    <h2><span class="knum">8</span>Where this could lead</h2>
+    <p>What follows is direction, not result; none of it is established, and the paper's claims table governs anything this section seems to promise.</p>
+    <p>If the first studies validate &mdash; if passive longitudinal evidence produces calibrated, person-specific lift beyond routine for even a few task families &mdash; then observation architecture becomes a measurable discipline. Hardware gets evaluated by skill-per-joule curves instead of spec sheets. Product claims about memory become auditable with a two-arm experiment any team can run in weeks. Categories that today compete on demos acquire a common yardstick, and the phrase &ldquo;our AI knows you&rdquo; starts arriving with a number, a margin, and a disclosed evidence bill.</p>
+    <p>If the studies come back null &mdash; if nothing beats the routine baseline, or richer capture adds nothing metadata didn't already carry &mdash; that is not the project failing. That is the project working: a public, specific, reproducible answer to a question the industry currently answers with adjectives, and a redirect of engineering effort away from capture that cannot pay for itself.</p>
+    <p>Either way, the field gets something it does not have today: a way to be wrong in public about a claim that is currently unfalsifiable in private.</p>
+    <p>Personal AI has spent a decade promising that it understands people. TargetSpace is the narrower engineering step of asking that promise to make a forecast &mdash; sealed, scored, specific to you, and accountable to the future.</p>
+
+    <div class="btns" style="margin-top:36px">
+      <a class="btn btn--primary" href="/paper">Read the paper</a>
+      <a class="btn btn--ghost" href="/product-quickstart">Run a starter experiment</a>
+      <a class="btn btn--ghost" href="/observation-science">Observation science</a>
+      <a class="btn btn--ghost" href="/protocol">The protocol</a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+</body>
+</html>
